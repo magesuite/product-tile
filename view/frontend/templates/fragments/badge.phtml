@@ -1,0 +1,31 @@
+<?php 
+    $product = $block->getProduct();
+    $htmlTag = $block->getHtmlTag();
+    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+    $labelCssClass = $block->getLabelCssClass() ? 'class="'.$block->getLabelCssClass().'"' : '';
+    $valueCssClass = $block->getValueCssClass() ? 'class="'.$block->getValueCssClass().'"' : '';
+    $label = $block->getLabel();
+    $labelPrefix = $block->getLabelPrefix();
+    $labelSuffix = $block->getLabelSuffix();
+
+    // hardcoded values (and method names) just for context
+    // also remove them from XML after BE implementation
+    $canShowBadge = $block->getShowBadge();
+    $badgeValue = $block->getCalculatedValue();
+?>
+<?php if($canShowBadge): ?>
+    <<?= $htmlTag ?> <?= $cssClass ?>">
+        <?php if(!empty($labelPrefix)): ?>
+            <?= $labelPrefix ?>
+        <?php endif; ?>
+        <?php if(!empty($label)): ?>
+            <span <?= $labelCssClass ?>><?= $label ?></span>
+        <?php endif; ?>
+        <?php if(!empty($badgeValue)): ?>
+            <span <?= $valueCssClass ?>><?= $badgeValue ?></span>
+        <?php endif; ?>
+        <?php if(!empty($labelSuffix)): ?>
+            <?= $labelSuffix ?>
+        <?php endif; ?>
+    </<?= $htmlTag ?>>
+<?php endif; ?>

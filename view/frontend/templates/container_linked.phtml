@@ -1,0 +1,8 @@
+<?php 
+    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+?>
+<a href="<?= $block->getProduct()->getProductUrl() ?>" <?= $cssClass ?>>
+    <?php foreach($this->getChilds() as $child): ?>
+        <?= $child->setTile($block->getTile())->toHtml() ?>
+    <?php endforeach ?>
+</a>

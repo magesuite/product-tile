@@ -1,0 +1,21 @@
+<?php 
+    $product = $block->getProduct();
+    $label = $this->getLabel();
+    $iconPath = $this->getIconPath();
+?>
+
+<a
+    href="#"
+    class="towishlist ms-links-block-addto__link"
+    title="<?= $label ?>"
+    aria-label="<?= $label ?>"
+    data-post='<?= $block->getAddToWishlistParams($product) ?>'
+    data-action="add-to-wishlist"
+    role="button"
+>
+    <?php if(!empty($iconPath)): ?>
+        <?php // @TODO: ICON ?>
+        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
+    <?php endif; ?>
+    <?= $label ?>
+</a>

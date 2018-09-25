@@ -1,0 +1,255 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="content">
+            <block class="MageSuite\ProductTile\Block\Tile" name="product.tile">
+                <arguments>
+                    <argument xsi:type="string" name="html_tag">div</argument>
+                    <argument xsi:type="string" name="css_class">ms-grid-product</argument>
+                    <argument xsi:type="array" name="sections">
+                        <item xsi:type="array" name="navigation">
+                            <item xsi:type="string" name="css_class">ms-grid-product</item>
+                        </item>
+                    </argument>
+                </arguments>
+
+                <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.main">
+                    <arguments>
+                        <argument xsi:type="string" name="html_tag">div</argument>
+                        <argument xsi:type="string" name="css_class">ms-grid-product__main</argument>
+                    </arguments>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container"
+                           name="product.tile.container.figure" 
+                           template="MageSuite_ProductTile::container_linked.phtml"
+                    >
+                        <arguments>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__figure-wrapper</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.badges">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">ul</argument>
+                                <argument xsi:type="string" name="css_class">ms-grid-product__badges</argument>
+                            </arguments>
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.new"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+                            >
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">ms-badge ms-grid-product__badge ms-grid-product__badge--new</argument>
+                                    <argument translate="true" xsi:type="string" name="label">New</argument>
+                                    <argument xsi:type="string" name="label_css_class">ms-badge__label ms-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="value_css_class"></argument>
+                                    <argument xsi:type="string" name="label_prefix"></argument>
+                                    <argument xsi:type="string" name="label_suffix"></argument>
+                                    <!-- hardcoded values (and method names). Remove after BE implementation -->
+                                    <argument xsi:type="boolean" name="show_badge">true</argument>
+                                    <argument xsi:type="string" name="calculated_value"></argument>
+                                </arguments>
+                            </block>
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.discount"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+                            >
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">ms-badge ms-grid-product__badge ms-grid-product__badge--discount</argument>
+                                    <argument translate="true" xsi:type="string" name="label"></argument>
+                                    <argument xsi:type="string" name="label_css_class"></argument>
+                                    <argument xsi:type="string" name="value_css_class">ms-badge__span ms-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="label_prefix">-</argument>
+                                    <argument xsi:type="string" name="label_suffix">%</argument>
+                                    <!-- hardcoded values (and method names). Remove after BE implementation -->
+                                    <argument xsi:type="boolean" name="show_badge">true</argument>
+                                    <argument xsi:type="string" name="calculated_value">29</argument>
+                                </arguments>
+                            </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.figure.figure">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">figure</argument>
+                                <argument xsi:type="string" name="css_class">ms-grid-product__figure</argument>
+                            </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.figure.image"
+                                   template="MageSuite_ProductTile::fragments/image.phtml"
+                            >
+                                <arguments>
+                                    <argument xsi:type="string" name="css_class">ms-grid-product__image</argument>
+                                </arguments>
+                            </block>
+                        </block>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.swatches.container">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__swatches</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.swatches"
+                               template="MageSuite_ProductTile::fragments/swatches.phtml"
+                        >
+                            <block class="Magento\Framework\View\Element\RendererList" name="product.tile.details.renderers" as="details.renderers">
+                                <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" name="product.tile.details.renderers.configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" ifconfig="catalog/frontend/show_swatches_in_product_list" />
+                                <block class="Magento\Framework\View\Element\Template" name="product.tile.details.renderers.default" as="default" />
+                            </block>
+                        </block>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.name">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__name</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Container"
+                               name="product.tile.container.name.link" 
+                               template="MageSuite_ProductTile::container_linked.phtml"
+                        >
+                            <arguments>
+                                <argument xsi:type="string" name="css_class">ms-grid-product__name-link</argument>
+                            </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.name" 
+                                   template="MageSuite_ProductTile::fragments/name.phtml"
+                            />
+                        </block>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.price.wrapper">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__price</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.price"
+                               template="MageSuite_ProductTile::fragments/price.phtml"
+                        />
+                    </block>
+                </block>
+
+                <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons">
+                    <arguments>
+                        <argument xsi:type="string" name="html_tag">div</argument>
+                        <argument xsi:type="string" name="css_class">ms-grid-product__addons</argument>
+                    </arguments>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.top" display="false">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-top</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.left">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-left</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.rating">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">div</argument>
+                                <argument xsi:type="string" name="css_class">ms-grid-product__addon ms-grid-product__addon--rating</argument>
+                            </arguments>
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.review_summary"
+                                   template="MageSuite_ProductTile::fragments/review_summary.phtml">
+                                <arguments>
+                                    <argument xsi:type="string" name="template_type">\Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW</argument>
+                                </arguments>
+                            </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.list">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">ul</argument>
+                                <argument xsi:type="string" name="css_class">ms-links-block-addto</argument>
+                            </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtowishlist">
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">ms-links-block-addto__item ms-links-block-addto__item--wishlist</argument>
+                                </arguments>
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                       name="product.tile.addtolinks.addtowishlist"
+                                       template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
+                                    <arguments>
+                                        <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
+                                        <!-- @TODO: icon -->
+                                        <argument xsi:type="string" name="icon_path">images/heart.svg</argument>
+                                    </arguments>
+                                </block>
+                            </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtocompare">
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">ms-links-block-addto__item ms-links-block-addto__item--compare</argument>
+                                </arguments>
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare"
+                                       name="product.tile.addtolinks.addtocompare"
+                                       template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
+                                    <arguments>
+                                        <argument xsi:type="string" name="label" translate="true">Add to Compare</argument>
+                                        <!-- @TODO: icon -->
+                                        <argument xsi:type="string" name="icon_path">images/scales.svg</argument>
+                                    </arguments>
+                                </block>
+                            </block>
+                        </block>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.right">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-right</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.stock"
+                               template="MageSuite_ProductTile::fragments/stock.phtml">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">div</argument>
+                                <argument xsi:type="string" name="css_class">ms-grid-product__addon</argument>
+                                <argument xsi:type="string" name="in_stock_css_modifier">ms-grid-product__addon--in-stock</argument>
+                                <argument xsi:type="string" name="out_of_stock_css_modifier">ms-grid-product__addon--out-of-stock</argument>
+                                <argument xsi:type="string" name="in_stock_label" translate="true">In stock</argument>
+                                <argument xsi:type="string" name="out_of_stock_label" translate="true">Out of stock</argument>
+                                <!-- @TODO: icon -->
+                                <argument xsi:type="string" name="icon_path"></argument>
+                            </arguments>
+                        </block>
+                    </block>
+
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.bottom">
+                        <arguments>
+                            <argument xsi:type="string" name="html_tag">div</argument>
+                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-bottom</argument>
+                        </arguments>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.addtocart"
+                               template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
+                            <arguments>
+                                <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
+                                <argument xsi:type="boolean" name="show_button_when_not_saleable">true</argument>
+                                <argument xsi:type="string" name="label" translate="true">Add to Cart</argument>
+                                <!-- @TODO: icon -->
+                                <argument xsi:type="string" name="icon_path"></argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,17 @@
+<?php
+    $product = $block->getProduct();
+    $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
+    $productImage = $imageHelper->init($product, 'category_page_grid');
+    $productImageUrl = $productImage->getUrl();
+    $productImageSize = $productImage->getResizedImageInfo();
+
+    /* XML config */
+    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+?>
+<img <?= $cssClass ?> 
+    src="<?= $productImageUrl ?>" 
+    srcset="<?= $productImageUrl . ' 1x, ' . $imageHelper->init($product, 'category_page_grid@2x')->getUrl() . ' 2x' ?>"
+    width="<?= $productImageSize[0] ?>" 
+    height="<?= $productImageSize[1] ?>" 
+    alt="<?= $product->getName() ?>"
+>

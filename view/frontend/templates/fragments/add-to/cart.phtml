@@ -1,0 +1,31 @@
+<?php 
+    $product = $block->getProduct();
+    $isSaleable = $product->isSaleable();
+    $showButtonWhenNotSaleable = $block->getShowButtonWhenNotSableable();
+    $showOnlyForSimpeProducts = $block->getShowOnlyForSimpleProducts();
+    $label = $block->getLabel();
+    $iconPath = $this->getIconPath();
+?>
+
+<?php
+    if (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE):
+        if ($isSaleable || (!$isSaleable && $showButtonWhenNotSaleable)): ?>
+            <?php $postParams = $block->getAddToCartPostParams($product); ?>
+            <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="ms-addtocart">
+                <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+                <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
+                <?= $block->getBlockHtml('formkey') ?>
+                <button type="submit" title="<?= $label ?>" 
+                        class="action tocart primary ms-addtocart__button"
+                        <?php if (!$isSaleable && $showButtonWhenNotSaleable): ?> disabled="disabled"<?php endif ?>
+                >
+                    <?php if(!empty($iconPath)): ?>
+                        <?php // @TODO: ICON ?>
+                        <img class="ms-addtocart__button-icon" src="<?= $this->getViewFileUrl($iconPath) ?>">
+                    <?php endif; ?>
+                    <span class="ms-addtocart__button-text"><?= $label ?></span>
+                </button>
+            </form>
+        <?php endif;
+    endif;
+?>

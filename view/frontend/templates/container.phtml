@@ -1,0 +1,10 @@
+<?php 
+    $htmlTag = $block->getHtmlTag();
+    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+?>
+
+<<?= $htmlTag ?> <?= $cssClass ?>>
+    <?php foreach($this->getChilds() as $child): ?>
+        <?= $child->setTile($block->getTile())->toHtml() ?>
+    <?php endforeach; ?>
+</<?= $htmlTag ?>>

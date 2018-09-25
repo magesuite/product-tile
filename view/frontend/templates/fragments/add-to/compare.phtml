@@ -1,0 +1,19 @@
+<?php /** @var $block \MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare */ ?>
+<?php 
+    $label = $this->getLabel();
+    $iconPath = $this->getIconPath();
+    $postDataParams = $block->getCompareHelper()->getPostDataParams($block->getProduct());
+?>
+
+<a href="#"
+   class="action tocompare ms-links-block-addto__link"
+   title="<?= $label ?>"
+   aria-label="<?= $label ?>"
+   data-post='<?= $postDataParams ?>'
+   role="button">
+    <?php if(!empty($iconPath)): ?>
+        <?php // @TODO: ICON ?>
+        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
+    <?php endif; ?>
+    <?= $label ?>
+</a>

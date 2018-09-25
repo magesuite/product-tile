@@ -1,0 +1,11 @@
+<?php 
+    /** @var $block \MageSuite\ProductTile\Block\Tile */
+    $htmlTag = $block->getSectionData('html_tag');
+    $cssClass = $block->getSectionData('css_class') ? 'class="'. $block->getSectionData('css_class') .'"' : ''; 
+?>
+
+<<?= $htmlTag ?> <?= $cssClass ?>>
+    <?php foreach($this->getChilds() as $child): ?>
+        <?= $child->setTile($block)->toHtml(); ?>
+    <?php endforeach; ?>
+</<?= $htmlTag ?>>

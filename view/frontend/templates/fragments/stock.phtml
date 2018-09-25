@@ -1,0 +1,17 @@
+<?php 
+    $product = $block->getProduct();
+    $isSaleable = $product->isSaleable();
+    $htmlTag = $block->getHtmlTag();
+    $cssClass = $block->getCssClass();
+    $modifier = $isSaleable ? $block->getInStockCssModifier() : $block->getOutOfStockCssModifier();
+    $label = $isSaleable ? $block->getInStockLabel() : $block->getOutOfStockLabel();
+    $iconPath = $this->getIconPath();
+?>
+
+<<?= $htmlTag; ?> class="<?= $cssClass . ' ' . $modifier ?>">
+    <?php if(!empty($iconPath)): ?>
+        <?php // @TODO: ICON ?>
+        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
+    <?php endif; ?>
+    <?= $label ?>
+</<?= $htmlTag; ?>>
