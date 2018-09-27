@@ -163,7 +163,7 @@
                                    name="product.tile.review_summary"
                                    template="MageSuite_ProductTile::fragments/review_summary.phtml">
                                 <arguments>
-                                    <argument xsi:type="string" name="template_type">\Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW</argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Review</argument>
                                 </arguments>
                             </block>
                         </block>
