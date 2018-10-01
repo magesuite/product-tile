@@ -1,0 +1,15 @@
+<?php
+/** @var \MageSuite\DailyDeal\Helper\OfferData $dailyDealHelper */
+$dailyDealHelper = $this->helper('MageSuite\DailyDeal\Helper\OfferData');
+$dailyDealData = $dailyDealHelper->prepareOfferData($block->getProduct());
+?>
+<?php if($dailyDealData and $dailyDealData['deal'] and in_array($dailyDealData['displayType'], ['badge', 'badge_counter'])): ?>
+    <span class="cs-badge cs-badge--attention cs-badge--cut cs-badge--limited-offer">
+        <span class="cs-badge__span"><?= __('Limited offer!') ?></span>
+    </span>
+    <?php if ($dailyDealData['items'] && $dailyDealData['items'] > 0): ?>
+        <span class="cs-badge">
+            <span class="cs-badge__span"><?= __('%1 item(s) left', $dailyDealData['items']) ?></span>
+        </span>
+    <?php endif; ?>
+<?php endif; ?>

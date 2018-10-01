@@ -4,10 +4,10 @@
             <block class="MageSuite\ProductTile\Block\Tile" name="product.tile">
                 <arguments>
                     <argument xsi:type="string" name="html_tag">div</argument>
-                    <argument xsi:type="string" name="css_class">ms-grid-product</argument>
+                    <argument xsi:type="string" name="css_class">cs-grid-product</argument>
                     <argument xsi:type="array" name="sections">
                         <item xsi:type="array" name="navigation">
-                            <item xsi:type="string" name="css_class">ms-grid-product</item>
+                            <item xsi:type="string" name="css_class">cs-grid-product</item>
                         </item>
                     </argument>
                 </arguments>
@@ -15,7 +15,7 @@
                 <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.main">
                     <arguments>
                         <argument xsi:type="string" name="html_tag">div</argument>
-                        <argument xsi:type="string" name="css_class">ms-grid-product__main</argument>
+                        <argument xsi:type="string" name="css_class">cs-grid-product__main</argument>
                     </arguments>
 
                     <block class="MageSuite\ProductTile\Block\Tile\Container"
@@ -23,13 +23,13 @@
                            template="MageSuite_ProductTile::container_linked.phtml"
                     >
                         <arguments>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__figure-wrapper</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__figure-wrapper</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.badges">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">ul</argument>
-                                <argument xsi:type="string" name="css_class">ms-grid-product__badges</argument>
+                                <argument xsi:type="string" name="css_class">cs-grid-product__badges</argument>
                             </arguments>
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                    name="product.tile.badge.new"
@@ -37,15 +37,13 @@
                             >
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">ms-badge ms-grid-product__badge ms-grid-product__badge--new</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-grid-product__badge--new</argument>
                                     <argument translate="true" xsi:type="string" name="label">New</argument>
-                                    <argument xsi:type="string" name="label_css_class">ms-badge__label ms-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="label_css_class">cs-badge__label cs-grid-product__badge-label</argument>
                                     <argument xsi:type="string" name="value_css_class"></argument>
                                     <argument xsi:type="string" name="label_prefix"></argument>
                                     <argument xsi:type="string" name="label_suffix"></argument>
-                                    <!-- hardcoded values (and method names). Remove after BE implementation -->
-                                    <argument xsi:type="boolean" name="show_badge">true</argument>
-                                    <argument xsi:type="string" name="calculated_value"></argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
                                 </arguments>
                             </block>
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -54,23 +52,82 @@
                             >
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">ms-badge ms-grid-product__badge ms-grid-product__badge--discount</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-grid-product__badge--discount</argument>
                                     <argument translate="true" xsi:type="string" name="label"></argument>
                                     <argument xsi:type="string" name="label_css_class"></argument>
-                                    <argument xsi:type="string" name="value_css_class">ms-badge__span ms-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
                                     <argument xsi:type="string" name="label_prefix">-</argument>
                                     <argument xsi:type="string" name="label_suffix">%</argument>
-                                    <!-- hardcoded values (and method names). Remove after BE implementation -->
-                                    <argument xsi:type="boolean" name="show_badge">true</argument>
-                                    <argument xsi:type="string" name="calculated_value">29</argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
                                 </arguments>
                             </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.positive_indicators.free_shipping"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+                            >
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-badge--positive</argument>
+                                    <argument translate="true" xsi:type="string" name="label">FREE SHIPPING</argument>
+                                    <argument xsi:type="string" name="label_css_class"></argument>
+                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="label_prefix"></argument>
+                                    <argument xsi:type="string" name="label_suffix"></argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\PositiveIndicators\FreeShipping</argument>
+                                </arguments>
+                            </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.positive_indicators.popular"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+                            >
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-badge--positive</argument>
+                                    <argument translate="true" xsi:type="string" name="label">POPULAR</argument>
+                                    <argument xsi:type="string" name="label_css_class"></argument>
+                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
+                                    <argument xsi:type="string" name="label_prefix"></argument>
+                                    <argument xsi:type="string" name="label_suffix"></argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\PositiveIndicators\Popular</argument>
+                                </arguments>
+                            </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.daily-deal.old-discount"
+                                   template="MageSuite_ProductTile::fragments/daily-deal/old_discount.phtml"
+                            >
+                            </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.daily-deal.badge"
+                                   template="MageSuite_ProductTile::fragments/daily-deal/badge.phtml"
+                            >
+                            </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.daily-deal.counter"
+                               template="MageSuite_ProductTile::fragments/daily-deal/counter.phtml">
+                            <arguments>
+                                <argument xsi:type="array" name="labels">
+                                    <item xsi:type="string" translate="true" name="day">Day</item>
+                                    <item xsi:type="string" translate="true" name="days">Days</item>
+                                    <item xsi:type="string" translate="true" name="hour">Hour</item>
+                                    <item xsi:type="string" translate="true" name="hours">Hours</item>
+                                    <item xsi:type="string" translate="true" name="minute">Min</item>
+                                    <item xsi:type="string" translate="true" name="minutes">Min</item>
+                                    <item xsi:type="string" translate="true" name="second">Sec</item>
+                                    <item xsi:type="string" translate="true" name="seconds">Sec</item>
+                                </argument>
+                            </arguments>
                         </block>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.figure.figure">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">figure</argument>
-                                <argument xsi:type="string" name="css_class">ms-grid-product__figure</argument>
+                                <argument xsi:type="string" name="css_class">cs-grid-product__figure</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -78,16 +135,17 @@
                                    template="MageSuite_ProductTile::fragments/image.phtml"
                             >
                                 <arguments>
-                                    <argument xsi:type="string" name="css_class">ms-grid-product__image</argument>
+                                    <argument xsi:type="string" name="css_class">cs-grid-product__image</argument>
                                 </arguments>
                             </block>
                         </block>
                     </block>
 
+
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.swatches.container">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__swatches</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__swatches</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -104,7 +162,7 @@
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.name">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__name</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__name</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container"
@@ -112,7 +170,7 @@
                                template="MageSuite_ProductTile::container_linked.phtml"
                         >
                             <arguments>
-                                <argument xsi:type="string" name="css_class">ms-grid-product__name-link</argument>
+                                <argument xsi:type="string" name="css_class">cs-grid-product__name-link</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -125,12 +183,16 @@
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.price.wrapper">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__price</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__price</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                name="product.tile.price"
                                template="MageSuite_ProductTile::fragments/price.phtml"
+                        />
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.daily-deal.old-price"
+                               template="MageSuite_ProductTile::fragments/daily-deal/old_price.phtml"
                         />
                     </block>
                 </block>
@@ -138,26 +200,26 @@
                 <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons">
                     <arguments>
                         <argument xsi:type="string" name="html_tag">div</argument>
-                        <argument xsi:type="string" name="css_class">ms-grid-product__addons</argument>
+                        <argument xsi:type="string" name="css_class">cs-grid-product__addons</argument>
                     </arguments>
 
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.top" display="false">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-top</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__addons-top</argument>
                         </arguments>
                     </block>
 
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.left">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-left</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__addons-left</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.rating">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">div</argument>
-                                <argument xsi:type="string" name="css_class">ms-grid-product__addon ms-grid-product__addon--rating</argument>
+                                <argument xsi:type="string" name="css_class">cs-grid-product__addon cs-grid-product__addon--rating</argument>
                             </arguments>
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                    name="product.tile.review_summary"
@@ -171,13 +233,13 @@
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.list">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">ul</argument>
-                                <argument xsi:type="string" name="css_class">ms-links-block-addto</argument>
+                                <argument xsi:type="string" name="css_class">cs-links-block-addto</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtowishlist">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">ms-links-block-addto__item ms-links-block-addto__item--wishlist</argument>
+                                    <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--wishlist</argument>
                                 </arguments>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                        name="product.tile.addtolinks.addtowishlist"
@@ -193,7 +255,7 @@
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtocompare">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">ms-links-block-addto__item ms-links-block-addto__item--compare</argument>
+                                    <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--compare</argument>
                                 </arguments>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare"
                                        name="product.tile.addtolinks.addtocompare"
@@ -211,7 +273,7 @@
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.right">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-right</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__addons-right</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -219,9 +281,9 @@
                                template="MageSuite_ProductTile::fragments/stock.phtml">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">div</argument>
-                                <argument xsi:type="string" name="css_class">ms-grid-product__addon</argument>
-                                <argument xsi:type="string" name="in_stock_css_modifier">ms-grid-product__addon--in-stock</argument>
-                                <argument xsi:type="string" name="out_of_stock_css_modifier">ms-grid-product__addon--out-of-stock</argument>
+                                <argument xsi:type="string" name="css_class">cs-grid-product__addon</argument>
+                                <argument xsi:type="string" name="in_stock_css_modifier">cs-grid-product__addon--in-stock</argument>
+                                <argument xsi:type="string" name="out_of_stock_css_modifier">cs-grid-product__addon--out-of-stock</argument>
                                 <argument xsi:type="string" name="in_stock_label" translate="true">In stock</argument>
                                 <argument xsi:type="string" name="out_of_stock_label" translate="true">Out of stock</argument>
                                 <!-- @TODO: icon -->
@@ -233,7 +295,7 @@
                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.bottom">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
-                            <argument xsi:type="string" name="css_class">ms-grid-product__addons-bottom</argument>
+                            <argument xsi:type="string" name="css_class">cs-grid-product__addons-bottom</argument>
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"

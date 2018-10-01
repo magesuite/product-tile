@@ -1,19 +1,23 @@
-<?php 
+<?php
+    /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+    $viewModel = $block->getViewModel();
+
+    $isVisible = $viewModel->isVisible($block->getTile());
+    $badgeValue = $viewModel->getValue($block->getTile());
+    $cssModifier = $viewModel->getCssModifier($block->getTile());
+
     $product = $block->getProduct();
     $htmlTag = $block->getHtmlTag();
-    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+    $cssClass = implode(' ', [$block->getCssClass(), $cssModifier]);
+    $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
     $labelCssClass = $block->getLabelCssClass() ? 'class="'.$block->getLabelCssClass().'"' : '';
     $valueCssClass = $block->getValueCssClass() ? 'class="'.$block->getValueCssClass().'"' : '';
     $label = $block->getLabel();
     $labelPrefix = $block->getLabelPrefix();
     $labelSuffix = $block->getLabelSuffix();
 
-    // hardcoded values (and method names) just for context
-    // also remove them from XML after BE implementation
-    $canShowBadge = $block->getShowBadge();
-    $badgeValue = $block->getCalculatedValue();
 ?>
-<?php if($canShowBadge): ?>
+<?php if($isVisible): ?>
     <<?= $htmlTag ?> <?= $cssClass ?>">
         <?php if(!empty($labelPrefix)): ?>
             <?= $labelPrefix ?>

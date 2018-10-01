@@ -1,0 +1,12 @@
+<?php
+/** @var \MageSuite\DailyDeal\Helper\OfferData $dailyDealHelper */
+$dailyDealHelper = $this->helper('MageSuite\DailyDeal\Helper\OfferData');
+$dailyDealData = $dailyDealHelper->prepareOfferData($block->getProduct());
+
+$priceHtmlDeal = $dailyDealData && $dailyDealData['deal'] ? $dailyDealData['oldPriceHtmlOnTile'] : '';
+?>
+
+<?php if($dailyDealData && $dailyDealData['deal'] && $dailyDealData['displayType'] === 'badge_counter'): ?>
+    <?=$priceHtmlDeal?>
+<?php endif; ?>
+

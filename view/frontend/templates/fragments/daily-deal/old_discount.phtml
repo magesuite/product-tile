@@ -1,0 +1,13 @@
+<?php
+/** @var \MageSuite\DailyDeal\Helper\OfferData $dailyDealHelper */
+$dailyDealHelper = $this->helper('MageSuite\DailyDeal\Helper\OfferData');
+$dailyDealData = $dailyDealHelper->prepareOfferData($block->getProduct());
+
+$oldDiscount = $dailyDealData && $dailyDealData['deal'] ? $dailyDealData['oldDiscount'] : '';
+?>
+
+<?php if ($oldDiscount and $dailyDealData['displayType'] === 'badge_counter'): ?>
+    <span class="cs-badge cs-badge--discount cs-badge--discount_old">
+        <span class="cs-badge__span">-<?=$oldDiscount?>%</span>
+    </span>
+<?php endif; ?>
