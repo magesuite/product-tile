@@ -203,7 +203,7 @@
                         <argument xsi:type="string" name="css_class">cs-grid-product__addons</argument>
                     </arguments>
 
-                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.top" display="false">
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.top">
                         <arguments>
                             <argument xsi:type="string" name="html_tag">div</argument>
                             <argument xsi:type="string" name="css_class">cs-grid-product__addons-top</argument>
