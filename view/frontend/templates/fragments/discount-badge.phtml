@@ -1,0 +1,20 @@
+<?php
+    /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+    $viewModel = $block->getViewModel();
+
+    $isVisible = $viewModel->isVisible($block->getTile());
+    $badgeValue = $viewModel->getValue($block->getTile());
+
+    $cssModifier = $viewModel->getCssModifier($block->getTile());
+    $cssClass = implode(' ', [$block->getCssClass(), $cssModifier]);
+    $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
+
+    $valuePrefix = $block->getValuePrefix();
+    $valueSuffix = $block->getValueSuffix();
+
+?>
+<?php // if($isVisible && !empty($badgeValue)): ?>
+    <span <?= $cssClass ?>>
+        <span class="cs-badge__span"><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span>
+    </span>
+<?php // endif; ?>

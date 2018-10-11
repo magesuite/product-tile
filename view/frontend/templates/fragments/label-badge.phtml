@@ -1,0 +1,18 @@
+<?php
+    /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+    $viewModel = $block->getViewModel();
+
+    $isVisible = $viewModel->isVisible($block->getTile());
+
+    $cssModifier = $viewModel->getCssModifier($block->getTile());
+    $cssClass = implode(' ', [$block->getCssClass(), $cssModifier]);
+    $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
+
+    $label = $block->getLabel();
+
+?>
+<?php // if($isVisible && !empty($label)): ?>
+    <span <?= $cssClass ?>>
+        <span class="cs-badge__span"><?= $label ?></span>
+    </span>
+<?php // endif; ?>

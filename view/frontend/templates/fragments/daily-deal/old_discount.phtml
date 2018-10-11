@@ -1,13 +1,18 @@
 <?php
-/** @var \MageSuite\DailyDeal\Helper\OfferData $dailyDealHelper */
-$dailyDealHelper = $this->helper('MageSuite\DailyDeal\Helper\OfferData');
-$dailyDealData = $dailyDealHelper->prepareOfferData($block->getProduct());
+    /** @var \MageSuite\DailyDeal\Helper\OfferData $dailyDealHelper */
+    $dailyDealHelper = $this->helper('MageSuite\DailyDeal\Helper\OfferData');
+    $dailyDealData = $dailyDealHelper->prepareOfferData($block->getProduct());
 
-$oldDiscount = $dailyDealData && $dailyDealData['deal'] ? $dailyDealData['oldDiscount'] : '';
+    $oldDiscount = $dailyDealData && $dailyDealData['deal'] ? $dailyDealData['oldDiscount'] : '';
+
+    $cssClass = $block->getCssClass();
+    $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
+
+    $valuePrefix = $block->getValuePrefix();
+    $valueSuffix = $block->getValueSuffix();
 ?>
-
 <?php if ($oldDiscount and $dailyDealData['displayType'] === 'badge_counter'): ?>
-    <span class="cs-badge cs-badge--discount cs-badge--discount_old">
-        <span class="cs-badge__span">-<?=$oldDiscount?>%</span>
+    <span <?= $cssClass ?>>
+        <span class="cs-badge__span"><?= $valuePrefix ?><?= $oldDiscount ?><?= $valueSuffix ?></span>
     </span>
 <?php endif; ?>
