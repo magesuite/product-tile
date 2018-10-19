@@ -365,23 +365,62 @@
                                template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
                                 <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
-                                <argument xsi:type="boolean" name="show_button_when_not_saleable">true</argument>
                                 <argument xsi:type="string" name="form_class">cs-addtocart</argument>
-                                <argument xsi:type="string" name="button_class">cs-addtocart__button</argument>
-                                <argument xsi:type="string" name="button_class">cs-addtocart__button-label</argument>
-                                <argument xsi:type="string" name="add_to_cart_label" translate="true">Add to Cart</argument>
-                                <argument xsi:type="string" name="configure_label" translate="true">Configure</argument>
                             </arguments>
 
-                            <block class="MageSuite\ThemeHelpers\Block\Icon" 
-                                   name="product.tile.addtocart.icon"
-                                   as="tile.atc.icon">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.addtocart.button"
+                                   template="Magento_Catalog::addtocart/button.phtml"
+                                   as="atc.button">
                                 <arguments>
-                                    <argument name="icon_url" xsi:type="string">images/icons/cart.svg</argument>
-                                    <argument name="css_class" xsi:type="string">cs-addtocart__button-icon</argument>
-                                    <argument name="inlined" xsi:type="boolean">true</argument>
-                                    <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    <argument xsi:type="string" name="button_class">cs-addtocart__button</argument>
+                                    <argument xsi:type="string" name="button_label_class">cs-addtocart__button-label</argument>
+                                    <argument xsi:type="string" name="addtocart_label" translate="true">Add to Cart</argument>
+                                    <argument xsi:type="string" name="addtocart_success_overlay_class" translate="true">cs-addtocart__feedback-bg</argument>
+                                    <argument xsi:type="string" name="addtocart_success_label_class" translate="true">cs-addtocart__success-label</argument>
+                                    <argument xsi:type="string" name="addtocart_success_label" translate="true">Thank you!</argument>
+                                    <argument xsi:type="string" name="addtocart_fail_label_class" translate="true">cs-addtocart__fail-label</argument>
+                                    <argument xsi:type="string" name="addtocart_fail_label" translate="true">Something went wrong</argument>
+                                    <argument xsi:type="string" name="configure_label" translate="true">Configure</argument>
                                 </arguments>
+
+                                <block class="Magento\Framework\View\Element\Template"
+                                   name="product.tile.addtocart.loading_indicator"
+                                   template="Magento_Catalog::addtocart/loading-indicator.phtml"
+                                   as="atc.loading.indicator" />
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.icon"
+                                       as="atc.button.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/cart.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__button-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.success_icon"
+                                       as="atc.success.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/button-check.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__success-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.fail_icon"
+                                       as="atc.fail.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/button-error.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__fail-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
                             </block>
                         </block>
                     </block>
