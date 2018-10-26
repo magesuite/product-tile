@@ -366,6 +366,8 @@
                             <arguments>
                                 <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
                                 <argument xsi:type="string" name="form_class">cs-addtocart</argument>
+                                <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
+                                <argument xsi:type="string" name="atc_configure_label" translate="true">Configure</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
@@ -376,12 +378,11 @@
                                     <argument xsi:type="string" name="button_class">cs-addtocart__button</argument>
                                     <argument xsi:type="string" name="button_label_class">cs-addtocart__button-label</argument>
                                     <argument xsi:type="string" name="addtocart_label" translate="true">Add to Cart</argument>
-                                    <argument xsi:type="string" name="addtocart_success_overlay_class" translate="true">cs-addtocart__feedback-bg</argument>
-                                    <argument xsi:type="string" name="addtocart_success_label_class" translate="true">cs-addtocart__success-label</argument>
+                                    <argument xsi:type="string" name="addtocart_success_overlay_class">cs-addtocart__feedback-bg</argument>
+                                    <argument xsi:type="string" name="addtocart_success_label_class">cs-addtocart__success-label</argument>
                                     <argument xsi:type="string" name="addtocart_success_label" translate="true">Thank you!</argument>
-                                    <argument xsi:type="string" name="addtocart_fail_label_class" translate="true">cs-addtocart__fail-label</argument>
+                                    <argument xsi:type="string" name="addtocart_fail_label_class">cs-addtocart__fail-label</argument>
                                     <argument xsi:type="string" name="addtocart_fail_label" translate="true">Something went wrong</argument>
-                                    <argument xsi:type="string" name="configure_label" translate="true">Configure</argument>
                                 </arguments>
 
                                 <block class="Magento\Framework\View\Element\Template"

@@ -3,7 +3,7 @@
     $isSaleable = $product->isSaleable();
     $isConfigurable = $product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE;
     $showOnlyForSimpeProducts = $block->getShowOnlyForSimpleProducts();
-    $label = $product->getTypeId() == $isConfigurable ? $block->getConfigureLabel() : $block->getAddToCartLabel();
+    $label = $isConfigurable ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
 ?>
 
 <?php
@@ -13,7 +13,7 @@
             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
             <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
             <?= $block->getBlockHtml('formkey') ?>
-            <?= $block->getChildHtml('atc.button'); ?>
+            <?= $block->getChildBlock('atc.button')->setAddtocartLabel($label)->toHtml(); ?>
         </form>
     <?php endif;
 ?>
