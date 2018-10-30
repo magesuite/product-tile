@@ -11,8 +11,8 @@
     $label = $block->getLabel();
 
 ?>
-<?php // if($isVisible && !empty($label)): ?>
+<?php if($isVisible && !empty($label)): ?>
     <span <?= $cssClass ?>>
         <span class="cs-badge__span"><?= $label ?></span>
     </span>
-<?php // endif; ?>
+<?php endif; ?>

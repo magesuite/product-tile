@@ -13,8 +13,8 @@
     $valueSuffix = $block->getValueSuffix();
 
 ?>
-<?php // if($isVisible && !empty($badgeValue)): ?>
+<?php if($isVisible && !empty($badgeValue)): ?>
     <span <?= $cssClass ?>>
         <span class="cs-badge__span"><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span>
     </span>
-<?php // endif; ?>
+<?php endif; ?>
