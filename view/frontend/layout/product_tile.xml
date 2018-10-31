@@ -1,4 +1,4 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="">
     <body>
         <referenceBlock name="content">
             <block class="MageSuite\ProductTile\Block\Tile" name="product.tile">
@@ -31,97 +31,45 @@
                                 <argument xsi:type="string" name="html_tag">ul</argument>
                                 <argument xsi:type="string" name="css_class">cs-grid-product__badges</argument>
                             </arguments>
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.new"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Container"
+                                   name="product.tile.container.badge.el.discount"
                             >
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-grid-product__badge--new</argument>
-                                    <argument translate="true" xsi:type="string" name="label">New</argument>
-                                    <argument xsi:type="string" name="label_css_class">cs-badge__label cs-grid-product__badge-label</argument>
-                                    <argument xsi:type="string" name="value_css_class"></argument>
-                                    <argument xsi:type="string" name="label_prefix"></argument>
-                                    <argument xsi:type="string" name="label_suffix"></argument>
-                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
+                                    <argument xsi:type="string" name="css_class">cs-grid-product__badge</argument>
                                 </arguments>
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                       name="product.tile.badge.discount"
+                                       template="MageSuite_ProductTile::fragments/discount-badge.phtml"
+                                >
+                                    <arguments>
+                                        <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
+                                        <argument xsi:type="string" name="css_class">cs-badge cs-badge--discount</argument>
+                                        <argument xsi:type="string" name="value_prefix">-</argument>
+                                        <argument xsi:type="string" name="value_suffix">%</argument>
+                                    </arguments>
+                                </block>
                             </block>
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.discount"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
-                            >
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Container"
+                                   name="product.tile.container.badge.el.new"
+                                   after="product.tile.container.badge.el.old_discount">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-grid-product__badge--discount</argument>
-                                    <argument translate="true" xsi:type="string" name="label"></argument>
-                                    <argument xsi:type="string" name="label_css_class"></argument>
-                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
-                                    <argument xsi:type="string" name="label_prefix">-</argument>
-                                    <argument xsi:type="string" name="label_suffix">%</argument>
-                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
+                                    <argument xsi:type="string" name="css_class">cs-grid-product__badge</argument>
                                 </arguments>
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                       name="product.tile.badge.new"
+                                       template="MageSuite_ProductTile::fragments/label-badge.phtml"
+                                >
+                                    <arguments>
+                                        <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
+                                        <argument xsi:type="string" name="css_class">cs-badge cs-badge--new</argument>
+                                        <argument translate="true" xsi:type="string" name="label">New</argument>
+                                    </arguments>
+                                </block>
                             </block>
-
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.positive_indicators.free_shipping"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
-                            >
-                                <arguments>
-                                    <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-badge--positive</argument>
-                                    <argument translate="true" xsi:type="string" name="label">FREE SHIPPING</argument>
-                                    <argument xsi:type="string" name="label_css_class"></argument>
-                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
-                                    <argument xsi:type="string" name="label_prefix"></argument>
-                                    <argument xsi:type="string" name="label_suffix"></argument>
-                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\PositiveIndicators\FreeShipping</argument>
-                                </arguments>
-                            </block>
-
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.positive_indicators.popular"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
-                            >
-                                <arguments>
-                                    <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-badge cs-grid-product__badge cs-badge--positive</argument>
-                                    <argument translate="true" xsi:type="string" name="label">POPULAR</argument>
-                                    <argument xsi:type="string" name="label_css_class"></argument>
-                                    <argument xsi:type="string" name="value_css_class">cs-badge__span cs-grid-product__badge-label</argument>
-                                    <argument xsi:type="string" name="label_prefix"></argument>
-                                    <argument xsi:type="string" name="label_suffix"></argument>
-                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\PositiveIndicators\Popular</argument>
-                                </arguments>
-                            </block>
-
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.daily-deal.old-discount"
-                                   template="MageSuite_ProductTile::fragments/daily-deal/old_discount.phtml"
-                            >
-                            </block>
-
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.daily-deal.badge"
-                                   template="MageSuite_ProductTile::fragments/daily-deal/badge.phtml"
-                            >
-                            </block>
-                        </block>
-
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.daily-deal.counter"
-                               template="MageSuite_ProductTile::fragments/daily-deal/counter.phtml">
-                            <arguments>
-                                <argument xsi:type="array" name="labels">
-                                    <item xsi:type="string" translate="true" name="day">Day</item>
-                                    <item xsi:type="string" translate="true" name="days">Days</item>
-                                    <item xsi:type="string" translate="true" name="hour">Hour</item>
-                                    <item xsi:type="string" translate="true" name="hours">Hours</item>
-                                    <item xsi:type="string" translate="true" name="minute">Min</item>
-                                    <item xsi:type="string" translate="true" name="minutes">Min</item>
-                                    <item xsi:type="string" translate="true" name="second">Sec</item>
-                                    <item xsi:type="string" translate="true" name="seconds">Sec</item>
-                                </argument>
-                            </arguments>
                         </block>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.figure.figure">
@@ -190,10 +138,6 @@
                                name="product.tile.price"
                                template="MageSuite_ProductTile::fragments/price.phtml"
                         />
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.daily-deal.old-price"
-                               template="MageSuite_ProductTile::fragments/daily-deal/old_price.phtml"
-                        />
                     </block>
                 </block>
 
@@ -246,9 +190,15 @@
                                        template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
                                     <arguments>
                                         <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
-                                        <!-- @TODO: icon -->
-                                        <argument xsi:type="string" name="icon_path">images/heart.svg</argument>
                                     </arguments>
+                                    <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon">
+                                        <arguments>
+                                            <argument name="icon_url" xsi:type="string">images/icons/heart.svg</argument>
+                                            <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
+                                            <argument name="inlined" xsi:type="boolean">true</argument>
+                                            <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                        </arguments>
+                                    </block>
                                 </block>
                             </block>
 
@@ -262,9 +212,15 @@
                                        template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
                                     <arguments>
                                         <argument xsi:type="string" name="label" translate="true">Add to Compare</argument>
-                                        <!-- @TODO: icon -->
-                                        <argument xsi:type="string" name="icon_path">images/scales.svg</argument>
                                     </arguments>
+                                    <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtocompare.icon">
+                                        <arguments>
+                                            <argument name="icon_url" xsi:type="string">images/icons/compare.svg</argument>
+                                            <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--compare</argument>
+                                            <argument name="inlined" xsi:type="boolean">true</argument>
+                                            <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                        </arguments>
+                                    </block>
                                 </block>
                             </block>
                         </block>
@@ -303,11 +259,64 @@
                                template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
                                 <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
-                                <argument xsi:type="boolean" name="show_button_when_not_saleable">true</argument>
-                                <argument xsi:type="string" name="label" translate="true">Add to Cart</argument>
-                                <!-- @TODO: icon -->
-                                <argument xsi:type="string" name="icon_path"></argument>
+                                <argument xsi:type="string" name="form_class">cs-addtocart</argument>
+                                <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
+                                <argument xsi:type="string" name="atc_configure_label" translate="true">Configure</argument>
                             </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.addtocart.button"
+                                   template="Magento_Catalog::addtocart/button.phtml"
+                                   as="atc.button">
+                                <arguments>
+                                    <argument xsi:type="string" name="button_class">cs-addtocart__button</argument>
+                                    <argument xsi:type="string" name="button_label_class">cs-addtocart__button-label</argument>
+                                    <argument xsi:type="string" name="addtocart_label" translate="true">Add to Cart</argument>
+                                    <argument xsi:type="string" name="addtocart_success_overlay_class">cs-addtocart__feedback-bg</argument>
+                                    <argument xsi:type="string" name="addtocart_success_label_class">cs-addtocart__success-label</argument>
+                                    <argument xsi:type="string" name="addtocart_success_label" translate="true">Thank you!</argument>
+                                    <argument xsi:type="string" name="addtocart_fail_label_class">cs-addtocart__fail-label</argument>
+                                    <argument xsi:type="string" name="addtocart_fail_label" translate="true">Something went wrong</argument>
+                                </arguments>
+
+                                <block class="Magento\Framework\View\Element\Template"
+                                   name="product.tile.addtocart.loading_indicator"
+                                   template="Magento_Catalog::addtocart/loading-indicator.phtml"
+                                   as="atc.loading.indicator" />
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.icon"
+                                       as="atc.button.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/cart.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__button-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.success_icon"
+                                       as="atc.success.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/button-check.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__success-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
+
+                                <block class="MageSuite\ThemeHelpers\Block\Icon" 
+                                       name="product.tile.addtocart.fail_icon"
+                                       as="atc.fail.icon">
+                                    <arguments>
+                                        <argument name="icon_url" xsi:type="string">images/icons/button-error.svg</argument>
+                                        <argument name="css_class" xsi:type="string">cs-addtocart__fail-icon</argument>
+                                        <argument name="inlined" xsi:type="boolean">true</argument>
+                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                    </arguments>
+                                </block>
+                            </block>
                         </block>
                     </block>
                 </block>

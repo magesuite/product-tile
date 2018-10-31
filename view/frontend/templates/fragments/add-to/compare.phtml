@@ -11,9 +11,6 @@
    aria-label="<?= $label ?>"
    data-post='<?= $postDataParams ?>'
    role="button">
-    <?php if(!empty($iconPath)): ?>
-        <?php // @TODO: ICON ?>
-        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
-    <?php endif; ?>
+    <?= $this->getChildHtml() ?>
     <?= $label ?>
 </a>

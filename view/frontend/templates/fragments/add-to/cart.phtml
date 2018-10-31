@@ -1,31 +1,19 @@
 <?php 
     $product = $block->getProduct();
     $isSaleable = $product->isSaleable();
-    $showButtonWhenNotSaleable = $block->getShowButtonWhenNotSableable();
+    $isConfigurable = $product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE;
     $showOnlyForSimpeProducts = $block->getShowOnlyForSimpleProducts();
-    $label = $block->getLabel();
-    $iconPath = $this->getIconPath();
+    $label = $isConfigurable ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
 ?>
 
 <?php
-    if (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE):
-        if ($isSaleable || (!$isSaleable && $showButtonWhenNotSaleable)): ?>
-            <?php $postParams = $block->getAddToCartPostParams($product); ?>
-            <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="cs-addtocart">
-                <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
-                <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
-                <?= $block->getBlockHtml('formkey') ?>
-                <button type="submit" title="<?= $label ?>" 
-                        class="action tocart primary cs-addtocart__button"
-                        <?php if (!$isSaleable && $showButtonWhenNotSaleable): ?> disabled="disabled"<?php endif ?>
-                >
-                    <?php if(!empty($iconPath)): ?>
-                        <?php // @TODO: ICON ?>
-                        <img class="cs-addtocart__button-icon" src="<?= $this->getViewFileUrl($iconPath) ?>">
-                    <?php endif; ?>
-                    <span class="cs-addtocart__button-text"><?= $label ?></span>
-                </button>
-            </form>
-        <?php endif;
-    endif;
+    if ($isSaleable && (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
+        <?php $postParams = $block->getAddToCartPostParams($product); ?>
+        <form<?php if(!$isConfigurable): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
+            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+            <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
+            <?= $block->getBlockHtml('formkey') ?>
+            <?= $block->getChildBlock('atc.button')->setAddtocartLabel($label)->toHtml(); ?>
+        </form>
+    <?php endif;
 ?>

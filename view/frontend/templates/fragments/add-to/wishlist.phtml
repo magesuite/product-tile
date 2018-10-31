@@ -13,9 +13,6 @@
     data-action="add-to-wishlist"
     role="button"
 >
-    <?php if(!empty($iconPath)): ?>
-        <?php // @TODO: ICON ?>
-        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
-    <?php endif; ?>
+    <?= $this->getChildHtml() ?>
     <?= $label ?>
 </a>
