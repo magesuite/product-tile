@@ -5,7 +5,7 @@
 ?>
 
 <?= $this->getLayout()
-         ->createBlock(\Magento\Catalog\Block\Product\View::class)
+         ->createBlock(\Magento\Framework\View\Element\Template::class)
          ->setMaxStars(5)
          ->setActiveStars($viewModel->getActiveStars($product))
          ->setReviewsCount($viewModel->getReviewsCount($product))
