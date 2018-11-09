@@ -1,6 +1,14 @@
-<?php 
+<?php
+    /** @var \MageSuite\ProductTile\Block\Tile\Container $this */
+    $layout = $this->getLayout();
     $htmlTag = !empty($block->getHtmlTag()) ? $block->getHtmlTag() : 'div';
     $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
-?>
 
-<<?= $htmlTag ?> <?= $cssClass ?>><?php foreach($this->getChilds() as $child): ?><?= $child->setTile($block->getTile())->toHtml() ?><?php endforeach; ?></<?= $htmlTag ?>>
+    $output = '';
+
+    foreach($this->getChilds() as $child) {
+        $child->setTile($block->getTile());
+        $output .= $layout->renderElement($child->getNameInLayout(), false);
+    }
+?>
+<<?= $htmlTag ?> <?= $cssClass ?>><?=$output?></<?= $htmlTag ?>>
