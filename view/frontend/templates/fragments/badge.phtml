@@ -1,22 +1,23 @@
 <?php
     /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
     $viewModel = $block->getViewModel();
-    $isVisible = $viewModel->isVisible($block->getTile());
-    $badgeValue = $viewModel->getValue($block->getTile());
+    $tile = $block->getTile();
+    $isVisible = $viewModel->isVisible($tile);
+    $badgeValue = $viewModel->getValue($tile);
     $label = $block->getLabel();
 ?>
 <?php if($isVisible && ($badgeValue || !empty($label))): ?>
     <?php 
         $wrapperTag = $block->getWrapperTag() ?? 'li';
 
-        $wrapperClass = $block->getWrapperCssClass()
+        $wrapperClass = $block->getWrapperCssClass();
         $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
 
         $cssModifier = $viewModel->getCssModifier($block->getTile());
         $cssClass = implode(' ', [$block->getCssClass(), $cssModifier]);
         $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
 
-        $badgeTextClass = $block->getTextCssClass() ? sprintf('class="%s"', $block->getTextCssClass()) : '';
+        $badgeTextClass = $block->getTextCssClass();
         $badgeTextClass = $badgeTextClass ? sprintf('class="%s"', $badgeTextClass) : '';
 
         $valuePrefix = $block->getValuePrefix();
