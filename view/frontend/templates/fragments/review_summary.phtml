@@ -2,13 +2,24 @@
     /** @var MageSuite\ProductTile\Block\Tile\Fragment\Review $viewModel */
     $viewModel = $block->getViewModel();
     $product = $block->getProduct();
+    $reviewsCount = $viewModel->getReviewsCount($product);
 ?>
 
-<?= $this->getLayout()
-         ->createBlock(\Magento\Framework\View\Element\Template::class)
-         ->setMaxStars(5)
-         ->setActiveStars($viewModel->getActiveStars($product))
-         ->setReviewsCount($viewModel->getReviewsCount($product))
-         ->setTemplate('Magento_Review::rating-stars.phtml')
-         ->toHtml();
-?>
+<?php if($reviewsCount > 0): ?>
+    <?php 
+        $htmlTag = $block->getHtmlTag() ?? 'div';
+        
+        $cssClass = $block->getCssClass(); 
+        $cssClass = $cssClass ? 'class="'.$cssClass.'"' : ''; 
+    ?>
+    <<?= $htmlTag ?> <?= $cssClass ?>>
+        <?= $this->getLayout()
+                 ->createBlock(\Magento\Framework\View\Element\Template::class)
+                 ->setMaxStars(5)
+                 ->setActiveStars($viewModel->getActiveStars($product))
+                 ->setReviewsCount($reviewsCount)
+                 ->setTemplate('Magento_Review::rating-stars.phtml')
+                 ->toHtml();
+        ?>
+    </<?= $htmlTag ?>>
+<?php endif; ?>

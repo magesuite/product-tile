@@ -6,7 +6,8 @@
     $productImageSize = $productImage->getResizedImageInfo();
 
     /* XML config */
-    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
+    $cssClass = $block->getCssClass();
+    $cssClass = $cssClass ? 'class="'.$cssClass.'"' : '';
 ?>
 <img <?= $cssClass ?> 
     src="<?= $productImageUrl ?>" 

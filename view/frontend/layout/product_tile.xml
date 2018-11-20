@@ -32,43 +32,34 @@
                                 <argument xsi:type="string" name="css_class">cs-grid-product__badges</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Container"
-                                   name="product.tile.container.badge.el.discount"
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.discount"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
                             >
                                 <arguments>
-                                    <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-grid-product__badge</argument>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
+                                    <argument xsi:type="string" name="wrapper_tag">li</argument>
+                                    <argument xsi:type="string" name="wrapper_css_class">cs-grid-product__badge cs-grid-product__badge--discount cs-dailydeal__badge--discount</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-badge--cut cs-badge--attention cs-badge--discount_old</argument>
+                                    <argument xsi:type="string" name="text_css_class">cs-badge__span cs-grid-product__badge-text</argument>
+                                    <argument xsi:type="string" name="label" translate="true"></argument>
+                                    <argument xsi:type="string" name="value_prefix">-</argument>
+                                    <argument xsi:type="string" name="value_suffix">%</argument>
                                 </arguments>
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                       name="product.tile.badge.discount"
-                                       template="MageSuite_ProductTile::fragments/discount-badge.phtml"
-                                >
-                                    <arguments>
-                                        <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
-                                        <argument xsi:type="string" name="css_class">cs-badge cs-badge--discount</argument>
-                                        <argument xsi:type="string" name="value_prefix">-</argument>
-                                        <argument xsi:type="string" name="value_suffix">%</argument>
-                                    </arguments>
-                                </block>
                             </block>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Container"
-                                   name="product.tile.container.badge.el.new"
-                                   after="product.tile.container.badge.el.old_discount">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.badge.new"
+                                   template="MageSuite_ProductTile::fragments/badge.phtml"
+                            >
                                 <arguments>
+                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
                                     <argument xsi:type="string" name="html_tag">li</argument>
-                                    <argument xsi:type="string" name="css_class">cs-grid-product__badge</argument>
+                                    <argument xsi:type="string" name="wrapper_css_class">cs-grid-product__badge cs-grid-product__badge--new</argument>
+                                    <argument xsi:type="string" name="css_class">cs-badge cs-badge--cut cs-badge--new</argument>
+                                    <argument translate="true" xsi:type="string" name="label">New</argument>
+                                    <argument xsi:type="string" name="text_css_class">cs-badge__span cs-grid-product__badge-text</argument>
                                 </arguments>
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                       name="product.tile.badge.new"
-                                       template="MageSuite_ProductTile::fragments/label-badge.phtml"
-                                >
-                                    <arguments>
-                                        <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
-                                        <argument xsi:type="string" name="css_class">cs-badge cs-badge--new</argument>
-                                        <argument translate="true" xsi:type="string" name="label">New</argument>
-                                    </arguments>
-                                </block>
                             </block>
                         </block>
 
@@ -160,18 +151,14 @@
                             <argument xsi:type="string" name="css_class">cs-grid-product__addons-left</argument>
                         </arguments>
 
-                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.rating">
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.review_summary"
+                               template="MageSuite_ProductTile::fragments/review_summary.phtml">
                             <arguments>
+                                <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Review</argument>
                                 <argument xsi:type="string" name="html_tag">div</argument>
                                 <argument xsi:type="string" name="css_class">cs-grid-product__addon cs-grid-product__addon--rating</argument>
                             </arguments>
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.review_summary"
-                                   template="MageSuite_ProductTile::fragments/review_summary.phtml">
-                                <arguments>
-                                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Review</argument>
-                                </arguments>
-                            </block>
                         </block>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.list">
@@ -259,7 +246,7 @@
                                template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
                                 <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
-                                <argument xsi:type="string" name="form_class">cs-addtocart</argument>
+                                <argument xsi:type="string" name="form_class">cs-addtocart cs-grid-product__addtocart</argument>
                                 <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
                                 <argument xsi:type="string" name="atc_configure_label" translate="true">Configure</argument>
                             </arguments>

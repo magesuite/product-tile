@@ -1,0 +1,31 @@
+<?php
+    /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+    $viewModel = $block->getViewModel();
+    $tile = $block->getTile();
+    $isVisible = $viewModel->isVisible($tile);
+    $badgeValue = $viewModel->getValue($tile);
+    $label = $block->getLabel();
+?>
+<?php if($isVisible && ($badgeValue || !empty($label))): ?>
+    <?php 
+        $wrapperTag = $block->getWrapperTag() ?? 'li';
+
+        $wrapperClass = $block->getWrapperCssClass();
+        $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
+
+        $cssModifier = $viewModel->getCssModifier($block->getTile());
+        $cssClass = implode(' ', [$block->getCssClass(), $cssModifier]);
+        $cssClass = !empty($cssClass) ? sprintf('class="%s"', $cssClass) : '';
+
+        $badgeTextClass = $block->getTextCssClass();
+        $badgeTextClass = $badgeTextClass ? sprintf('class="%s"', $badgeTextClass) : '';
+
+        $valuePrefix = $block->getValuePrefix();
+        $valueSuffix = $block->getValueSuffix();
+    ?>
+    <<?= $wrapperTag ?> <?= $wrapperClass ?>>
+        <span <?= $cssClass ?>>
+            <span <?= $badgeTextClass ?>><?= $label ?><span><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span></span>
+        </span>
+    </<?= $wrapperTag ?>>
+<?php endif; ?>

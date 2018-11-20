@@ -9,9 +9,6 @@
 ?>
 
 <<?= $htmlTag; ?> class="<?= $cssClass . ' ' . $modifier ?>">
-    <?php if(!empty($iconPath)): ?>
-        <?php // @TODO: ICON ?>
-        <img src="<?= $this->getViewFileUrl($iconPath) ?>">
-    <?php endif; ?>
+    <?= $block->getChildHtml() ?>
     <?= $label ?>
 </<?= $htmlTag; ?>>
