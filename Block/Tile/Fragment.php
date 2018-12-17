@@ -61,4 +61,9 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
     public function getSectionData($key) {
         return $this->tile->getSectionData($key);
     }
+
+    public function getIdentities()
+    {
+        return [];
+    }
 }
