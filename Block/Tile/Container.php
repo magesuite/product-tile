@@ -50,4 +50,45 @@ class Container extends \Magento\Framework\View\Element\Template
     public function getSectionData($key) {
         return $this->tile->getSectionData($key);
     }
+
+    public function shouldBeRendered() {
+        if($this->getUnsupportedAreas() != null and $this->getTile()->getAreas()) {
+            if($this->isInOneOfAreas($this->getUnsupportedAreas())) {
+                return false;
+            }
+        }
+
+        if($this->getSupportedAreas() == null) {
+            return true;
+        }
+
+        if(empty($this->getTile()->getAreas())) {
+            return false;
+        }
+
+        if(!$this->isInOneOfAreas($this->getSupportedAreas())) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function _toHtml()
+    {
+        if(!$this->shouldBeRendered()) {
+            return '';
+        }
+
+        return parent::_toHtml();
+    }
+
+    protected function isInOneOfAreas($areas) {
+        foreach($areas as $area) {
+            if(in_array($area, $this->getTile()->getAreas())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

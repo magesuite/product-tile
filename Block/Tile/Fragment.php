@@ -29,7 +29,13 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
     }
 
     public function shouldBeRendered() {
-        if($this->getSupportedArea() == null) {
+        if($this->getUnsupportedAreas() != null and $this->getTile()->getAreas()) {
+            if($this->isInOneOfAreas($this->getUnsupportedAreas())) {
+                return false;
+            }
+        }
+
+        if($this->getSupportedAreas() == null) {
             return true;
         }
 
@@ -37,7 +43,7 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
             return false;
         }
 
-        if(!in_array($this->getSupportedArea(), $this->getTile()->getAreas())) {
+        if(!$this->isInOneOfAreas($this->getSupportedAreas())) {
             return false;
         }
 
@@ -65,5 +71,19 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
     public function getIdentities()
     {
         return [];
+    }
+
+    public function getWishlistHelper() {
+        return $this->_wishlistHelper;
+    }
+
+    protected function isInOneOfAreas($areas) {
+        foreach($areas as $area) {
+            if(in_array($area, $this->getTile()->getAreas())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -1,0 +1,17 @@
+<?php
+/* @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/* @var \Magento\Wishlist\Model\Item $item */
+$wishlistItem = $block->getTile()->getWishlistItem();
+$wishlistHelper = $block->getWishlistHelper();
+$product = $block->getTile()->getProductEntity();
+?>
+
+<?php if ($wishlistItem): ?>
+    <a
+            href="#"
+            data-role="remove"
+            data-post-remove='<?php /* @escapeNotVerified */ echo $wishlistHelper->getRemoveParams($wishlistItem); ?>'
+            title="<?php /* @escapeNotVerified */ echo __('Remove Item') ?>"
+            class="cs-link"
+    ><?php /* @escapeNotVerified */ echo __('Remove item');?></a>
+<?php endif ?>

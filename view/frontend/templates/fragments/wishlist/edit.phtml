@@ -1,0 +1,11 @@
+<?php
+/* @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/* @var \Magento\Wishlist\Model\Item $item */
+$wishlistItem = $block->getTile()->getWishlistItem();
+$wishlistHelper = $block->getWishlistHelper();
+$product = $block->getTile()->getProductEntity();
+?>
+
+<?php if ($product->isVisibleInSiteVisibility() and $wishlistItem): ?>
+    <a class="cs-link" href="<?php /* @escapeNotVerified */ echo $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?php /* @escapeNotVerified */ echo __('Edit') ?></a>
+<?php endif ?>

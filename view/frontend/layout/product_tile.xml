@@ -177,12 +177,16 @@
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">li</argument>
                                     <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--wishlist</argument>
+                                    <argument name="unsupported_areas" xsi:type="array">
+                                        <item name="0" xsi:type="string">wishlist</item>
+                                    </argument>
                                 </arguments>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                        name="product.tile.addtolinks.addtowishlist"
                                        template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
                                     <arguments>
                                         <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
+
                                     </arguments>
                                     <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon">
                                         <arguments>
@@ -315,6 +319,26 @@
                                     </arguments>
                                 </block>
                             </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.wishlist.edit"
+                               template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
+                            <arguments>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                            </arguments>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.wishlist.remove"
+                               template="MageSuite_ProductTile::fragments/wishlist/remove.phtml">
+                            <arguments>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                            </arguments>
                         </block>
                     </block>
                 </block>
