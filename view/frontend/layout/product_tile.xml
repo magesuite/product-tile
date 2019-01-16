@@ -3,6 +3,8 @@
         <referenceBlock name="content">
             <block class="MageSuite\ProductTile\Block\Tile" name="product.tile">
                 <arguments>
+                    <argument xsi:type="object" name="cache_key_generator">MageSuite\ProductTile\Service\CacheKeyGenerator</argument>
+                    <argument xsi:type="string" name="cache_lifetime">86400</argument>
                     <argument xsi:type="string" name="html_tag">div</argument>
                     <argument xsi:type="string" name="css_class">cs-product-tile</argument>
                     <argument xsi:type="array" name="sections">
@@ -74,6 +76,7 @@
                                    template="MageSuite_ProductTile::fragments/image.phtml"
                             >
                                 <arguments>
+                                    <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
                                 </arguments>
                             </block>
@@ -133,7 +136,11 @@
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                    name="product.tile.price"
                                    template="MageSuite_ProductTile::fragments/price.phtml"
-                            />
+                            >
+                                <arguments>
+                                    <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Price</argument>
+                                </arguments>
+                            </block>
                         </block>
                     </block>
                 </block>
