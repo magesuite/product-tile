@@ -43,6 +43,8 @@ class ImageTest extends \PHPUnit\Framework\TestCase
 
         $result = $this->imageCacheKeyGenerator->getCacheKeyInfo($fragment);
 
-        $this->assertEquals('', $result);
+        print_r($result);
+
+        $this->assertEquals([], $result);
     }
 }

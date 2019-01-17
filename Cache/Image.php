@@ -20,7 +20,9 @@ class Image implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
      */
     public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment)
     {
-        $imageUrl = $this->imageHelper->init($fragment->getProduct(), 'category_page_grid')->getUrl();
+        $product = $fragment->getProduct();
+
+        $imageUrl = $this->imageHelper->init($product, 'category_page_grid')->getUrl();
 
         return [$imageUrl];
     }
