@@ -2,18 +2,8 @@
 
 namespace MageSuite\ProductTile\Test\Integration\Cache;
 
-class ImageTest extends \PHPUnit\Framework\TestCase
+class ImageTest extends AbstractCacheTest
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @var \Magento\Catalog\Model\ProductRepository
-     */
-    protected $productRepository;
-
     /**
      * @var \MageSuite\ProductTile\Cache\Image
      */
@@ -21,8 +11,8 @@ class ImageTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
-        $this->productRepository = $this->objectManager->create(\Magento\Catalog\Model\ProductRepository::class);
+        parent::setUp();
+
         $this->imageCacheKeyGenerator = $this->objectManager->get(\MageSuite\ProductTile\Cache\Image::class);
     }
 
@@ -32,19 +22,11 @@ class ImageTest extends \PHPUnit\Framework\TestCase
      */
     public function testItReturnsImageUrlForCacheKey()
     {
-        $tile = $this->objectManager->create(\MageSuite\ProductTile\Block\Tile::class);
-
-        $product = $this->productRepository->get('simple');
-
-        $tile->setProductEntity($product);
-
-        $fragment = $this->objectManager->get(\MageSuite\ProductTile\Block\Tile\Fragment::class);
-        $fragment->setTile($tile);
+       $fragment = $this->getFragmentByProduct('simple');
 
         $result = $this->imageCacheKeyGenerator->getCacheKeyInfo($fragment);
 
-        print_r($result);
-
-        $this->assertEquals([], $result);
+        // pleaceholder here is on purpose since tests cannot access images definitions from etc/view.xml of theme
+        $this->assertEquals(['http://localhost/pub/static/version1547712031/_view/en_US/Magento_Catalog/images/product/placeholder/.jpg'], $result);
     }
 }
