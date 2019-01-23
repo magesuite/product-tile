@@ -4,6 +4,7 @@
 $wishlistItem = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
+$linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
 ?>
 
 <?php if ($wishlistItem): ?>
@@ -11,7 +12,7 @@ $product = $block->getTile()->getProductEntity();
             href="#"
             data-role="remove"
             data-post-remove='<?php /* @escapeNotVerified */ echo $wishlistHelper->getRemoveParams($wishlistItem); ?>'
-            title="<?php /* @escapeNotVerified */ echo __('Remove Item') ?>"
-            class="cs-link"
-    ><?php /* @escapeNotVerified */ echo __('Remove item');?></a>
+            title="<?= $block->getLinkLabel() ?>"
+            <?= $linkCssClass ?>
+    ><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
 <?php endif ?>

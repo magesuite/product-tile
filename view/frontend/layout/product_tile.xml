@@ -257,6 +257,19 @@
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                               name="product.tile.wishlist.comment"
+                               template="MageSuite_ProductTile::fragments/wishlist/comment.phtml">
+                            <arguments>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-comment</argument>
+                                <argument xsi:type="string" name="field_label" translate="true"></argument>
+                                <argument xsi:type="string" name="field_css_class">cs-product-tile__wishlist-comment-textarea</argument>
+                            </arguments>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                name="product.tile.addtocart"
                                template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
@@ -321,24 +334,32 @@
                             </block>
                         </block>
 
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.wishlist.edit"
-                               template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.wishlist.actions">
                             <arguments>
                                 <argument name="supported_areas" xsi:type="array">
                                     <item name="0" xsi:type="string">wishlist</item>
                                 </argument>
+                                <argument xsi:type="string" name="html_tag">div</argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-actions</argument>
                             </arguments>
-                        </block>
 
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.wishlist.remove"
-                               template="MageSuite_ProductTile::fragments/wishlist/remove.phtml">
-                            <arguments>
-                                <argument name="supported_areas" xsi:type="array">
-                                    <item name="0" xsi:type="string">wishlist</item>
-                                </argument>
-                            </arguments>
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.wishlist.edit"
+                                   template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
+                                <arguments>
+                                    <argument name="link_label" xsi:type="string" translate="true">Edit</argument>
+                                    <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--edit</argument>
+                                </arguments>
+                            </block>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
+                                   name="product.tile.wishlist.remove"
+                                   template="MageSuite_ProductTile::fragments/wishlist/remove.phtml">
+                                <arguments>
+                                    <argument name="link_label" xsi:type="string" translate="true">Remove item</argument>
+                                    <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--remove</argument>
+                                </arguments>
+                            </block>
                         </block>
                     </block>
                 </block>

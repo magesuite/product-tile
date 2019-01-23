@@ -4,8 +4,9 @@
 $wishlistItem = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
+$linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
 ?>
 
 <?php if ($product->isVisibleInSiteVisibility() and $wishlistItem): ?>
-    <a class="cs-link" href="<?php /* @escapeNotVerified */ echo $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?php /* @escapeNotVerified */ echo __('Edit') ?></a>
+    <a <?= $linkCssClass ?> href="<?php /* @escapeNotVerified */ echo $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
 <?php endif ?>
