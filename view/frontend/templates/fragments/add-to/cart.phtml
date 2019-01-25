@@ -9,8 +9,16 @@
 <?php
     if ($isSaleable && (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
         <?php $postParams = $block->getAddToCartPostParams($product); ?>
+
         <form<?php if(!$isConfigurable): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+
+            <?php if(isset($postParams['data']['bundle_option']) and !empty($postParams['data']['bundle_option'])): ?>
+                <?php foreach($postParams['data']['bundle_option'] as $optionId => $valueId): ?>
+                <input type="hidden" name="bundle_option[<?=$optionId?>]" value="<?=$valueId[0]?>" />
+                <?php endforeach; ?>
+            <?php endif; ?>
+
             <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
             <?= $block->getBlockHtml('formkey') ?>
             <?= $block->getChildBlock('atc.button')->setAddtocartLabel($label)->toHtml(); ?>
