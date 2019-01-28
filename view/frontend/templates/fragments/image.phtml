@@ -3,15 +3,17 @@
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
     $productImage = $imageHelper->init($product, 'category_page_grid');
     $productImageUrl = $productImage->getUrl();
+    $productImage2x = $imageHelper->init($product, $block->getImage2xId() ?? 'category_page_grid_x2');
+    $productImage2xUrl = $productImage2x->getUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
     /* XML config */
     $cssClass = $block->getCssClass();
-    $cssClass = $cssClass ? 'class="'.$cssClass.'"' : '';
+    $cssClass = $cssClass ? 'class="' . $cssClass . '"' : '';
 ?>
 <img <?= $cssClass ?> 
     src="<?= $productImageUrl ?>" 
-    srcset="<?= $productImageUrl . ' 1x, ' . $imageHelper->init($product, 'category_page_grid@2x')->getUrl() . ' 2x' ?>"
+    srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
     width="<?= $productImageSize[0] ?>" 
     height="<?= $productImageSize[1] ?>" 
     alt="<?= $product->getName() ?>"
