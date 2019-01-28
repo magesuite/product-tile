@@ -43,11 +43,22 @@ class Container extends \Magento\Framework\View\Element\Template
         return $this;
     }
 
+    /**
+     * @return \Magento\Catalog\Model\Product|null
+     */
     public function getProduct() {
+        if(!$this->tile) {
+            return null;
+        }
+
         return $this->tile->getProductEntity();
     }
 
     public function getSectionData($key) {
+        if(!$this->tile) {
+            return null;
+        }
+
         return $this->tile->getSectionData($key);
     }
 
