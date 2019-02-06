@@ -257,19 +257,6 @@
                         </arguments>
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.wishlist.comment"
-                               template="MageSuite_ProductTile::fragments/wishlist/comment.phtml">
-                            <arguments>
-                                <argument name="supported_areas" xsi:type="array">
-                                    <item name="0" xsi:type="string">wishlist</item>
-                                </argument>
-                                <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-comment</argument>
-                                <argument xsi:type="string" name="field_label" translate="true"></argument>
-                                <argument xsi:type="string" name="field_css_class">cs-product-tile__wishlist-comment-textarea</argument>
-                            </arguments>
-                        </block>
-
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
                                name="product.tile.addtocart"
                                template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
