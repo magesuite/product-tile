@@ -1,0 +1,32 @@
+<?php
+/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/** @var \MageSuite\ProductTile\Model\Tile\Fragment\Gallery\Images $viewModel */
+$viewModel = $block->getViewModel();
+$product = $block->getProduct();
+$image = $block->getImageId();
+$image2x = $block->getImageId2x();
+$limit = $block->getItemLimit();
+$images = $viewModel->getMediaGalleryImages($product, $image2x, $image, $limit);
+$displayRule = $block->getDisplayIfSingle() ? count($images) : count($images) > 1;
+?>
+
+<?php if($images && $displayRule): ?>
+    <?php 
+        $wrapperTag = $block->getWrapperTag() ?? 'li';
+
+        $wrapperClass = $block->getWrapperCssClass();
+        $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
+
+        $thumbnailCssClass = $block->getThumbnailCssClass();
+        $thumbnailCssClass = $thumbnailCssClass ? sprintf('class="%s"', $thumbnailCssClass) : '';
+    ?>
+    <?php foreach($images as $imagesSet): ?>
+        <<?= $wrapperTag ?> <?= $wrapperClass ?>>
+            <img <?= $thumbnailCssClass ?> 
+                    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                    data-src="<?= $imagesSet['small_image'] ?>" 
+                    data-srcset="<?= $imagesSet['srcset'] ?>" 
+                    alt="<?= $product->getName() ?>">
+        </<?= $wrapperTag ?>>
+    <?php endforeach; ?>
+<?php endif; ?>
