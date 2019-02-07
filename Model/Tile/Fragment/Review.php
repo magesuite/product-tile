@@ -1,6 +1,6 @@
 <?php
 
-namespace MageSuite\ProductTile\Block\Tile\Fragment;
+namespace MageSuite\ProductTile\Model\Tile\Fragment;
 
 class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
