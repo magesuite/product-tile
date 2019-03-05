@@ -21,7 +21,7 @@
 
             <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
             <?= $block->getBlockHtml('formkey') ?>
-            <?= $block->getChildBlock('atc.button')->setAddtocartLabel($label)->toHtml(); ?>
+            <?= $block->getChildBlock('atc.button')->setTile($block->getTile())->setAddtocartLabel($label)->toHtml(); ?>
         </form>
     <?php endif;
 ?>

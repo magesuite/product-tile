@@ -29,6 +29,10 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
     }
 
     public function shouldBeRendered() {
+        if(!$this->getTile()) {
+            return false;
+        }
+
         if($this->getUnsupportedAreas() != null and $this->getTile()->getAreas()) {
             if($this->isInOneOfAreas($this->getUnsupportedAreas())) {
                 return false;

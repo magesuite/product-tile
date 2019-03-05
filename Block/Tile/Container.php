@@ -63,6 +63,10 @@ class Container extends \Magento\Framework\View\Element\Template
     }
 
     public function shouldBeRendered() {
+        if(!$this->getTile()) {
+            return false;
+        }
+
         if($this->getUnsupportedAreas() != null and $this->getTile()->getAreas()) {
             if($this->isInOneOfAreas($this->getUnsupportedAreas())) {
                 return false;
