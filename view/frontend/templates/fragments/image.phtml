@@ -7,14 +7,40 @@
     $productImage2xUrl = $productImage2x->getUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
+    $productImageLazyloadFrom = $block->getVar('product_image_lazyload_from') ?? 7;
+    $productIterator = $block->getTile()->getIterator();
+    $productImageLazyloaded = $productIterator >= $productImageLazyloadFrom;
+
     /* XML config */
     $cssClass = $block->getCssClass();
-    $cssClass = $cssClass ? 'class="' . $cssClass . '"' : '';
 ?>
-<img <?= $cssClass ?> 
+<?php if ($productImageLazyloaded): ?>
+<img 
+    class="<?= $cssClass ?> lazyload" 
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    data-src="<?= $productImageUrl ?>" 
+    data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+    width="<?= $productImageSize[0] ?>" 
+    height="<?= $productImageSize[1] ?>" 
+    alt="<?= $product->getName() ?>"
+>
+<noscript>
+    <img
+        class="<?= $cssClass ?>" 
+        src="<?= $productImageUrl ?>" 
+        srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+        width="<?= $productImageSize[0] ?>" 
+        height="<?= $productImageSize[1] ?>" 
+        alt="<?= $product->getName() ?>"
+    >
+</noscript>
+<?php else: ?>
+<img
+    class="<?= $cssClass ?>" 
     src="<?= $productImageUrl ?>" 
     srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
     width="<?= $productImageSize[0] ?>" 
     height="<?= $productImageSize[1] ?>" 
     alt="<?= $product->getName() ?>"
 >
+<?php endif; ?>
