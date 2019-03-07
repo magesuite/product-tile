@@ -90,4 +90,17 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
 
         return false;
     }
+
+    public function getCacheKeyInfo()
+    {
+        if(!$this->getTile()) {
+            return [];
+        }
+
+        if(!$this->getCacheKeyModel()) {
+            return [];
+        }
+
+        return $this->getCacheKeyModel()->getCacheKeyInfo($this);
+    }
 }
