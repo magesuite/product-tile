@@ -27,6 +27,13 @@ class ImageTest extends AbstractCacheTest
         $result = $this->imageCacheKeyGenerator->getCacheKeyInfo($fragment);
 
         // pleaceholder here is on purpose since tests cannot access images definitions from etc/view.xml of theme
-        $this->assertEquals(['http://localhost/pub/static/version1547712031/_view/en_US/Magento_Catalog/images/product/placeholder/.jpg'], $result);
+        $expectedUrl = $this->prepareRegexUrl('http://localhost/pub/static/version([0-9]+?)/_view/en_US/Magento_Catalog/images/product/placeholder/.jpg');
+
+        $this->assertRegExp($expectedUrl, $result[0]);
+    }
+
+    protected function prepareRegexUrl($url) {
+        $url = str_replace('/', '\/', $url);
+        return sprintf('/%s/', $url);
     }
 }
