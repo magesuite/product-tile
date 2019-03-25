@@ -1,16 +1,18 @@
-<?php 
+<?php
     $product = $block->getProduct();
     $isSaleable = $product->isSaleable();
-    $isConfigurable = $product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE;
+    /** @var \MageSuite\ProductTile\Helper\AddToCart $addToCartHelper */
+    $addToCartHelper = $this->helper(\MageSuite\ProductTile\Helper\AddToCart::class);
+    $canBeConfigured = $addToCartHelper->canBeConfigured($product);
     $showOnlyForSimpeProducts = $block->getShowOnlyForSimpleProducts();
-    $label = $isConfigurable ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
+    $label = $canBeConfigured ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
 ?>
 
 <?php
     if ($isSaleable && (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
         <?php $postParams = $block->getAddToCartPostParams($product); ?>
 
-        <form<?php if(!$isConfigurable): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
+        <form<?php if(!$canBeConfigured): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
 
             <?php if(isset($postParams['data']['bundle_option']) and !empty($postParams['data']['bundle_option'])): ?>
