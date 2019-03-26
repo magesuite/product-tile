@@ -1,10 +1,10 @@
 <?php
     $product = $block->getProduct();
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
-    $productImage = $imageHelper->init($product, 'category_page_grid');
-    $productImageUrl = $productImage->getUrl();
-    $productImage2x = $imageHelper->init($product, $block->getImage2xId() ?? 'category_page_grid_x2');
-    $productImage2xUrl = $productImage2x->getUrl();
+    $productImage = $block->getImage($product, 'category_page_grid');
+    $productImageUrl = $productImage->getImageUrl();
+    $productImage2x = $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2');
+    $productImage2xUrl = $productImage2x->getImageUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
     $productImageLazyloadFrom = $block->getVar('product_image_lazyload_from') ?? 7;
