@@ -9,7 +9,7 @@
                     <argument xsi:type="string" name="css_class">cs-product-tile</argument>
                     <argument xsi:type="array" name="sections">
                         <item xsi:type="array" name="navigation">
-                            <item xsi:type="string" name="css_class">cs-product-tile</item>
+                            <item xsi:type="string" name="css_class">cs-product-tile cs-product-tile--static</item>
                         </item>
                     </argument>
                 </arguments>
