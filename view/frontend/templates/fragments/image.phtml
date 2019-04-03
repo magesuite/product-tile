@@ -7,9 +7,9 @@
     $productImage2xUrl = $productImage2x->getImageUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
-    $productImageLazyloadFrom = $block->getVar('product_image_lazyload_from') ?? 7;
+    $productImageLazyloadFrom = $block->getVar('product_image_lazyload_from') ?? 6;
     $productIterator = $block->getTile()->getIterator();
-    $productImageLazyloaded = $productIterator >= $productImageLazyloadFrom;
+    $productImageLazyloaded = !is_numeric($productIterator) || $productIterator >= $productImageLazyloadFrom;
 
     /* XML config */
     $cssClass = $block->getCssClass();
