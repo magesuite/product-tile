@@ -103,4 +103,11 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
 
         return $this->getCacheKeyModel()->getCacheKeyInfo($this);
     }
+
+    public function getAddToCartUrl($product, $additional = [])
+    {
+        $additional = array_merge($additional, ['from_tile' => true]);
+
+        return parent::getAddToCartUrl($product, $additional);
+    }
 }
