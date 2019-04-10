@@ -16,7 +16,7 @@ class RemoveInCartParameterFromAddToCart
      * @return mixed
      */
     public function afterGetAddUrl(\Magento\Checkout\Helper\Cart $subject, $result, $product, $additional = []) {
-        if($additional['from_tile'] === true) {
+        if(isset($additional['from_tile']) and $additional['from_tile'] === true) {
             $result = str_replace('/in_cart/1', '', $result);
             $result = str_replace('/from_tile/1', '', $result);
         }
