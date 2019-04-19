@@ -5,6 +5,7 @@
     $isVisible = $viewModel->isVisible($tile);
     $badgeValue = $viewModel->getValue($tile);
     $label = $block->getLabel();
+    $value = $block->getValueDisplay();
 ?>
 <?php if($isVisible && ($badgeValue || !empty($label))): ?>
     <?php 
@@ -25,7 +26,12 @@
     ?>
     <<?= $wrapperTag ?> <?= $wrapperClass ?>>
         <span <?= $cssClass ?>>
-            <span <?= $badgeTextClass ?>><?= $label ?><span><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span></span>
+        <?php if ($label): ?>
+            <span <?= $badgeTextClass ?>><?= $label ?></span>
+        <?php endif; ?>
+        <?php if ($value): ?>
+            <span <?= $badgeTextClass ?>><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span>
+        <?php endif; ?>
         </span>
     </<?= $wrapperTag ?>>
 <?php endif; ?>
