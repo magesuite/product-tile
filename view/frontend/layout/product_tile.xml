@@ -45,6 +45,7 @@
                                     <argument xsi:type="string" name="css_class">cs-product-tile__badge cs-product-tile__badge--discount</argument>
                                     <argument xsi:type="string" name="text_css_class">cs-product-tile__badge-text</argument>
                                     <argument xsi:type="string" name="label" translate="true"></argument>
+                                    <argument xsi:type="boolean" name="value_display">true</argument>
                                     <argument xsi:type="string" name="value_prefix">-</argument>
                                     <argument xsi:type="string" name="value_suffix">%</argument>
                                 </arguments>
