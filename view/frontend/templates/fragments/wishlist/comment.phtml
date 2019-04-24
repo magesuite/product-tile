@@ -1,0 +1,22 @@
+<?php
+/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getTile()->getWishlistItem();
+$itemId = $block->escapeHtmlAttr($item->getWishlistItemId());
+$wishlistHelper = $block->getWishlistHelper();
+?>
+
+<div class="field comment-box">
+    <label class="label" for="product-item-comment-<?= $itemId ?>">
+        <span><?= $block->escapeHtml(__('Comment')) ?></span>
+    </label>
+    <div class="control">
+        <textarea
+            id="product-item-comment-<?= $itemId ?>"
+            placeholder="<?= /* @noEscape */ $wishlistHelper->defaultCommentString() ?>"
+            name="description[<?= $itemId ?>]" title="<?= $block->escapeHtmlAttr(__('Comment')) ?>"
+            class="product-item-comment input-text"
+        ><?= ($block->escapeHtml($item->getDescription())) ?></textarea>
+    </div>
+</div>

@@ -20,10 +20,7 @@
                         <argument xsi:type="string" name="css_class">cs-product-tile__main</argument>
                     </arguments>
 
-                    <block class="MageSuite\ProductTile\Block\Tile\Container"
-                           name="product.tile.container.figure" 
-                           template="MageSuite_ProductTile::container_linked.phtml"
-                    >
+                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.figure" template="MageSuite_ProductTile::container_linked.phtml">
                         <arguments>
                             <argument xsi:type="string" name="css_class">cs-product-tile__figure-wrapper</argument>
                         </arguments>
@@ -34,10 +31,7 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__badges</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.discount"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.badge.discount" template="MageSuite_ProductTile::fragments/badge.phtml">
                                 <arguments>
                                     <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
                                     <argument xsi:type="string" name="wrapper_tag">li</argument>
@@ -51,10 +45,7 @@
                                 </arguments>
                             </block>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.badge.new"
-                                   template="MageSuite_ProductTile::fragments/badge.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.badge.new" template="MageSuite_ProductTile::fragments/badge.phtml">
                                 <arguments>
                                     <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
                                     <argument xsi:type="string" name="html_tag">li</argument>
@@ -92,10 +83,7 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__figure</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.figure.image"
-                                   template="MageSuite_ProductTile::fragments/image.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.figure.image" template="MageSuite_ProductTile::fragments/image.phtml">
                                 <arguments>
                                     <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
@@ -114,12 +102,12 @@
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">div</argument>
                                 <argument xsi:type="string" name="css_class">cs-product-tile__swatches</argument>
+                                <argument name="unsupported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.swatches"
-                                   template="MageSuite_ProductTile::fragments/swatches.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.swatches" template="MageSuite_ProductTile::fragments/swatches.phtml">
                                 <block class="Magento\Framework\View\Element\RendererList" name="product.tile.details.renderers" as="details.renderers">
                                     <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" name="product.tile.details.renderers.configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" ifconfig="catalog/frontend/show_swatches_in_product_list" />
                                     <block class="Magento\Framework\View\Element\Template" name="product.tile.details.renderers.default" as="default" />
@@ -133,18 +121,12 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__name</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Container"
-                                   name="product.tile.container.name.link" 
-                                   template="MageSuite_ProductTile::container_linked.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.name.link" template="MageSuite_ProductTile::container_linked.phtml">
                                 <arguments>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__name-link</argument>
                                 </arguments>
 
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                       name="product.tile.name" 
-                                       template="MageSuite_ProductTile::fragments/name.phtml"
-                                />
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.name" template="MageSuite_ProductTile::fragments/name.phtml" />
                             </block>
                         </block>
 
@@ -154,10 +136,7 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__price</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.price"
-                                   template="MageSuite_ProductTile::fragments/price.phtml"
-                            >
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.price" template="MageSuite_ProductTile::fragments/price.phtml">
                                 <arguments>
                                     <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Price</argument>
                                 </arguments>
@@ -185,9 +164,7 @@
                             <argument xsi:type="string" name="css_class">cs-product-tile__addons-left</argument>
                         </arguments>
 
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.review_summary"
-                               template="MageSuite_ProductTile::fragments/review_summary.phtml">
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.review_summary" template="MageSuite_ProductTile::fragments/review_summary.phtml">
                             <arguments>
                                 <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Review</argument>
                                 <argument xsi:type="string" name="html_tag">div</argument>
@@ -209,9 +186,7 @@
                                         <item name="0" xsi:type="string">wishlist</item>
                                     </argument>
                                 </arguments>
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                       name="product.tile.addtolinks.addtowishlist"
-                                       template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtolinks.addtowishlist" template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
                                     <arguments>
                                         <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
 
@@ -232,9 +207,7 @@
                                     <argument xsi:type="string" name="html_tag">li</argument>
                                     <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--compare</argument>
                                 </arguments>
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare"
-                                       name="product.tile.addtolinks.addtocompare"
-                                       template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare" name="product.tile.addtolinks.addtocompare" template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
                                     <arguments>
                                         <argument xsi:type="string" name="label" translate="true">Add to Compare</argument>
                                     </arguments>
@@ -263,9 +236,7 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__addon</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.stock"
-                                   template="MageSuite_ProductTile::fragments/stock.phtml">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.stock" template="MageSuite_ProductTile::fragments/stock.phtml">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">span</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__stock</argument>
@@ -284,20 +255,49 @@
                             <argument xsi:type="string" name="css_class">cs-product-tile__addons-bottom</argument>
                         </arguments>
 
-                        <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                               name="product.tile.addtocart"
-                               template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
+                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addons.bottom.wishlist.comment">
+                            <arguments>
+                                <argument xsi:type="string" name="html_tag">div</argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-comment</argument>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                            </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.container.addons.bottom.wishlist.comment.textarea" template="MageSuite_ProductTile::fragments/wishlist/comment.phtml">
+                                <arguments>
+                                    <argument name="title" translate="true" xsi:type="string">Product Details and Comment</argument>
+                                </arguments>
+                            </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtocart" template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                             <arguments>
                                 <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
                                 <argument xsi:type="string" name="form_class">cs-addtocart cs-product-tile__addtocart</argument>
                                 <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
                                 <argument xsi:type="string" name="atc_configure_label" translate="true">Configure</argument>
+                                <argument name="unsupported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.addtocart.button"
-                                   template="Magento_Catalog::addtocart/button.phtml"
-                                   as="atc.button">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtocart.button" template="Magento_Catalog::addtocart/button.phtml" as="atc.button">
+                                <arguments>
+                                    <argument xsi:type="string" name="button_class">cs-addtocart__button cs-product-tile__addtocart-button</argument>
+                                </arguments>
+                            </block>
+                        </block>
+
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.container.wishlist.addtocart" template="MageSuite_ProductTile::fragments/wishlist/cart.phtml">
+                            <arguments>
+                                <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                            </arguments>
+
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.container.wishlist.addtocart.button" template="Magento_Catalog::addtocart/button.phtml" as="atc.button">
                                 <arguments>
                                     <argument xsi:type="string" name="button_class">cs-addtocart__button cs-product-tile__addtocart-button</argument>
                                 </arguments>
@@ -313,18 +313,14 @@
                                 <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-actions</argument>
                             </arguments>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.wishlist.edit"
-                                   template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.edit" template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
                                 <arguments>
                                     <argument name="link_label" xsi:type="string" translate="true">Edit</argument>
                                     <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--edit</argument>
                                 </arguments>
                             </block>
 
-                            <block class="MageSuite\ProductTile\Block\Tile\Fragment"
-                                   name="product.tile.wishlist.remove"
-                                   template="MageSuite_ProductTile::fragments/wishlist/remove.phtml">
+                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.remove" template="MageSuite_ProductTile::fragments/wishlist/remove.phtml">
                                 <arguments>
                                     <argument name="link_label" xsi:type="string" translate="true">Remove item</argument>
                                     <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--remove</argument>

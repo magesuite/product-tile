@@ -1,6 +1,8 @@
 <?php 
     $product = $block->getProduct();
     $label = $this->getLabel();
+    $wishlistItem = $block->getTile()->getWishlistItem();
+    $wishlistHelper = $block->getWishlistHelper();
 ?>
 
 <a
@@ -8,7 +10,8 @@
     class="towishlist cs-links-block-addto__link"
     title="<?= $label ?>"
     aria-label="<?= $label ?>"
-    data-post='<?= $block->getAddToWishlistParams($product) ?>'
+    data-post='<?= $wishlistHelper->getAddParams($product) ?>'
+    data-uenc-update='true'
     data-action="add-to-wishlist"
     role="button"
 >

@@ -1,6 +1,6 @@
 <?php
-/* @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
-/* @var \Magento\Wishlist\Model\Item $item */
+/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/** @var \Magento\Wishlist\Model\Item $item */
 $wishlistItem = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
@@ -11,7 +11,7 @@ $linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().
     <a
             href="#"
             data-role="remove"
-            data-post-remove='<?php /* @escapeNotVerified */ echo $wishlistHelper->getRemoveParams($wishlistItem); ?>'
+            data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>'
             title="<?= $block->getLinkLabel() ?>"
             <?= $linkCssClass ?>
     ><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>

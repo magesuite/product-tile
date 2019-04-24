@@ -1,6 +1,6 @@
 <?php
-/* @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
-/* @var \Magento\Wishlist\Model\Item $item */
+/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/** @var \Magento\Wishlist\Model\Item $item */
 $wishlistItem = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
@@ -8,5 +8,5 @@ $linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().
 ?>
 
 <?php if ($product->isVisibleInSiteVisibility() and $wishlistItem): ?>
-    <a <?= $linkCssClass ?> href="<?php /* @escapeNotVerified */ echo $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
+    <a <?= $linkCssClass ?> href="<?= /* @escapeNotVerified */ $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
 <?php endif ?>
