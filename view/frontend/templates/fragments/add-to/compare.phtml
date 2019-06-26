@@ -4,12 +4,7 @@
     $postDataParams = $block->getCompareHelper()->getPostDataParams($block->getProduct());
 ?>
 
-<a href="#"
-   class="action tocompare cs-links-block-addto__link"
-   title="<?= $label ?>"
-   aria-label="<?= $label ?>"
-   data-post='<?= $postDataParams ?>'
-   role="button">
+<a href="#" class="action tocompare cs-links-block-addto__link" title="<?= $label ?>" aria-label="<?= $label ?>" data-post='<?= $postDataParams ?>' role="button">
     <?= $this->getChildHtml() ?>
-    <?= $label ?>
+    <span class="cs-links-block-addto__link-label"><?= $label ?></span>
 </a>

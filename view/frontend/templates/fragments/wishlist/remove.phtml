@@ -8,11 +8,7 @@ $linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().
 ?>
 
 <?php if ($wishlistItem): ?>
-    <a
-            href="#"
-            data-role="remove"
-            data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>'
-            title="<?= $block->getLinkLabel() ?>"
-            <?= $linkCssClass ?>
-    ><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
+    <a href="#" data-role="remove" data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>' title="<?= $block->getLinkLabel() ?>"<?= $linkCssClass ?>>
+        <?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?>
+    </a>
 <?php endif ?>
