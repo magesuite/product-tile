@@ -8,7 +8,7 @@ $item = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
 ?>
-<div class="cs-addtocart cs-addtocart--wishlist">
+<div class="cs-product-tile__addtocart cs-addtocart cs-addtocart--wishlist">
     <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
         <div class="cs-addtocart__qty-increment">
             <?= $this->getLayout()

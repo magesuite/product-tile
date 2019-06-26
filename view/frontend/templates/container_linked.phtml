@@ -1,7 +1,6 @@
 <?php
     $layout = $this->getLayout();
     $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
-
     $output = '';
 
     foreach($this->getChilds() as $child) {
@@ -9,4 +8,5 @@
         $output .= $layout->renderElement($child->getNameInLayout(), false);
     }
 ?>
+
 <a href="<?= $block->getProduct()->getProductUrl() ?>" <?= $cssClass ?>><?=$output?></a>
