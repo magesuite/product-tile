@@ -29,7 +29,8 @@ class PriceTest extends AbstractCacheTest
         $expected = [
             0 => '5.9900',
             1 => '1',
-            2 => 0
+            2 => 0,
+            3 => 'grid'
         ];
 
         $this->assertEquals($expected, $result);

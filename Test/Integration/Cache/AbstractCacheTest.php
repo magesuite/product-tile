@@ -25,6 +25,7 @@ abstract class AbstractCacheTest extends \PHPUnit\Framework\TestCase
 
         $tile = $this->objectManager->create(\MageSuite\ProductTile\Block\Tile::class);
         $tile->setProductEntity($product);
+        $tile->setViewMode('grid');
 
         $fragment = $this->objectManager->get(\MageSuite\ProductTile\Block\Tile\Fragment::class);
         $fragment->setTile($tile);
