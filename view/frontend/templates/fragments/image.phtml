@@ -11,36 +11,101 @@
     $productIterator = $block->getTile()->getIterator();
     $productImageLazyloaded = !is_numeric($productIterator) || $productIterator >= $productImageLazyloadFrom;
 
+    $imageTypeHelper = $this->helper('MageSuite\ThemeHelpers\Helper\ImageType');
+    $isWebpSupported = $imageTypeHelper->supportsWebp($productImageUrl);
+    $imageMimeType = $imageTypeHelper->getMimeType($productImageUrl);
+
     /* XML config */
     $cssClass = $block->getCssClass();
 ?>
 <?php if ($productImageLazyloaded): ?>
-<img 
-    class="<?= $cssClass ?> lazyload" 
-    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    data-src="<?= $productImageUrl ?>" 
-    data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-    width="<?= $productImageSize[0] ?>" 
-    height="<?= $productImageSize[1] ?>" 
-    alt="<?= $product->getName() ?>"
->
-<noscript>
-    <img
-        class="<?= $cssClass ?>" 
-        src="<?= $productImageUrl ?>" 
-        srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        width="<?= $productImageSize[0] ?>" 
-        height="<?= $productImageSize[1] ?>" 
-        alt="<?= $product->getName() ?>"
-    >
-</noscript>
+​    <picture class="cs-product-tile__picture">
+        <?php if ($isWebpSupported): ?>
+            <source
+                type="image/webp"
+                class="<?= $cssClass ?> lazyload" 
+                data-srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
+                width="<?= $productImageSize[0] ?>" 
+                height="<?= $productImageSize[1] ?>" 
+                alt="<?= $product->getName() ?>"
+            >
+        <?php endif; ?>
+        <source
+                type="<?= $imageMimeType; ?>"
+                class="<?= $cssClass ?> lazyload" 
+                data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+                width="<?= $productImageSize[0] ?>" 
+                height="<?= $productImageSize[1] ?>" 
+                alt="<?= $product->getName() ?>"
+            >
+        <img
+            type="<?= $imageMimeType; ?>"
+            class="<?= $cssClass ?>" 
+            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            data-src="<?= $productImageUrl ?>" 
+            data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+            width="<?= $productImageSize[0] ?>" 
+            height="<?= $productImageSize[1] ?>" 
+            alt="<?= $product->getName() ?>"
+        >
+    </picture>
+    <noscript>
+        <picture class="cs-product-tile__picture">
+            <?php if ($isWebpSupported): ?>
+                <source
+                    type="image/webp"
+                    class="<?= $cssClass ?>" 
+                    srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
+                    width="<?= $productImageSize[0] ?>" 
+                    height="<?= $productImageSize[1] ?>" 
+                    alt="<?= $product->getName() ?>"
+                >
+            <?php endif; ?>
+            <source
+                type="<?= $imageMimeType; ?>"
+                class="<?= $cssClass ?>" 
+                srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+                width="<?= $productImageSize[0] ?>" 
+                height="<?= $productImageSize[1] ?>" 
+                alt="<?= $product->getName() ?>"
+            >
+            <img 
+                class="<?= $cssClass ?>" 
+                src="<?= $productImageUrl ?>" 
+                srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+                width="<?= $productImageSize[0] ?>" 
+                height="<?= $productImageSize[1] ?>" 
+                alt="<?= $product->getName() ?>"
+            >
+        </picture>
+    </noscript>
 <?php else: ?>
-<img
-    class="<?= $cssClass ?>" 
-    src="<?= $productImageUrl ?>" 
-    srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-    width="<?= $productImageSize[0] ?>" 
-    height="<?= $productImageSize[1] ?>" 
-    alt="<?= $product->getName() ?>"
->
+    <picture class="cs-product-tile__picture">
+        <?php if ($isWebpSupported): ?>
+            <source
+                type="image/webp"
+                class="<?= $cssClass ?>" 
+                srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
+                width="<?= $productImageSize[0] ?>" 
+                height="<?= $productImageSize[1] ?>" 
+                alt="<?= $product->getName() ?>"
+            >
+        <?php endif; ?>
+        <source
+            type="<?= $imageMimeType; ?>"
+            class="<?= $cssClass ?>" 
+            srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+            width="<?= $productImageSize[0] ?>" 
+            height="<?= $productImageSize[1] ?>" 
+            alt="<?= $product->getName() ?>"
+        >
+        <img 
+            class="<?= $cssClass ?>" 
+            src="<?= $productImageUrl ?>" 
+            srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+            width="<?= $productImageSize[0] ?>" 
+            height="<?= $productImageSize[1] ?>" 
+            alt="<?= $product->getName() ?>"
+        >
+    </picture>
 <?php endif; ?>

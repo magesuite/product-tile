@@ -5,16 +5,7 @@
     $wishlistHelper = $block->getWishlistHelper();
 ?>
 
-<a
-    href="#"
-    class="towishlist cs-links-block-addto__link"
-    title="<?= $label ?>"
-    aria-label="<?= $label ?>"
-    data-post='<?= $wishlistHelper->getAddParams($product) ?>'
-    data-uenc-update='true'
-    data-action="add-to-wishlist"
-    role="button"
->
+<a href="#" class="towishlist cs-links-block-addto__link" title="<?= $label ?>" aria-label="<?= $label ?>" data-post='<?= $wishlistHelper->getAddParams($product) ?>' data-uenc-update='true' data-action="add-to-wishlist" role="button">
     <?= $this->getChildHtml() ?>
-    <?= $label ?>
+    <span class="cs-links-block-addto__link-label"><?= $label ?></span>
 </a>
