@@ -39,7 +39,8 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
             $mediaImage = [
                 'thumb' => $thumbUrl,
                 'small_image' => $smallImageUrl,
-                'srcset' => sprintf('%s, %s 2x', $thumbUrl, $smallImageUrl)
+                'srcset' => sprintf('%s, %s 2x', $thumbUrl, $smallImageUrl),
+                'webpSrcset' => sprintf('%s.webp, %s.webp 2x', $thumbUrl, $smallImageUrl),
             ];
 
             if(in_array('image', $mediaGalleryImage->getTypes()) !== false){
