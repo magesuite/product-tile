@@ -383,6 +383,7 @@
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.stock" template="MageSuite_ProductTile::fragments/stock.phtml">
                                         <arguments>
+                                            <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Stock</argument>
                                             <argument xsi:type="string" name="html_tag">span</argument>
                                             <argument xsi:type="string" name="css_class">cs-product-tile__stock</argument>
                                             <argument xsi:type="string" name="in_stock_css_modifier">cs-product-tile__stock--in</argument>
