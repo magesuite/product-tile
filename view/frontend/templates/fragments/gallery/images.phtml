@@ -9,6 +9,7 @@ $limit = $block->getItemLimit();
 $images = $viewModel->getMediaGalleryImages($product, $image2x, $image, $limit);
 $displayRule = $block->getDisplayIfSingle() ? count($images) : count($images) > 1;
 $imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
+$loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 ?>
 
 <?php if($images && $displayRule): ?>
@@ -19,31 +20,34 @@ $imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class
         $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
 
         $thumbnailCssClass = $block->getThumbnailCssClass();
+        $thumbnailCssClass .= " lazyload";
         $thumbnailCssClass = $thumbnailCssClass ? sprintf('class="%s"', $thumbnailCssClass) : '';
     ?>
     <?php foreach($images as $imagesSet): ?>
         <?php
             $isWebpSupported = $imageTypeHelper->supportsWebp($imagesSet['small_image']);
-            $imageMimeType = $imageTypeHelper->getMimeType($imagesSet['small_image']);        
+            $imageMimeType = $imageTypeHelper->getMimeType($imagesSet['small_image']);
         ?>
         <<?= $wrapperTag ?> <?= $wrapperClass ?>>
             <picture <?= $thumbnailCssClass ?>>
                 <?php if ($isWebpSupported): ?>
                     <source
                         type="image/webp"
-                        srcset="<?= $imagesSet['webpSrcset'] ?>"
+                        srcset="<?= $loaderImage ?>"
+                        data-srcset="<?= $imagesSet['webpSrcset'] ?>"
                         alt="<?= $product->getName() ?>"
                     >
                 <?php endif; ?>
                 <source
                     type="<?= $imageMimeType ?>"
-                    srcset="<?= $imagesSet['srcset'] ?>" 
+                    srcset="<?= $loaderImage ?>"
+                    data-srcset="<?= $imagesSet['srcset'] ?>"
                     alt="<?= $product->getName() ?>"
                 >
                 <img
+                    src="<?= $loaderImage ?>"
                     data-src="<?= $imagesSet['small_image'] ?>"
-                    src="<?= $imagesSet['small_image'] ?>"
-                    srcset="<?= $imagesSet['srcset'] ?>"
+                    data-srcset="<?= $imagesSet['srcset'] ?>"
                     alt="<?= $product->getName() ?>"
                 >
             </picture>
