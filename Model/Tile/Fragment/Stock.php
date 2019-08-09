@@ -16,6 +16,10 @@ class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     public function isSaleable($product)
     {
+        if($product->getTypeId() != \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE){
+            return $product->isSaleable();
+        }
+
         $salableQty = $this->getSalableQuantityDataBySku->execute($product->getSku());
 
         return $product->isSaleable() && $salableQty[0]['qty'];
