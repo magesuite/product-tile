@@ -18,6 +18,7 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
     }
 
     public function render(\Magento\Catalog\Model\Product $product) {
+        $this->unsetData('CACHE_KEY_INFO');
         $this->setProductEntity($product);
 
         return $this->toHtml();
@@ -68,6 +69,10 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
     public function getCacheKeyInfo()
     {
+        if($this->hasData('CACHE_KEY_INFO')) {
+            return $this->getData('CACHE_KEY_INFO');
+        }
+
         $product = $this->getProductEntity();
 
         if(!$product) {
@@ -77,6 +82,10 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         /** @var \MageSuite\ProductTile\Service\CacheKeyGenerator $cacheKeyGenerator */
         $cacheKeyGenerator = $this->getCacheKeyGenerator();
 
-        return $cacheKeyGenerator->generate($this);
+        $cacheKey = $cacheKeyGenerator->generate($this);
+
+        $this->setData('CACHE_KEY_INFO', $cacheKey);
+
+        return $cacheKey;
     }
 }
