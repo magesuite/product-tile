@@ -6,6 +6,10 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
 {
     const CACHE_KEY_PREFIX = 'product_tile';
 
+    protected $flatChilds = null;
+
+    protected $areaCustomizationStatus = [];
+
     public function generate(\MageSuite\ProductTile\Block\Tile $tile)
     {
         $product = $tile->getProductEntity();
@@ -39,47 +43,54 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
      */
     public function getChildsCacheKeys($blocks, $tile)
     {
+        $childs = $this->getFlatChilds($blocks, $tile);
+
         $cacheKeys = [];
 
-        if (!$blocks or empty($blocks)) {
+
+        if (!$childs or empty($childs)) {
             return [];
         }
 
-        foreach ($blocks as $child) {
+        foreach ($childs as $child) {
             if ($child instanceof \MageSuite\ProductTile\Block\Tile\Fragment) {
                 $child->setTile($tile);
 
                 $cacheKeys = array_merge($cacheKeys, $child->getCacheKeyInfo());
             }
-
-            $cacheKeys = array_merge($cacheKeys, $this->getChildsCacheKeys($child->getChilds(), $tile));
         }
 
         return $cacheKeys;
     }
 
     protected function wasAreaCustomized($blocks, $tile) {
-        if(empty($tile->getSection())) {
+        $area = $tile->getSection();
+
+        if(empty($area)) {
             return false;
         }
 
-        $areas = array_unique($this->getChildsAreasConfiguration($blocks, $tile));
+        if(isset($this->areaCustomizationStatus[$area])) {
+            return $this->areaCustomizationStatus[$area];
+        }
 
-        return in_array($tile->getSection(), $areas);
+        $areasWithCustomFragments = array_unique($this->getChildsAreasConfiguration($blocks, $tile));
+
+        $result = in_array($area, $areasWithCustomFragments);
+        $this->areaCustomizationStatus[$area] = $result;
+
+        return $result;
     }
 
     protected function getChildsAreasConfiguration($blocks, $tile) {
+        $childs = $this->getFlatChilds($blocks, $tile);
         $sections = [];
 
-        if (!$blocks or empty($blocks)) {
+        if (!$childs or empty($childs)) {
             return [];
         }
 
-        foreach ($blocks as $child) {
-            if ($child instanceof \MageSuite\ProductTile\Block\Tile\Fragment) {
-                $child->setTile($tile);
-            }
-
+        foreach ($childs as $child) {
             if(!empty($child->getSupportedAreas()) and is_array($child->getSupportedAreas())) {
                 $sections = array_merge($sections, $child->getSupportedAreas());
             }
@@ -87,10 +98,36 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
             if(!empty($child->getUnsupportedAreas()) and is_array($child->getUnsupportedAreas())) {
                 $sections = array_merge($sections, $child->getUnsupportedAreas());
             }
-
-            $sections = array_merge($sections, $this->getChildsAreasConfiguration($child->getChilds(), $tile));
         }
 
         return $sections;
+    }
+
+    protected function getFlatChilds($blocks, $tile) {
+        if($this->flatChilds == null) {
+            $this->flatChilds = $this->getChilds($blocks, $tile);
+        }
+
+        return $this->flatChilds;
+    }
+
+    public function getChilds($blocks, $tile)
+    {
+        $childs = [];
+
+        if (!$blocks or empty($blocks)) {
+            return [];
+        }
+
+        foreach ($blocks as $child) {
+            if ($child instanceof \MageSuite\ProductTile\Block\Tile\Fragment) {
+                $child->setTile($tile);
+            }
+
+            $childs = array_merge($childs, [$child]);
+            $childs = array_merge($childs, $this->getChilds($child->getChilds(), $tile));
+        }
+
+        return $childs;
     }
 }
