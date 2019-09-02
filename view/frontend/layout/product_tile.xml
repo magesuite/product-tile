@@ -120,6 +120,9 @@
                                     <arguments>
                                         <argument xsi:type="string" name="html_tag">div</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__swatches</argument>
+                                        <argument name="unsupported_areas" xsi:type="array">
+                                            <item name="0" xsi:type="string">wishlist</item>
+                                        </argument>
                                     </arguments>
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.swatches" template="MageSuite_ProductTile::fragments/swatches.phtml">
