@@ -7,6 +7,7 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
     const CACHE_KEY_PREFIX = 'product_tile';
 
     protected $flatChilds = null;
+    protected $childsWithCacheKeyGenerators = null;
 
     protected $areaCustomizationStatus = [];
 
@@ -43,10 +44,9 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
      */
     public function getChildsCacheKeys($blocks, $tile)
     {
-        $childs = $this->getFlatChilds($blocks, $tile);
+        $childs = $this->getChildsWithCacheKeyGenerators($blocks, $tile);
 
         $cacheKeys = [];
-
 
         if (!$childs or empty($childs)) {
             return [];
@@ -109,6 +109,24 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
         }
 
         return $this->flatChilds;
+    }
+
+    protected function getChildsWithCacheKeyGenerators($blocks, $tile) {
+        if($this->childsWithCacheKeyGenerators == null) {
+            $this->childsWithCacheKeyGenerators = [];
+
+            $childs = $this->getFlatChilds($blocks, $tile);
+
+            foreach($childs as $child) {
+                if(!$child->getCacheKeyModel()) {
+                    continue;
+                }
+
+                $this->childsWithCacheKeyGenerators[] = $child;
+            }
+        }
+
+        return $this->childsWithCacheKeyGenerators;
     }
 
     public function getChilds($blocks, $tile)
