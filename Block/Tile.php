@@ -17,14 +17,16 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $this->_data = array_merge($this->_data, self::$globalData);
     }
 
-    public function render(\Magento\Catalog\Model\Product $product) {
+    public function render(\Magento\Catalog\Model\Product $product)
+    {
         $this->unsetData('CACHE_KEY_INFO');
         $this->setProductEntity($product);
 
         return $this->toHtml();
     }
 
-    public function getChilds() {
+    public function getChilds()
+    {
         $childs = [];
 
         $layout = $this->getLayout();
@@ -38,30 +40,40 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
     protected function _toHtml()
     {
-        if(!$this->getProductEntity()) {
+        if (!$this->getProductEntity()) {
             return '';
         }
 
         return parent::_toHtml();
     }
 
-    public function getSectionData($key) {
+    public function getSectionData($key)
+    {
         $area = $this->getSection();
 
-        if(isset($this->_data['sections'][$area][$key])) {
+        if (isset($this->_data['sections'][$area][$key])) {
             return $this->_data['sections'][$area][$key];
         }
 
-        if(isset($this->_data[$key])) {
+        if (isset($this->_data[$key])) {
             return $this->_data[$key];
         }
 
         return null;
     }
 
-    public function getIdentities() {
-        if($this->getProductEntity()) {
-            return $this->getProductEntity()->getIdentities();
+    public function getIdentities()
+    {
+        if ($this->getProductEntity()) {
+            $identities = $this->getProductEntity()->getIdentities();
+
+            if (($key = array_search(\Magento\Catalog\Model\Product::CACHE_TAG, $identities)) !== false) {
+                unset($identities[$key]);
+            }
+
+            $identities = $this->generateLongCacheTags($identities);
+
+            return $identities;
         }
 
         return [];
@@ -69,13 +81,13 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
     public function getCacheKeyInfo()
     {
-        if($this->hasData('CACHE_KEY_INFO')) {
+        if ($this->hasData('CACHE_KEY_INFO')) {
             return $this->getData('CACHE_KEY_INFO');
         }
 
         $product = $this->getProductEntity();
 
-        if(!$product) {
+        if (!$product) {
             return [];
         }
 
@@ -87,5 +99,24 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $this->setData('CACHE_KEY_INFO', $cacheKey);
 
         return $cacheKey;
+    }
+
+    /**
+     * @param array $identities
+     * @return array
+     */
+    private function generateLongCacheTags(array $identities): array
+    {
+        foreach ($identities as $identity) {
+            if (!preg_match('/cat_p_[0-9]+/si', $identity)) {
+                continue;
+            }
+
+            $productId = str_replace('cat_p_', '', $identity);
+
+            $identities[] = sprintf('catalog_product_%s', $productId);
+        }
+
+        return $identities;
     }
 }
