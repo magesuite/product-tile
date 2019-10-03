@@ -75,8 +75,9 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
         }
 
         $areasWithCustomFragments = array_unique($this->getChildsAreasConfiguration($blocks, $tile));
+        $areaHasCustomConfig = isset($tile->getSections()[$area]) && !empty($tile->getSections()[$area]);
 
-        $result = in_array($area, $areasWithCustomFragments);
+        $result = (in_array($area, $areasWithCustomFragments) || $areaHasCustomConfig);
         $this->areaCustomizationStatus[$area] = $result;
 
         return $result;
