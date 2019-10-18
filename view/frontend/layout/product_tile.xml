@@ -109,13 +109,13 @@
                                 <argument xsi:type="string" name="html_tag">div</argument>
                                 <argument xsi:type="string" name="css_class">cs-product-tile__main</argument>
                             </arguments>
-                        
+
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.main.details">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">div</argument>
-                                    <argument xsi:type="string" name="css_class">cs-product-tile__details</argument>
+                                    <argument xsi:type="string" name="css_class">cs-product-tile__details product-item-details</argument>
                                 </arguments>
-                                
+
                                 <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.swatches.container" before="-">
                                     <arguments>
                                         <argument xsi:type="string" name="html_tag">div</argument>
@@ -182,62 +182,62 @@
                                     </arguments>
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.wrapper.list">
-                                    <arguments>
-                                        <argument xsi:type="string" name="html_tag">div</argument>
-                                        <argument xsi:type="string" name="css_class">cs-product-tile__addto cs-product-tile__addto--list</argument>
-                                    </arguments>
-
-                                    <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.list">
                                         <arguments>
-                                            <argument xsi:type="string" name="html_tag">ul</argument>
-                                            <argument xsi:type="string" name="css_class">cs-links-block-addto</argument>
+                                            <argument xsi:type="string" name="html_tag">div</argument>
+                                            <argument xsi:type="string" name="css_class">cs-product-tile__addto cs-product-tile__addto--list</argument>
                                         </arguments>
 
-                                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtowishlist.list">
+                                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.addtolinks.list">
                                             <arguments>
-                                                <argument xsi:type="string" name="html_tag">li</argument>
-                                                <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--wishlist</argument>
-                                                <argument name="unsupported_areas" xsi:type="array">
-                                                    <item name="0" xsi:type="string">wishlist</item>
-                                                </argument>
+                                                <argument xsi:type="string" name="html_tag">ul</argument>
+                                                <argument xsi:type="string" name="css_class">cs-links-block-addto</argument>
                                             </arguments>
-                                            <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtolinks.addtowishlist.list" template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
-                                                <arguments>
-                                                    <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
 
+                                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtowishlist.list">
+                                                <arguments>
+                                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                                    <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--wishlist</argument>
+                                                    <argument name="unsupported_areas" xsi:type="array">
+                                                        <item name="0" xsi:type="string">wishlist</item>
+                                                    </argument>
                                                 </arguments>
-                                                <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon.list">
+                                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtolinks.addtowishlist.list" template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
                                                     <arguments>
-                                                        <argument name="icon_url" xsi:type="string">images/icons/heart.svg</argument>
-                                                        <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
-                                                        <argument name="inlined" xsi:type="boolean">true</argument>
-                                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                        <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
+
                                                     </arguments>
+                                                    <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon.list">
+                                                        <arguments>
+                                                            <argument name="icon_url" xsi:type="string">images/icons/heart.svg</argument>
+                                                            <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
+                                                            <argument name="inlined" xsi:type="boolean">true</argument>
+                                                            <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                        </arguments>
+                                                    </block>
                                                 </block>
                                             </block>
-                                        </block>
 
-                                        <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtocompare.list">
-                                            <arguments>
-                                                <argument xsi:type="string" name="html_tag">li</argument>
-                                                <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--compare</argument>
-                                            </arguments>
-                                            <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare" name="product.tile.addtolinks.addtocompare.list" template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
+                                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addon.addtocompare.list">
                                                 <arguments>
-                                                    <argument xsi:type="string" name="label" translate="true">Add to Compare</argument>
+                                                    <argument xsi:type="string" name="html_tag">li</argument>
+                                                    <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--compare</argument>
                                                 </arguments>
-                                                <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtocompare.icon.list">
+                                                <block class="MageSuite\ProductTile\Block\Tile\Fragment\AddTo\Compare" name="product.tile.addtolinks.addtocompare.list" template="MageSuite_ProductTile::fragments/add-to/compare.phtml">
                                                     <arguments>
-                                                        <argument name="icon_url" xsi:type="string">images/icons/compare.svg</argument>
-                                                        <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--compare</argument>
-                                                        <argument name="inlined" xsi:type="boolean">true</argument>
-                                                        <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                        <argument xsi:type="string" name="label" translate="true">Add to Compare</argument>
                                                     </arguments>
+                                                    <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtocompare.icon.list">
+                                                        <arguments>
+                                                            <argument name="icon_url" xsi:type="string">images/icons/compare.svg</argument>
+                                                            <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--compare</argument>
+                                                            <argument name="inlined" xsi:type="boolean">true</argument>
+                                                            <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                        </arguments>
+                                                    </block>
                                                 </block>
                                             </block>
                                         </block>
                                     </block>
-                                </block>
 
                                 </block>
                             </block>
