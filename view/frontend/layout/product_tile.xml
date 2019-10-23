@@ -27,6 +27,24 @@
                             <argument xsi:type="string" name="css_class">cs-product-tile__thumbnail</argument>
                         </arguments>
 
+                        <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.remove.icon" template="MageSuite_ProductTile::fragments/wishlist/remove-icon.phtml">
+                            <arguments>
+                                <argument name="link_label" xsi:type="string" translate="true">Remove item</argument>
+                                <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon</argument>
+                                <argument name="supported_areas" xsi:type="array">
+                                    <item name="0" xsi:type="string">wishlist</item>
+                                </argument>
+                            </arguments>
+                            <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.wishlist.remove.icon.image">
+                                <arguments>
+                                    <argument name="icon_url" xsi:type="string">images/icons/close.svg</argument>
+                                    <argument name="css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon-image</argument>
+                                    <argument name="inlined" xsi:type="boolean">true</argument>
+                                    <argument name="lazy_loaded" xsi:type="boolean">false</argument>
+                                </arguments>
+                            </block>
+                        </block>
+
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.thumbnail.link" template="MageSuite_ProductTile::container_linked.phtml">
                             <arguments>
                                 <argument xsi:type="string" name="css_class">cs-product-tile__thumbnail-link</argument>
@@ -480,6 +498,7 @@
                             </block>
                         </block>
                     </block>
+
                 </block>
             </block>
         </referenceBlock>
