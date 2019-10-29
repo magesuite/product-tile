@@ -80,6 +80,26 @@
                                 </block>
                             </block>
 
+                            <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.gallery">
+                                <arguments>
+                                    <argument xsi:type="string" name="html_tag">ul</argument>
+                                    <argument xsi:type="string" name="css_class">cs-product-tile__gallery cs-tile-gallery</argument>
+                                </arguments>
+
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.gallery.images" template="MageSuite_ProductTile::fragments/gallery/images.phtml">
+                                    <arguments>
+                                        <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Gallery\Images</argument>
+                                        <argument xsi:type="string" name="image_id">category_page_grid</argument>
+                                        <argument xsi:type="string" name="image_id_2x">category_page_grid_x2</argument>
+                                        <argument xsi:type="number" name="item_limit">3</argument>
+                                        <argument xsi:type="string" name="wrapper_tag">li</argument>
+                                        <argument xsi:type="string" name="wrapper_css_class">cs-tile-gallery__item</argument>
+                                        <argument xsi:type="string" name="thumbnail_css_class">cs-tile-gallery__thumbnail</argument>
+                                        <argument xsi:type="boolean" name="display_if_single">false</argument>
+                                    </arguments>
+                                </block>
+                            </block>
+
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.figure">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">figure</argument>
@@ -91,26 +111,6 @@
                                         <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
                                     </arguments>
-                                </block>
-
-                                <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.gallery">
-                                    <arguments>
-                                        <argument xsi:type="string" name="html_tag">ul</argument>
-                                        <argument xsi:type="string" name="css_class">cs-product-tile__gallery cs-tile-gallery</argument>
-                                    </arguments>
-
-                                    <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.gallery.images" template="MageSuite_ProductTile::fragments/gallery/images.phtml">
-                                        <arguments>
-                                            <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Gallery\Images</argument>
-                                            <argument xsi:type="string" name="image_id">category_page_grid</argument>
-                                            <argument xsi:type="string" name="image_id_2x">category_page_grid_x2</argument>
-                                            <argument xsi:type="number" name="item_limit">3</argument>
-                                            <argument xsi:type="string" name="wrapper_tag">li</argument>
-                                            <argument xsi:type="string" name="wrapper_css_class">cs-tile-gallery__item</argument>
-                                            <argument xsi:type="string" name="thumbnail_css_class">cs-tile-gallery__thumbnail</argument>
-                                            <argument xsi:type="boolean" name="display_if_single">false</argument>
-                                        </arguments>
-                                    </block>
                                 </block>
                             </block>
                         </block>
