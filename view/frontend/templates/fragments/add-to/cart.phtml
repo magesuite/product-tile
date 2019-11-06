@@ -3,8 +3,9 @@
     $isSaleable = $product->isSaleable();
     /** @var \MageSuite\ProductTile\Helper\AddToCart $addToCartHelper */
     $addToCartHelper = $this->helper(\MageSuite\ProductTile\Helper\AddToCart::class);
-    $canBeConfigured = $addToCartHelper->canBeConfigured($product);
-    $showOnlyForSimpeProducts = $block->getShowOnlyForSimpleProducts();
+    $areSwatchesClickable = $block->getVar('configurable_tile_swatches/enabled', 'Magento_Catalog');
+    $canBeConfigured = !$areSwatchesClickable && $addToCartHelper->canBeConfigured($product);
+    $showOnlyForSimpeProducts = !$areSwatchesClickable && $block->getShowOnlyForSimpleProducts();
     $label = $canBeConfigured ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
 ?>
 
