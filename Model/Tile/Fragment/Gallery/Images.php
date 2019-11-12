@@ -48,6 +48,10 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
                 continue;
             }
 
+            if (!empty($mediaGalleryImage['disabled']) || !empty($mediaGalleryImage['removed'])) {
+                continue;
+            }
+
             $galleryImages[] = $mediaImage;
         }
 
