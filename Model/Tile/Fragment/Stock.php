@@ -22,7 +22,7 @@ class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
         $salableQty = $this->getSalableQuantityDataBySku->execute($product->getSku());
 
-        return $product->isSaleable() && $salableQty[0]['qty'];
+        return $product->isSaleable() && $salableQty[0]['qty'] > 0;
 
 
     }
