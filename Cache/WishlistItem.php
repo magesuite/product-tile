@@ -17,6 +17,9 @@ class WishlistItem implements CacheKeyModel, \Magento\Framework\View\Element\Blo
             return [];
         }
 
-        return [$wishlistItem->getWishlistId()];
+        $wishlistId = $wishlistItem->getWishlistId();
+        $wishlistItemId = $wishlistItem->getId();
+
+        return [$wishlistId, $wishlistItemId];
     }
 }
