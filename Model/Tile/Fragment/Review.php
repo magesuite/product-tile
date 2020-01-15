@@ -30,8 +30,12 @@ class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
     public function getActiveStars(\Magento\Catalog\Model\Product $product)
     {
         $ratingSummary = $this->getRatingSummary($product);
-
-        $activeStars = $ratingSummary->getRatingSummary() ? (round($ratingSummary->getRatingSummary() / 10) / 2) : 0;
+        // Since 2.3.3 rating summary is being returned directly, not as an object.
+        if (is_object($ratingSummary)) {
+            $ratingSummary = $ratingSummary->getRatingSummary() ?? 0;
+        }
+        
+        $activeStars = round($ratingSummary / 10) / 2;
 
         return $activeStars;
     }
@@ -43,8 +47,12 @@ class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
     public function getReviewsCount(\Magento\Catalog\Model\Product $product)
     {
         $ratingSummary = $this->getRatingSummary($product);
+        // Since 2.3.3 rating summary is being returned directly, not as an object.
+        if (is_object($ratingSummary)) {
+            return $ratingSummary->getReviewsCount();
+        }
 
-        return $ratingSummary->getReviewsCount();
+        return $product->getReviewsCount();
     }
 
     protected function getRatingSummary(\Magento\Catalog\Model\Product $product)
