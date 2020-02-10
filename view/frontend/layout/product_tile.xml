@@ -29,6 +29,7 @@
 
                         <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.remove.icon" template="MageSuite_ProductTile::fragments/wishlist/remove-icon.phtml">
                             <arguments>
+                                <argument name="cache_key_model" xsi:type="object">MageSuite\ProductTile\Cache\WishlistItem</argument>
                                 <argument name="link_label" xsi:type="string" translate="true">Remove item</argument>
                                 <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon</argument>
                                 <argument name="supported_areas" xsi:type="array">
@@ -483,6 +484,7 @@
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.edit" template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
                                         <arguments>
+                                            <argument name="cache_key_model" xsi:type="object" >MageSuite\ProductTile\Cache\WishlistItem</argument>
                                             <argument name="link_label" xsi:type="string" translate="true">Edit</argument>
                                             <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--edit</argument>
                                         </arguments>
