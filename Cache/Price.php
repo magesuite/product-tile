@@ -32,6 +32,7 @@ class Price implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
         return [
             $fragment->getProduct()->getSpecialPrice(),
             $this->storeManager->getStore()->getId(),
+            $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             $this->customerSession->getCustomerGroupId(),
             $fragment->getTile()->getViewMode()
         ];
