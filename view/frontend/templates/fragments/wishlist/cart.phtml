@@ -16,8 +16,8 @@ $product = $block->getTile()->getProductEntity();
                 ->setInputName('qty[' . $block->escapeHtmlAttr($item->getId()) . ']')
                 ->setInputInitialValue((int)(($item->getQty() ?? 1) * 1))
                 ->setInputAdditionalParams('id="qty[' . $block->escapeHtmlAttr($item->getId()) . ']" data-role="qty" data-validate="{\'required-number\':true,\'validate-greater-than-zero\':true}"')
-                ->setDecrementIconUrl($block->getViewFileUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers')))
-                ->setIncrementIconUrl($block->getViewFileUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers')))
+                ->setDecrementIconUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers'))
+                ->setIncrementIconUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers'))
                 ->setTemplate($block->getVar('qty_increment/template', 'MageSuite_ThemeHelpers'))
                 ->setAdditionalCssClasses('cs-qty-increment--wishlist')
                 ->toHtml();

@@ -7,18 +7,13 @@
     $productImage2xUrl = $productImage2x->getImageUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
-    $productImageLazyloadFrom = $block->getVar('product_image_lazyload_from') ?? 6;
-    $productIterator = $block->getTile()->getIterator();
-    $productImageLazyloaded = !is_numeric($productIterator) || $productIterator >= $productImageLazyloadFrom;
-
     /* XML config */
     $cssClass = $block->getCssClass();
 ?>
-<?php if ($productImageLazyloaded): ?>
 <img 
     class="<?= $cssClass ?> lazyload" 
-    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    data-src="<?= $productImageUrl ?>" 
+    src="<?= $productImageUrl ?>"
+    srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
     data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
     width="<?= $productImageSize[0] ?>" 
     height="<?= $productImageSize[1] ?>" 
@@ -34,13 +29,3 @@
         alt="<?= $product->getName() ?>"
     >
 </noscript>
-<?php else: ?>
-<img
-    class="<?= $cssClass ?>" 
-    src="<?= $productImageUrl ?>" 
-    srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-    width="<?= $productImageSize[0] ?>" 
-    height="<?= $productImageSize[1] ?>" 
-    alt="<?= $product->getName() ?>"
->
-<?php endif; ?>
