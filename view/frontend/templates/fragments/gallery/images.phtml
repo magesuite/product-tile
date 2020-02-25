@@ -20,13 +20,11 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
         $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
 
         $thumbnailCssClass = $block->getThumbnailCssClass();
-        $thumbnailCssClass .= " lazyload";
         $thumbnailCssClass = $thumbnailCssClass ? sprintf('class="%s"', $thumbnailCssClass) : '';
     ?>
     <?php foreach($images as $imagesSet): ?>
         <?php
             $isWebpSupported = $imageTypeHelper->supportsWebp($imagesSet['small_image']);
-            $imageMimeType = $imageTypeHelper->getMimeType($imagesSet['small_image']);
         ?>
         <<?= $wrapperTag ?> <?= $wrapperClass ?>>
             <picture <?= $thumbnailCssClass ?>>
@@ -35,17 +33,15 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
                         type="image/webp"
                         srcset="<?= $loaderImage ?>"
                         data-srcset="<?= $imagesSet['webpSrcset'] ?>"
-                        alt="<?= $product->getName() ?>"
                     >
                 <?php endif; ?>
                 <source
-                    type="<?= $imageMimeType ?>"
                     srcset="<?= $loaderImage ?>"
                     data-srcset="<?= $imagesSet['srcset'] ?>"
-                    alt="<?= $product->getName() ?>"
                 >
                 <img
                     src="<?= $loaderImage ?>"
+                    class="lazyload"
                     data-src="<?= $imagesSet['small_image'] ?>"
                     data-srcset="<?= $imagesSet['srcset'] ?>"
                     alt="<?= $product->getName() ?>"

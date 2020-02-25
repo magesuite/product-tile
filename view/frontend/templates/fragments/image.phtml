@@ -7,18 +7,34 @@
     $productImage2xUrl = $productImage2x->getImageUrl();
     $productImageSize = $productImage->getResizedImageInfo();
 
+    $imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
+    $isWebpSupported = $imageTypeHelper->supportsWebp($productImageUrl);
+
+    $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
     /* XML config */
     $cssClass = $block->getCssClass();
 ?>
-<img 
-    class="<?= $cssClass ?> lazyload" 
-    src="<?= $productImageUrl ?>"
-    srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
-    data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-    width="<?= $productImageSize[0] ?>" 
-    height="<?= $productImageSize[1] ?>" 
-    alt="<?= $product->getName() ?>"
->
+<picture class="<?= $cssClass ?>" width="<?= $productImageSize[0] ?>" height="<?= $productImageSize[1] ?>">
+    <?php if ($isWebpSupported): ?>
+        <source
+            type="image/webp"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+            data-srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
+        >
+    <?php endif; ?>
+    <source
+        srcset="<?= $loaderImage ?>"
+        data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+    >
+    <img
+        src="<?= $loaderImage ?>"
+        class="lazyload"
+        data-src="<?= $productImageUrl ?>" 
+        data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+        alt="<?= $product->getName() ?>"
+    >
+</picture>
 <noscript>
     <img
         class="<?= $cssClass ?>" 
