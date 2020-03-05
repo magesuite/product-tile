@@ -100,7 +100,7 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $key = sha1($key); // use hashing to hide potentially private data
 
         return sprintf(
-            '%s%s_%s',
+            '%s_%s_%s',
             $keyPrefix,
             $product->getId(),
             $key
