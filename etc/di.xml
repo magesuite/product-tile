@@ -3,4 +3,8 @@
     <type name="\Magento\Checkout\Helper\Cart">
         <plugin name="remove-in-cart-parameter-from-add-to-cart" type="\MageSuite\ProductTile\Plugin\Checkout\Helper\Cart\RemoveInCartParameterFromAddToCart"/>
     </type>
+
+    <type name="Magento\Swatches\Block\Product\Renderer\Listing\Configurable">
+        <plugin name="inject-configurable-view-model" type="MageSuite\ProductTile\Plugin\Swatches\Block\Product\Renderer\Listing\Configurable\InjectConfigurableViewModel"/>
+    </type>
 </config>
