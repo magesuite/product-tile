@@ -2,11 +2,11 @@
     $product = $block->getProduct();
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
     $productImage = $block->getImage($product, 'category_page_grid');
-    $productImageUrl = $productImage->getImageUrl();
+    $productImageUrl = $block-> escapeUrl($productImage->getImageUrl());
     $productImage2x = $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2');
-    $productImage2xUrl = $productImage2x->getImageUrl();
+    $productImage2xUrl = $block->escapeUrl($productImage2x->getImageUrl());
     $productImageSize = $productImage->getResizedImageInfo();
-
+    $productImageAlt = $block->escapeHtmlAttr($product->getName());
     $imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
     $isWebpSupported = $imageTypeHelper->supportsWebp($productImageUrl);
 
@@ -15,11 +15,11 @@
     /* XML config */
     $cssClass = $block->getCssClass();
 ?>
-<picture class="<?= $cssClass ?>" width="<?= $productImageSize[0] ?>" height="<?= $productImageSize[1] ?>">
+<picture class="<?= $cssClass ?>">
     <?php if ($isWebpSupported): ?>
         <source
             type="image/webp"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+            srcset="<?= $loaderImage ?>"
             data-srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
         >
     <?php endif; ?>
@@ -30,18 +30,28 @@
     <img
         src="<?= $loaderImage ?>"
         class="lazyload"
-        data-src="<?= $productImageUrl ?>" 
+        data-src="<?= $productImageUrl ?>"
         data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        alt="<?= $product->getName() ?>"
+        <?php if ($productImageSize[0]): ?>
+            width="<?= $productImageSize[0] ?>"
+        <?php endif; ?>
+        <?php if ($productImageSize[1]): ?>
+            height="<?= $productImageSize[1] ?>"
+        <?php endif; ?>
+        alt="<?= $productImageAlt ?>"
     >
 </picture>
 <noscript>
     <img
-        class="<?= $cssClass ?>" 
-        src="<?= $productImageUrl ?>" 
+        class="<?= $cssClass ?>"
+        src="<?= $productImageUrl ?>"
         srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        width="<?= $productImageSize[0] ?>" 
-        height="<?= $productImageSize[1] ?>" 
-        alt="<?= $product->getName() ?>"
+        <?php if ($productImageSize[0]): ?>
+            width="<?= $productImageSize[0] ?>"
+        <?php endif; ?>
+        <?php if ($productImageSize[1]): ?>
+            height="<?= $productImageSize[1] ?>"
+        <?php endif; ?>
+        alt="<?= $productImageAlt ?>"
     >
 </noscript>
