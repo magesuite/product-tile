@@ -13,7 +13,7 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 ?>
 
 <?php if($images && $displayRule): ?>
-    <?php 
+    <?php
         $wrapperTag = $block->getWrapperTag() ?? 'li';
 
         $wrapperClass = $block->getWrapperCssClass();
@@ -44,7 +44,7 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
                     class="lazyload"
                     data-src="<?= $imagesSet['small_image'] ?>"
                     data-srcset="<?= $imagesSet['srcset'] ?>"
-                    alt="<?= $product->getName() ?>"
+                    alt="<?= $block->escapeHtmlAttr($product->getName()) ?>"
                 >
             </picture>
         </<?= $wrapperTag ?>>
