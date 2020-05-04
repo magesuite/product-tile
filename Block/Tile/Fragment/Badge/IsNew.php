@@ -5,6 +5,16 @@ namespace MageSuite\ProductTile\Block\Tile\Fragment\Badge;
 class IsNew implements \MageSuite\ProductTile\Block\Tile\Fragment\BadgeInterface
 {
     /**
+     * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
+     */
+    protected $localeDate;
+
+    public function __construct(\Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate)
+    {
+        $this->localeDate = $localeDate;
+    }
+
+    /**
      * @return boolean
      */
     public function isVisible(\MageSuite\ProductTile\Block\Tile $tile)
@@ -13,7 +23,7 @@ class IsNew implements \MageSuite\ProductTile\Block\Tile\Fragment\BadgeInterface
 
         $newsFromDate = $product->getNewsFromDate();
         $newsToDate = $product->getNewsToDate();
-        $date = date('Y-m-d');
+        $date = date('Y-m-d H:i:s', $this->localeDate->scopeTimeStamp());
 
         $fromTimestamp = strtotime($newsFromDate);
         $toTimestamp = strtotime($newsToDate);
