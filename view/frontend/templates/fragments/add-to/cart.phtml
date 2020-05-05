@@ -16,9 +16,15 @@
         <form<?php if(!$canBeConfigured): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
 
-            <?php if(isset($postParams['data']['bundle_option']) and !empty($postParams['data']['bundle_option'])): ?>
-                <?php foreach($postParams['data']['bundle_option'] as $optionId => $valueId): ?>
-                <input type="hidden" name="bundle_option[<?=$optionId?>]" value="<?=$valueId[0]?>" />
+            <?php if (isset($postParams['data']['bundle_option']) and !empty($postParams['data']['bundle_option'])): ?>
+                <?php foreach ($postParams['data']['bundle_option'] as $optionId => $options): ?>
+                    <?php if (count($options) == 1): ?>
+                        <input type="hidden" name="bundle_option[<?= $optionId ?>]" value="<?= array_shift($options) ?>"/>
+                    <?php else: ?>
+                        <?php foreach ($options as $selectionId => $value): ?>
+                            <input type="hidden" name="bundle_option[<?= $optionId ?>][<?= $selectionId ?>]" value="<?= $value ?>"/>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
 
