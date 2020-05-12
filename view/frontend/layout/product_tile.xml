@@ -445,6 +445,8 @@
                                         <argument xsi:type="string" name="form_class">cs-addtocart cs-product-tile__addtocart</argument>
                                         <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
                                         <argument xsi:type="string" name="atc_configure_label" translate="true">Configure</argument>
+                                        <argument xsi:type="boolean" name="show_qty_switcher">true</argument>
+                                        <argument xsi:type="string" name="qty_class">cs-product-tile__qty</argument>
                                         <argument name="unsupported_areas" xsi:type="array">
                                             <item name="0" xsi:type="string">wishlist</item>
                                         </argument>
