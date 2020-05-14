@@ -7,6 +7,7 @@
     $canBeConfigured = !$areSwatchesClickable && $addToCartHelper->canBeConfigured($product);
     $showOnlyForSimpeProducts = !$areSwatchesClickable && $block->getShowOnlyForSimpleProducts();
     $label = $canBeConfigured ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
+    $showQtySwitcher = $block->getShowQtySwitcher();
 ?>
 
 <?php
@@ -26,6 +27,19 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if(!$canBeConfigured and $showQtySwitcher): ?>
+                <?= $this->getLayout()
+                    ->createBlock(Magento\Framework\View\Element\Template::class)
+                    ->setInputName('qty')
+                    ->setInputInitialValue((int)(($product->getQty() != 0 ? $product->getQty() : 1) * 1))
+                    ->setInputAdditionalParams('id="qty" type="number" data-role="qty" data-validate="{\'required-number\':true,\'validate-greater-than-zero\':true}"')
+                    ->setDecrementIconUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers'))
+                    ->setIncrementIconUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers'))
+                    ->setTemplate($block->getVar('qty_increment/template', 'MageSuite_ThemeHelpers'))
+                    ->setAdditionalCssClasses($block->getQtyClass())
+                    ->toHtml();
+                ?>
             <?php endif; ?>
 
             <input type="hidden" name="<?= /* @escapeNotVerified */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
