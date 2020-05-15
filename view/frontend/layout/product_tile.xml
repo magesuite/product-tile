@@ -60,6 +60,7 @@
                                     <arguments>
                                         <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
                                         <argument xsi:type="string" name="wrapper_tag">li</argument>
+                                        <argument xsi:type="string" name="badge_type">discount</argument>
                                         <argument xsi:type="string" name="wrapper_css_class">cs-product-tile__badge-item cs-dailydeal__badge--discount</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__badge cs-product-tile__badge--discount</argument>
                                         <argument xsi:type="string" name="text_css_class">cs-product-tile__badge-text</argument>
@@ -67,6 +68,8 @@
                                         <argument xsi:type="boolean" name="value_display">true</argument>
                                         <argument xsi:type="string" name="value_prefix">-</argument>
                                         <argument xsi:type="string" name="value_suffix">%</argument>
+                                        <argument xsi:type="boolean" name="render_badge_dynamically_configurables">true</argument>
+                                        <argument xsi:type="string" name="configurables_default_badge_text">Up to</argument>
                                     </arguments>
                                 </block>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.badge.new.grid" template="MageSuite_ProductTile::fragments/badge.phtml">
@@ -486,7 +489,7 @@
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.wishlist.edit" template="MageSuite_ProductTile::fragments/wishlist/edit.phtml">
                                         <arguments>
-                                            <argument name="cache_key_model" xsi:type="object" >MageSuite\ProductTile\Cache\WishlistItem</argument>
+                                            <argument name="cache_key_model" xsi:type="object">MageSuite\ProductTile\Cache\WishlistItem</argument>
                                             <argument name="link_label" xsi:type="string" translate="true">Edit</argument>
                                             <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-action cs-product-tile__wishlist-action--edit</argument>
                                         </arguments>

@@ -1,14 +1,19 @@
 <?php
     /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
     $viewModel = $block->getViewModel();
+    $helper = $this->helper('MageSuite\Frontend\Helper\Product');
     $tile = $block->getTile();
     $isVisible = $viewModel->isVisible($tile);
     $badgeValue = $viewModel->getValue($tile);
     $label = $block->getLabel();
     $value = $block->getValueDisplay();
+
+    $badgeIsDiscountType = ($block->getBadgeType() == 'discount') ? true : false;
+    $renderBadgeDynamicallyConfigurables = $block->getRenderBadgeDynamicallyConfigurables();
+    $discountsPerProduct = $helper->getConfigurableDiscounts($block->getProduct());
 ?>
 <?php if($isVisible && ($badgeValue || !empty($label))): ?>
-    <?php 
+    <?php
         $wrapperTag = $block->getWrapperTag() ?? 'li';
 
         $wrapperClass = $block->getWrapperCssClass();
@@ -21,6 +26,8 @@
         $badgeTextClass = $block->getTextCssClass();
         $badgeTextClass = $badgeTextClass ? sprintf('class="%s"', $badgeTextClass) : '';
 
+        $configurablesText = $block->getConfigurablesDefaultBadgeText();
+
         $valuePrefix = $block->getValuePrefix();
         $valueSuffix = $block->getValueSuffix();
     ?>
@@ -30,8 +37,27 @@
             <span <?= $badgeTextClass ?>><?= $label ?></span>
         <?php endif; ?>
         <?php if ($value): ?>
-            <span <?= $badgeTextClass ?>><?= $valuePrefix ?><?= $badgeValue ?><?= $valueSuffix ?></span>
+            <span <?= $badgeTextClass ?>>
+                <?php if ($badgeIsDiscountType): ?>
+                    <span class="cs-product-tile__badge-discount-text"><?= $configurablesText ?></span>
+                <?php endif; ?>
+                <?= $valuePrefix ?>
+                <span class="cs-product-tile__badge-discount-value"><?= $badgeValue ?></span>
+                <?= $valueSuffix ?>
+            </span>
         <?php endif; ?>
         </span>
     </<?= $wrapperTag ?>>
+<?php endif; ?>
+
+<?php if ($badgeIsDiscountType && $renderBadgeDynamicallyConfigurables): ?>
+    <script type="text/x-magento-init">
+        {
+            ".cs-product-tile": {
+                "MageSuite_ProductTile/js/sale-badge-renderer-tile": {
+                    "discountsList": <?= /* @noEscape */ json_encode($discountsPerProduct); ?>
+                }
+            }
+        }
+    </script>
 <?php endif; ?>
