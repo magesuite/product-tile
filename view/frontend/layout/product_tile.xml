@@ -48,7 +48,7 @@
 
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.thumbnail.link" template="MageSuite_ProductTile::container_linked.phtml">
                             <arguments>
-                                <argument xsi:type="string" name="css_class">cs-product-tile__thumbnail-link</argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__thumbnail-link product-item-photo</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.badges.grid">
@@ -171,7 +171,7 @@
 
                                     <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.name.link" template="MageSuite_ProductTile::container_linked.phtml">
                                         <arguments>
-                                            <argument xsi:type="string" name="css_class">cs-product-tile__name-link</argument>
+                                            <argument xsi:type="string" name="css_class">cs-product-tile__name-link product-item-link</argument>
                                         </arguments>
                                         <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.name" template="MageSuite_ProductTile::fragments/name.phtml" />
                                     </block>
