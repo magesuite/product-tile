@@ -11,6 +11,7 @@
     $badgeIsDiscountType = ($block->getBadgeType() == 'discount') ? true : false;
     $renderBadgeDynamicallyConfigurables = $block->getRenderBadgeDynamicallyConfigurables();
     $discountsPerProduct = $helper->getConfigurableDiscounts($block->getProduct());
+    $isProductConfigurable = $block->getProduct()->getTypeId() !== \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE;
 ?>
 <?php if($isVisible && ($badgeValue || !empty($label))): ?>
     <?php
@@ -50,7 +51,7 @@
     </<?= $wrapperTag ?>>
 <?php endif; ?>
 
-<?php if ($badgeIsDiscountType && $renderBadgeDynamicallyConfigurables): ?>
+<?php if ($isProductConfigurable && $badgeIsDiscountType && $renderBadgeDynamicallyConfigurables): ?>
     <script type="text/x-magento-init">
         {
             ".cs-product-tile": {
