@@ -39,7 +39,7 @@
         <?php endif; ?>
         <?php if ($value): ?>
             <span <?= $badgeTextClass ?>>
-                <?php if ($badgeIsDiscountType): ?>
+                <?php if ($isProductConfigurable && $badgeIsDiscountType): ?>
                     <span class="cs-product-tile__badge-discount-text"><?= $configurablesText ?></span>
                 <?php endif; ?>
                 <?= $valuePrefix ?>
