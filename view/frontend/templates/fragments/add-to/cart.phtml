@@ -33,7 +33,7 @@
                     ->createBlock(Magento\Framework\View\Element\Template::class)
                     ->setInputName('qty')
                     ->setInputInitialValue((int)(($product->getQty() != 0 ? $product->getQty() : 1) * 1))
-                    ->setInputAdditionalParams('id="qty" type="number" data-role="qty" data-validate="{\'required-number\':true,\'validate-greater-than-zero\':true}"')
+                    ->setInputAdditionalParams('type="number" data-role="qty" data-validate="{\'required-number\':true,\'validate-greater-than-zero\':true}"')
                     ->setDecrementIconUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers'))
                     ->setIncrementIconUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers'))
                     ->setTemplate($block->getVar('qty_increment/template', 'MageSuite_ThemeHelpers'))
