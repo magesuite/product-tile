@@ -7,22 +7,22 @@
 $item = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
+$showWishlistQtySwitcher = $block->getShowWishlistQtySwitcher();
 ?>
 <div class="cs-product-tile__addtocart cs-addtocart cs-addtocart--wishlist">
-    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
-        <div class="cs-addtocart__qty-increment">
-            <?= $this->getLayout()
-                ->createBlock(Magento\Framework\View\Element\Template::class)
-                ->setInputName('qty[' . $block->escapeHtmlAttr($item->getId()) . ']')
-                ->setInputInitialValue((int)(($item->getQty() ?? 1) * 1))
-                ->setInputAdditionalParams('id="qty[' . $block->escapeHtmlAttr($item->getId()) . ']" data-role="qty" data-validate="{\'required-number\':true,\'validate-greater-than-zero\':true}"')
-                ->setDecrementIconUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers'))
-                ->setIncrementIconUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers'))
-                ->setTemplate($block->getVar('qty_increment/template', 'MageSuite_ThemeHelpers'))
-                ->setAdditionalCssClasses('cs-qty-increment--wishlist')
-                ->toHtml();
-            ?>
-        </div>
+
+    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility() && $product->isSaleable() && $showWishlistQtySwitcher): ?>
+        <?= $this->getLayout()
+            ->createBlock(Magento\Framework\View\Element\Template::class)
+            ->setInputName('qty[' . $block->escapeHtmlAttr($item->getId()) . ']')
+            ->setInputInitialValue((int)(($item->getQty() ?? 1) * 1))
+            ->setInputAdditionalParams('id="qty[' . $block->escapeHtmlAttr($item->getId()) . ']" data-role="qty" min="1"')
+            ->setDecrementIconUrl($block->getVar('qty_increment/icons/decrement', 'MageSuite_ThemeHelpers'))
+            ->setIncrementIconUrl($block->getVar('qty_increment/icons/increment', 'MageSuite_ThemeHelpers'))
+            ->setTemplate($block->getVar('qty_increment/template', 'MageSuite_ThemeHelpers'))
+            ->setAdditionalCssClasses($block->getWishlistQtyClass())
+            ->toHtml();
+        ?>
     <?php endif; ?>
     <?php if ($product->isSaleable()): ?>
         <!-- <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $wishlistHelper->getAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary">
