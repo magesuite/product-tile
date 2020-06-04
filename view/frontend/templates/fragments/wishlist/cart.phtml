@@ -4,14 +4,17 @@
 /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
 
 /** @var \Magento\Wishlist\Model\Item $item */
+$addToCartHelper = $this->helper(\MageSuite\ProductTile\Helper\AddToCart::class);
 $item = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
+$areSwatchesClickable = $block->getVar('configurable_tile_swatches/enabled', 'Magento_Catalog');
+$canBeConfigured = !$areSwatchesClickable && $addToCartHelper->canBeConfigured($product);
 $showWishlistQtySwitcher = $block->getShowWishlistQtySwitcher();
 ?>
 <div class="cs-product-tile__addtocart cs-addtocart cs-addtocart--wishlist">
 
-    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility() && $product->isSaleable() && $showWishlistQtySwitcher): ?>
+    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility() && $product->isSaleable() && $showWishlistQtySwitcher && !$canBeConfigured): ?>
         <?= $this->getLayout()
             ->createBlock(Magento\Framework\View\Element\Template::class)
             ->setInputName('qty[' . $block->escapeHtmlAttr($item->getId()) . ']')
@@ -31,7 +34,7 @@ $showWishlistQtySwitcher = $block->getShowWishlistQtySwitcher();
         <?= $block->getChildBlock('atc.button')
             ->setTile($block->getTile())
             ->setAddtocartLabel($block->getAtcAddLabel())
-            ->setCanBeConfigured(false)
+            ->setCanBeConfigured($canBeConfigured)
             ->setButtonType('button')
             ->setButtonParams('data-role="tocart" data-post=\'' . $wishlistHelper->getAddToCartParams($item) . '\' title="' . $block->escapeHtmlAttr(__('Add to Cart')) . '" data-item-id="' . $block->escapeHtmlAttr($item->getId()) . '"')
             ->toHtml();
