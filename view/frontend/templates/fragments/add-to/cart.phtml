@@ -1,17 +1,21 @@
 <?php
     $product = $block->getProduct();
+    $productTypeId = $product->getTypeId();
     $isSaleable = $product->isSaleable();
     /** @var \MageSuite\ProductTile\Helper\AddToCart $addToCartHelper */
     $addToCartHelper = $this->helper(\MageSuite\ProductTile\Helper\AddToCart::class);
     $areSwatchesClickable = $block->getVar('configurable_tile_swatches/enabled', 'Magento_Catalog');
-    $canBeConfigured = !$areSwatchesClickable && $addToCartHelper->canBeConfigured($product);
-    $showOnlyForSimpeProducts = !$areSwatchesClickable && $block->getShowOnlyForSimpleProducts();
+    $canBeConfigured = $addToCartHelper->canBeConfigured($product);
+    if ($areSwatchesClickable) {
+        $canBeConfigured = $productTypeId !== \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE;
+    }
+    $showOnlyForSimpleProducts = !$areSwatchesClickable && $block->getShowOnlyForSimpleProducts();
     $label = $canBeConfigured ? $block->getAtcConfigureLabel() : $block->getAtcAddLabel();
     $showQtySwitcher = $block->getShowQtySwitcher();
 ?>
 
 <?php
-    if ($isSaleable && (!$showOnlyForSimpeProducts || $showOnlyForSimpeProducts && $product->getTypeId() == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
+    if ($isSaleable && (!$showOnlyForSimpleProducts || $showOnlyForSimpleProducts && $productTypeId == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
         <?php $postParams = $block->getAddToCartPostParams($product); ?>
 
         <form<?php if(!$canBeConfigured): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
