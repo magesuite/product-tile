@@ -6,7 +6,7 @@
     $addToCartHelper = $this->helper(\MageSuite\ProductTile\Helper\AddToCart::class);
     $areSwatchesClickable = $block->getVar('configurable_tile_swatches/enabled', 'Magento_Catalog');
     $canBeConfigured = $addToCartHelper->canBeConfigured($product);
-    if ($areSwatchesClickable) {
+    if ($canBeConfigured && $areSwatchesClickable) {
         $canBeConfigured = $productTypeId !== \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE;
     }
     $showOnlyForSimpleProducts = !$areSwatchesClickable && $block->getShowOnlyForSimpleProducts();
