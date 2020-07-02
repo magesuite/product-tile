@@ -50,7 +50,7 @@ class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
             return null;
         }
 
-        $currentStockName = $this->getCurrentStockName(); $currentStockName = 'second-stock';
+        $currentStockName = $this->getCurrentStockName();
 
         foreach ($salableQtys as $salableQty) {
             if ($salableQty['stock_name'] == $currentStockName) {
