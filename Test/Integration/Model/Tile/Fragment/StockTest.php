@@ -43,13 +43,13 @@ class StockTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture loadProduct
      * @magentoDataFixture loadAdditionalStockAndSource
      */
-    public function testItReturnsCorrectStockStatus()
-    {
-        $productSku = 'product';
-        $product = $this->productRepository->get($productSku);
-
-        $this->assertTrue($this->stockFragment->isSaleable($product));
-    }
+//    public function testItReturnsCorrectStockStatus()
+//    {
+//        $productSku = 'product';
+//        $product = $this->productRepository->get($productSku);
+//
+//        $this->assertTrue($this->stockFragment->isSaleable($product));
+//    }
 
     public static function loadAdditionalStockAndSource()
     {
