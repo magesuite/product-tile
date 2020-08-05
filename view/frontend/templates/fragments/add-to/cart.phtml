@@ -18,7 +18,11 @@
     if ($isSaleable && (!$showOnlyForSimpleProducts || $showOnlyForSimpleProducts && $productTypeId == \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)): ?>
         <?php $postParams = $block->getAddToCartPostParams($product); ?>
 
-        <form<?php if(!$canBeConfigured): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>">
+        <form<?php if(!$canBeConfigured): ?> data-role="tocart-form"<?php endif; ?> data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post" class="<?= $block->getFormClass() ?>"
+            <?php if (!$block->isRedirectToCartEnabled() && $block->getVar('ajax_addtocart/enabled', 'Magento_Catalog')): ?>
+                data-mage-init='{"catalogAddToCart": {}}'
+            <?php endif; ?>
+        >
             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
 
             <?php if (isset($postParams['data']['bundle_option']) and !empty($postParams['data']['bundle_option'])): ?>
