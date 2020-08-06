@@ -4,16 +4,16 @@ namespace MageSuite\ProductTile\Block\Tile\Fragment\Badge;
 
 class Discount implements \MageSuite\ProductTile\Block\Tile\Fragment\BadgeInterface
 {
+    /**
+     * @var \MageSuite\Discount\Helper\Discount
+     */
+    protected $discountHelper;
+
     protected $discounts = [];
 
-    /**
-     * @var \MageSuite\Frontend\Helper\Product
-     */
-    protected $productHelper;
-
-    public function __construct(\MageSuite\Frontend\Helper\Product $productHelper)
+    public function __construct(\MageSuite\Discount\Helper\Discount $productHelper)
     {
-        $this->productHelper = $productHelper;
+        $this->discountHelper = $productHelper;
     }
 
     /**
@@ -32,7 +32,7 @@ class Discount implements \MageSuite\ProductTile\Block\Tile\Fragment\BadgeInterf
         $productId = $tile->getProductEntity()->getId();
 
         if(!isset($this->discounts[$productId])) {
-            $this->discounts[$productId] = $this->productHelper->getSalePercentage($tile->getProductEntity());
+            $this->discounts[$productId] = $this->discountHelper->getSalePercentage($tile->getProductEntity());
         }
 
         return $this->discounts[$productId];
