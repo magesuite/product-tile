@@ -14,7 +14,7 @@ class StockTest extends \PHPUnit\Framework\TestCase
      */
     protected $stockFragment;
 
-    public function setUp()
+    public function setUp(): void
     {
         $objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
