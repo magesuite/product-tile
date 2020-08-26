@@ -27,13 +27,15 @@ class PriceTest extends AbstractCacheTest
         $result = $this->priceCacheKeyGenerator->getCacheKeyInfo($fragment);
 
         $expected = [
-            0 => '5.9900',
+            0 => 5.99,
             1 => '1',
             2 => 'USD',
             3 => 0,
             4 => 'grid'
         ];
 
-        $this->assertEquals($expected, $result);
+        foreach($expected as $index => $expectedValue) {
+            $this->assertEquals($expectedValue, $result[$index], '', 2);
+        }
     }
 }
