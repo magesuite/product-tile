@@ -14,13 +14,20 @@ class Price implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
      */
     protected $customerSession;
 
+    /**
+     * @var \MageSuite\ProductTile\Helper\Configuration
+     */
+    protected $configuration;
+
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Customer\Model\Session $customerSession
+        \Magento\Customer\Model\Session $customerSession,
+        \MageSuite\ProductTile\Helper\Configuration $configuration
     )
     {
         $this->storeManager = $storeManager;
         $this->customerSession = $customerSession;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -29,12 +36,17 @@ class Price implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
      */
     public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment)
     {
-        return [
+        $cacheKey = [
             $fragment->getProduct()->getSpecialPrice(),
             $this->storeManager->getStore()->getId(),
             $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
-            $this->customerSession->getCustomerGroupId(),
             $fragment->getTile()->getViewMode()
         ];
+
+        if($this->configuration->includeCustomerGroupInCacheKey()) {
+            $cacheKey[] = $this->customerSession->getCustomerGroupId();
+        }
+
+        return $cacheKey;
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <product_tile>
+            <cache>
+                <include_customer_group_in_cache_key>1</include_customer_group_in_cache_key>
+            </cache>
+        </product_tile>
+    </default>
+</config>
