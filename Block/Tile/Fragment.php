@@ -91,6 +91,15 @@ class Fragment extends \Magento\Catalog\Block\Product\ListProduct
         return false;
     }
 
+    /**
+     * Performance optimization to not execute native blocks observers
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->_loadCache();
+    }
+
     public function getCacheKeyInfo()
     {
         if(!$this->getTile()) {

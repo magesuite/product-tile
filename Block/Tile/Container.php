@@ -88,6 +88,15 @@ class Container extends \Magento\Framework\View\Element\Template
         return true;
     }
 
+    /**
+     * Performance optimization to not execute native blocks observers
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->_loadCache();
+    }
+
     public function _toHtml()
     {
         if(!$this->shouldBeRendered()) {
