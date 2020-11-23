@@ -1,4 +1,7 @@
 <?php
+    /** @var \Magento\Framework\View\TemplateEngine\Php $this */
+    /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+
     $product = $block->getProduct();
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
     $productImage = $block->getImage($product, 'category_page_grid');
@@ -32,10 +35,10 @@
         class="lazyload"
         data-src="<?= $productImageUrl ?>"
         data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        <?php if ($productImageSize[0]): ?>
+        <?php if ($productImageSize[0] ?? false): ?>
             width="<?= $productImageSize[0] ?>"
         <?php endif; ?>
-        <?php if ($productImageSize[1]): ?>
+        <?php if ($productImageSize[1] ?? false): ?>
             height="<?= $productImageSize[1] ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
@@ -46,10 +49,10 @@
         class="<?= $cssClass ?>"
         src="<?= $productImageUrl ?>"
         srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        <?php if ($productImageSize[0]): ?>
+        <?php if ($productImageSize[0] ?? false): ?>
             width="<?= $productImageSize[0] ?>"
         <?php endif; ?>
-        <?php if ($productImageSize[1]): ?>
+        <?php if ($productImageSize[1] ?? false): ?>
             height="<?= $productImageSize[1] ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
