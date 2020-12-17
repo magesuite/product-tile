@@ -111,6 +111,8 @@
                                     <arguments>
                                         <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
+                                        <argument xsi:type="string" name="img_class">cs-product-tile__img</argument>
+                                        <argument xsi:type="boolean" name="apply_width_height_attr">true</argument>
                                     </arguments>
                                 </block>
                             </block>

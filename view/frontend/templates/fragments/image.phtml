@@ -5,7 +5,9 @@
     $productImageUrl = $block-> escapeUrl($productImage->getImageUrl());
     $productImage2x = $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2');
     $productImage2xUrl = $block->escapeUrl($productImage2x->getImageUrl());
-    $productImageSize = $productImage->getResizedImageInfo();
+    $productImageWidth = $productImage->getWidth();
+    $productImageHeight = $productImage->getHeight();
+
     $productImageAlt = $block->escapeHtmlAttr($product->getName());
     $imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
     $isWebpSupported = $imageTypeHelper->supportsWebp($productImageUrl);
@@ -14,6 +16,8 @@
 
     /* XML config */
     $cssClass = $block->getCssClass();
+    $imgClass = $block->getImgClass();
+    $applyWidthHeightAttr = $block->getApplyWidthHeightAttr();
 ?>
 <picture class="<?= $cssClass ?>">
     <?php if ($isWebpSupported): ?>
@@ -29,14 +33,12 @@
     >
     <img
         src="<?= $loaderImage ?>"
-        class="lazyload"
+        class="lazyload <?= $imgClass ?>"
         data-src="<?= $productImageUrl ?>"
         data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        <?php if ($productImageSize[0]): ?>
-            width="<?= $productImageSize[0] ?>"
-        <?php endif; ?>
-        <?php if ($productImageSize[1]): ?>
-            height="<?= $productImageSize[1] ?>"
+        <?php if ($applyWidthHeightAttr): ?>
+        width="<?= $productImageWidth ?>"
+        height="<?= $productImageHeight ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
     >
@@ -46,11 +48,9 @@
         class="<?= $cssClass ?>"
         src="<?= $productImageUrl ?>"
         srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        <?php if ($productImageSize[0]): ?>
-            width="<?= $productImageSize[0] ?>"
-        <?php endif; ?>
-        <?php if ($productImageSize[1]): ?>
-            height="<?= $productImageSize[1] ?>"
+        <?php if ($applyWidthHeightAttr): ?>
+        width="<?= $productImageWidth ?>"
+        height="<?= $productImageHeight ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
     >
