@@ -3,9 +3,10 @@
     $viewModel = $block->getViewModel();
     $product = $block->getProduct();
     $reviewsCount = $viewModel->getReviewsCount($product);
+    $showIfNoReviews = $block->getShowIfNoReviews() ?? false;
 ?>
 
-<?php if($reviewsCount > 0): ?>
+<?php if($reviewsCount > 0 || $showIfNoReviews): ?>
     <?php 
         $htmlTag = $block->getHtmlTag() ?? 'div';
         
@@ -18,6 +19,7 @@
                  ->setMaxStars(5)
                  ->setActiveStars($viewModel->getActiveStars($product))
                  ->setReviewsCount($reviewsCount)
+                 ->setShowIfNoReviews($showIfNoReviews)
                  ->setTemplate('Magento_Review::rating-stars.phtml')
                  ->toHtml();
         ?>
