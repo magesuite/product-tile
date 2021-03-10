@@ -158,7 +158,6 @@
                                     <arguments>
                                         <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Review</argument>
                                         <argument xsi:type="string" name="html_tag">div</argument>
-                                        <argument xsi:type="boolean" name="show_if_no_reviews">false</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__review cs-product-tile__review--list</argument>
                                     </arguments>
                                 </block>
@@ -337,7 +336,6 @@
                                         <arguments>
                                             <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Review</argument>
                                             <argument xsi:type="string" name="html_tag">div</argument>
-                                            <argument xsi:type="boolean" name="show_if_no_reviews">false</argument>
                                             <argument xsi:type="string" name="css_class">cs-product-tile__review cs-product-tile__review--grid</argument>
                                         </arguments>
                                     </block>
