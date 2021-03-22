@@ -42,6 +42,7 @@
                                     <argument name="css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon-image</argument>
                                     <argument name="inlined" xsi:type="boolean">true</argument>
                                     <argument name="lazy_loaded" xsi:type="boolean">false</argument>
+                                    <argument name="alt_text" xsi:type="string" translate="true">remove</argument>
                                 </arguments>
                             </block>
                         </block>
@@ -233,6 +234,7 @@
                                                             <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
                                                             <argument name="inlined" xsi:type="boolean">true</argument>
                                                             <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                            <argument name="alt_text" xsi:type="string" translate="true">wishlist</argument>
                                                         </arguments>
                                                     </block>
                                                 </block>
@@ -253,6 +255,7 @@
                                                             <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--compare</argument>
                                                             <argument name="inlined" xsi:type="boolean">true</argument>
                                                             <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                            <argument name="alt_text" xsi:type="string" translate="true">compare</argument>
                                                         </arguments>
                                                     </block>
                                                 </block>
@@ -371,6 +374,7 @@
                                                             <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
                                                             <argument name="inlined" xsi:type="boolean">true</argument>
                                                             <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                            <argument name="alt_text" xsi:type="string" translate="true">wishlist</argument>
                                                         </arguments>
                                                     </block>
                                                 </block>
@@ -391,6 +395,7 @@
                                                             <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--compare</argument>
                                                             <argument name="inlined" xsi:type="boolean">true</argument>
                                                             <argument name="lazy_loaded" xsi:type="boolean">true</argument>
+                                                            <argument name="alt_text" xsi:type="string" translate="true">compare</argument>
                                                         </arguments>
                                                     </block>
                                                 </block>
