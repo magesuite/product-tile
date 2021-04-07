@@ -79,6 +79,34 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         return [];
     }
 
+    public function getCacheKey()
+    {
+        if ($this->hasData('cache_key')) {
+            return $this->getData('cache_key');
+        }
+
+        $product = $this->getProductEntity();
+
+        if($product == null) {
+            return '';
+        }
+        /** @var \MageSuite\ProductTile\Service\CacheKeyPrefixGenerator $keyPrefixGenerator */
+        $keyPrefixGenerator = $this->getCacheKeyPrefixGenerator();
+        $keyPrefix = $keyPrefixGenerator->generate();
+
+        $key = $this->getCacheKeyInfo();
+        $key = array_values($key);  // ignore array keys
+        $key = implode('|', $key);
+        $key = sha1($key); // use hashing to hide potentially private data
+
+        return sprintf(
+            '%s_%s_%s',
+            $keyPrefix,
+            $product->getId(),
+            $key
+        );
+    }
+
     public function getCacheKeyInfo()
     {
         if ($this->hasData('CACHE_KEY_INFO')) {
