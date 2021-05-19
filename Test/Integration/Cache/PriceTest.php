@@ -59,10 +59,11 @@ class PriceTest extends AbstractCacheTest
             0 => 5.99,
             1 => '1',
             2 => 'USD',
-            3 => 'grid'
+            3 => 'grid',
+            4 => 0
         ];
 
-        $this->assertCount(4, $result);
+        $this->assertCount(5, $result);
 
         foreach($expected as $index => $expectedValue) {
             $this->assertEquals($expectedValue, $result[$index], '', 2);
