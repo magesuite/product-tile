@@ -18,9 +18,9 @@ class Configuration extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
-    public function includeCustomerGroupInCacheKey($storeId = null): bool
+    public function includeCustomerGroupInCacheKey($storeId = null) : int
     {
-        return $this->scopeConfig->isSetFlag(
+        return (int)$this->scopeConfig->getValue(
             self::XML_PATH_INCLUDE_CUSTOMER_GROUP_IN_CACHE_KEY,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
             $storeId
