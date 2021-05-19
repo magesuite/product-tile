@@ -20,7 +20,7 @@ class PriceTest extends AbstractCacheTest
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Catalog/_files/product_special_price.php
-     * @magentoAdminConfigFixture product_tile/cache/include_customer_group_in_cache_key 1
+     * @magentoConfigFixture current_store product_tile/cache/include_customer_group_in_cache_key 1
      */
     public function testItReturnsPriceRelatedCacheKeyItems()
     {
@@ -47,7 +47,7 @@ class PriceTest extends AbstractCacheTest
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Catalog/_files/product_special_price.php
-     * @magentoAdminConfigFixture product_tile/cache/include_customer_group_in_cache_key 0
+     * @magentoConfigFixture current_store product_tile/cache/include_customer_group_in_cache_key 0
      */
     public function testItReturnsPriceRelatedCacheKeyItemsWithoutCustomerGroup()
     {
@@ -59,11 +59,10 @@ class PriceTest extends AbstractCacheTest
             0 => 5.99,
             1 => '1',
             2 => 'USD',
-            3 => 'grid',
-            4 => 0
+            3 => 'grid'
         ];
 
-        $this->assertCount(5, $result);
+        $this->assertCount(4, $result);
 
         foreach($expected as $index => $expectedValue) {
             $this->assertEquals($expectedValue, $result[$index], '', 2);
