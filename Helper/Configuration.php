@@ -1,41 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Helper;
 
-class Configuration
+class Configuration extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const XML_PATH_PRODUCT_TILE_CACHE_CONFIGURATION = 'product_tile/cache';
+    const XML_PATH_THUMBNAIL_GALLERY_ENABLED = 'product_tile/thumbnail_gallery/enabled';
+    const XML_PATH_INCLUDE_CUSTOMER_GROUP_IN_CACHE_KEY = 'product_tile/cache/include_customer_group_in_cache_key';
 
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
-
-    protected $config = null;
-
-    public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface
-    ) {
-        $this->scopeConfig = $scopeConfigInterface;
+    public function isThumbnailGalleryEnabled($storeId = null): bool
+    {
+        return $this->scopeConfig->isSetFlag(
+            self::XML_PATH_THUMBNAIL_GALLERY_ENABLED,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 
-    public function includeCustomerGroupInCacheKey()
+    public function includeCustomerGroupInCacheKey($storeId = null): bool
     {
-        return $this->getConfig()->getIncludeCustomerGroupInCacheKey();
-    }
-
-    protected function getConfig()
-    {
-        if ($this->config === null) {
-            $config = $this->scopeConfig->getValue(self::XML_PATH_PRODUCT_TILE_CACHE_CONFIGURATION);
-
-            if(!is_array($config) || $config === null) {
-                $config = [];
-            }
-
-            $this->config = new \Magento\Framework\DataObject($config);
-        }
-
-        return $this->config;
+        return $this->scopeConfig->isSetFlag(
+            self::XML_PATH_INCLUDE_CUSTOMER_GROUP_IN_CACHE_KEY,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 }

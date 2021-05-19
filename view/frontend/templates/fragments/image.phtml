@@ -2,7 +2,7 @@
     $product = $block->getProduct();
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
     $productImage = $block->getImage($product, 'category_page_grid');
-    $productImageUrl = $block-> escapeUrl($productImage->getImageUrl());
+    $productImageUrl = $block->escapeUrl($productImage->getImageUrl());
     $productImage2x = $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2');
     $productImage2xUrl = $block->escapeUrl($productImage2x->getImageUrl());
     $productImageWidth = $productImage->getWidth();

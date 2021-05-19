@@ -6,7 +6,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="MageSuite_DailyDeal::configure_product_tile" title="MageSuite Product Tile"/>
+                            <resource id="MageSuite_ProductTile::configure_product_tile" title="MageSuite Product Tile"/>
                         </resource>
                     </resource>
                 </resource>

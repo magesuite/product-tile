@@ -10,6 +10,14 @@
                 <width>480</width>
                 <height>600</height>
             </image>
+            <image id="product_tile_gallery" type="thumbnail">
+                <width>40</width>
+                <height>40</height>
+            </image>
+            <image id="product_tile_gallery_x2" type="thumbnail">
+                <width>80</width>
+                <height>80</height>
+            </image>
         </images>
     </media>
 </view>
