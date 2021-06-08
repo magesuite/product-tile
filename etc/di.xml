@@ -5,6 +5,12 @@
     </type>
 
     <type name="Magento\Swatches\Block\Product\Renderer\Listing\Configurable">
-        <plugin name="inject-configurable-view-model" type="MageSuite\ProductTile\Plugin\Swatches\Block\Product\Renderer\Listing\Configurable\InjectConfigurableViewModel"/>
+        <plugin name="inject-configurable-view-model"
+                type="MageSuite\ProductTile\Plugin\Swatches\Block\Product\Renderer\Listing\Configurable\InjectConfigurableViewModel" />
+    </type>
+
+    <type name="Magento\Catalog\Helper\Product\Compare">
+        <plugin name="remove_uenc_from_add_to_compare_parameters"
+                type="MageSuite\ProductTile\Plugin\Catalog\Helper\Product\Compare\RemoveUencFromAddToCompareParameters" />
     </type>
 </config>
