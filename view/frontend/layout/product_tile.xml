@@ -97,6 +97,9 @@
                                     <argument xsi:type="string" name="wrapper_css_class">cs-tile-gallery__item</argument>
                                     <argument xsi:type="string" name="thumbnail_css_class">cs-tile-gallery__thumbnail</argument>
                                     <argument xsi:type="boolean" name="display_if_single">false</argument>
+                                    <argument name="unsupported_areas" xsi:type="array">
+                                        <item name="0" xsi:type="string">mini-wishlist</item>
+                                    </argument>
                                 </arguments>
                             </block>
 
