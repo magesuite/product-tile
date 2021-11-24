@@ -42,7 +42,7 @@ class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
         return $productQty > 0;
     }
 
-    protected function getQtyForCurrentStock($sku)
+    public function getQtyForCurrentStock($sku)
     {
         $salableQtys = $this->getSalableQuantityDataBySku->execute($sku);
 
