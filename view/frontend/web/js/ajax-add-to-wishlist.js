@@ -22,14 +22,11 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
          * @param {Object} url 
          */
         _submitHandler: function (params) {
-            console.log(params)
 
             $.ajax({
                 method: 'POST',
                 url: params.action,
                 data: params.data,
-                processData: false,
-                contentType: false,
             })
                 .done(
                     function (response) {
@@ -53,7 +50,6 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
          * @param {object} response - ajax response
          */
         _onDoneHandler(response) {
-            console.log('on done');
 
             // const newQty = response.wishlist.counter;
             const newQty = parseInt($('.cs-header-user-nav__qty-counter--wishlist .qty').text()) + 1;
@@ -91,7 +87,7 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
                 $clonedBadge
                 .addClass('cs-header-user-nav__qty-counter--wishlist-animating')
                 .css({
-                    top: '',
+                    top: Math.round(parseInt(wishlistBadgeRect.top, 10)) > 0 ? Math.round(parseInt(wishlistBadgeRect.top, 10)) + 'px' : '-10rem',
                     left: Math.round(parseInt(wishlistBadgeRect.left, 10)) + 'px',
                 });
             }, 300);
