@@ -5,7 +5,16 @@
     $wishlistHelper = $block->getWishlistHelper();
 ?>
 
-<a href="#" class="towishlist cs-links-block-addto__link" title="<?= $label ?>" aria-label="<?= $label ?>" data-post='<?= $wishlistHelper->getAddParams($product) ?>' data-uenc-update='true' data-action="add-to-wishlist" role="button">
+<a 
+    href="#" 
+    class="towishlist cs-links-block-addto__link" 
+    title="<?= $label ?>" 
+    aria-label="<?= $label ?>" 
+    data-params='<?= $wishlistHelper->getAddParams($product) ?>' 
+    data-action="add-to-wishlist" 
+    role="button"
+    data-mage-init='{"MageSuite_ProductTile/js/ajax-add-to-wishlist": {}}'
+>
     <?= $this->getChildHtml() ?>
     <span class="cs-links-block-addto__link-label"><?= $label ?></span>
 </a>
