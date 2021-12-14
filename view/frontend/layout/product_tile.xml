@@ -62,7 +62,7 @@
                                     <arguments>
                                         <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\Discount</argument>
                                         <argument xsi:type="string" name="wrapper_tag">li</argument>
-                                        <argument xsi:type="string" name="wrapper_css_class">cs-product-tile__badge-item cs-dailydeal__badge--discount</argument>
+                                        <argument xsi:type="string" name="wrapper_css_class">cs-product-tile__badge-item cs-product-tile__badge-item--discount cs-dailydeal__badge--discount</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__badge cs-product-tile__badge--discount</argument>
                                         <argument xsi:type="string" name="text_css_class">cs-product-tile__badge-text</argument>
                                         <argument xsi:type="string" name="label" translate="true"></argument>
@@ -75,7 +75,7 @@
                                     <arguments>
                                         <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Block\Tile\Fragment\Badge\IsNew</argument>
                                         <argument xsi:type="string" name="html_tag">li</argument>
-                                        <argument xsi:type="string" name="wrapper_css_class">cs-product-tile__badge-item</argument>
+                                        <argument xsi:type="string" name="wrapper_css_class">cs-product-tile__badge-item cs-product-tile__badge-item--new</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__badge cs-product-tile__badge--new</argument>
                                         <argument xsi:type="string" name="text_css_class">cs-product-tile__badge-text</argument>
                                         <argument translate="true" xsi:type="string" name="label">New</argument>
