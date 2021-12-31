@@ -71,8 +71,6 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
                 unset($identities[$key]);
             }
 
-            $identities = $this->generateLongCacheTags($identities);
-
             return $identities;
         }
 
@@ -127,24 +125,5 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         $this->setData('CACHE_KEY_INFO', $cacheKey);
 
         return $cacheKey;
-    }
-
-    /**
-     * @param array $identities
-     * @return array
-     */
-    private function generateLongCacheTags(array $identities): array
-    {
-        foreach ($identities as $identity) {
-            if (!preg_match('/cat_p_[0-9]+/si', $identity)) {
-                continue;
-            }
-
-            $productId = str_replace('cat_p_', '', $identity);
-
-            $identities[] = sprintf('catalog_product_%s', $productId);
-        }
-
-        return $identities;
     }
 }
