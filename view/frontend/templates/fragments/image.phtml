@@ -23,35 +23,21 @@
     <?php if ($isWebpSupported): ?>
         <source
             type="image/webp"
-            srcset="<?= $loaderImage ?>"
-            data-srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
+            srcset="<?= $productImageUrl . '.webp 1x, ' . $productImage2xUrl . '.webp 2x' ?>"
         >
     <?php endif; ?>
     <source
-        srcset="<?= $loaderImage ?>"
-        data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+        srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
     >
     <img
-        src="<?= $loaderImage ?>"
-        class="lazyload <?= $imgClass ?>"
-        data-src="<?= $productImageUrl ?>"
-        data-srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
-        <?php if ($applyWidthHeightAttr): ?>
-        width="<?= $productImageWidth ?>"
-        height="<?= $productImageHeight ?>"
-        <?php endif; ?>
-        alt="<?= $productImageAlt ?>"
-    >
-</picture>
-<noscript>
-    <img
-        class="<?= $cssClass ?>"
         src="<?= $productImageUrl ?>"
+        class="<?= $imgClass ?>"
         srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
         <?php if ($applyWidthHeightAttr): ?>
-        width="<?= $productImageWidth ?>"
-        height="<?= $productImageHeight ?>"
+            width="<?= $productImageWidth ?>"
+            height="<?= $productImageHeight ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
+        loading="lazy"
     >
-</noscript>
+</picture>
