@@ -42,24 +42,21 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
                 <?php if ($isWebpSupported): ?>
                     <source
                         type="image/webp"
-                        srcset="<?= $loaderImage ?>"
-                        data-srcset="<?= $imagesSet['webpTileImageSrcSet'] ?>"
+                        srcset="<?= $imagesSet['webpTileImageSrcSet'] ?>"
                     >
                 <?php endif; ?>
                 <source
-                    srcset="<?= $loaderImage ?>"
-                    data-srcset="<?= $imagesSet['tileImageSrcSet'] ?>"
+                    srcset="<?= $imagesSet['tileImageSrcSet'] ?>"
                 >
                 <img
-                    src="<?= $loaderImage ?>"
-                    class="lazyload"
-                    data-src="<?= $imagesSet['tileImageSrc'] ?>"
-                    data-srcset="<?= $imagesSet['tileImageSrcSet'] ?>"
+                    src="<?= $imagesSet['tileImageSrc'] ?>"
+                    srcset="<?= $imagesSet['tileImageSrcSet'] ?>"
                     data-product-image-src="<?= $imagesSet['productImageSrc'] ?>"
                     data-product-image-srcset="<?= $imagesSet['productImageSrcSet'] ?>"
                     width="<?= $imagesSet['width'] ?>"
                     height="<?= $imagesSet['height'] ?>"
                     alt="<?= $block->escapeHtmlAttr($product->getName()) ?>"
+                    loading="lazy"
                 >
             </picture>
         </<?= $wrapperTag ?>>
