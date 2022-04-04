@@ -100,7 +100,7 @@
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.main.details">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">div</argument>
-                                <argument xsi:type="string" name="css_class">cs-product-tile__main</argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__main product-item-detaiils</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.swatches.container" before="-">
@@ -118,7 +118,6 @@
                                         <block class="Magento\Framework\View\Element\Template" name="product.tile.details.renderers.default" as="default" />
                                     </block>
                                 </block>
-                                
                             </block>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.name">
