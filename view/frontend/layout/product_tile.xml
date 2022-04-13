@@ -100,7 +100,7 @@
                         <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.main.details">
                             <arguments>
                                 <argument xsi:type="string" name="html_tag">div</argument>
-                                <argument xsi:type="string" name="css_class">cs-product-tile__main product-item-detaiils</argument>
+                                <argument xsi:type="string" name="css_class">cs-product-tile__main product-item-details</argument>
                             </arguments>
 
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.swatches.container" before="-">
@@ -145,7 +145,7 @@
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.price.wrapper">
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">div</argument>
-                                    <argument xsi:type="string" name="css_class">cs-product-tile__price</argument>
+                                    <argument xsi:type="string" name="css_class">cs-product-tile__price product-info-price</argument>
                                 </arguments>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.price" template="MageSuite_ProductTile::fragments/price.phtml">
                                     <arguments>
