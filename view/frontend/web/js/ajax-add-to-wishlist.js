@@ -1,4 +1,6 @@
-define(['jquery', 'jquery-ui-modules/widget', 'mage/cookies', 'Magento_Customer/js/customer-data'], function ($) {
+define(
+    ['jquery', 'Magento_Customer/js/customer-data', 'jquery-ui-modules/widget', 'mage/cookies'],
+    function ($, customerData) {
     'use strict';
 
     /**
@@ -51,8 +53,8 @@ define(['jquery', 'jquery-ui-modules/widget', 'mage/cookies', 'Magento_Customer/
          * @param {object} response - ajax response
          */
         _onDoneHandler(response) {
-            customerData.invalidate(['wishlist']);
-            customerData.reload(['wishlist'], true);
+            customerData.invalidate(['wishlist', 'messages']);
+            customerData.reload(['wishlist', 'messages'], true);
 
             // const newQty = response.wishlist.counter;
             const newQty = parseInt($('.cs-header-user-nav__qty-counter--wishlist .qty').text()) + 1;
