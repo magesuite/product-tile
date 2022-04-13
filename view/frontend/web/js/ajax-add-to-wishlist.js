@@ -1,4 +1,4 @@
-define(['jquery', 'jquery-ui-modules/widget'], function ($) {
+define(['jquery', 'jquery-ui-modules/widget', 'mage/cookies', 'Magento_Customer/js/customer-data'], function ($) {
     'use strict';
 
     /**
@@ -19,9 +19,10 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
 
         /**
          * Wishlist data submission via AJAX
-         * @param {Object} url 
+         * @param {Object} url
          */
         _submitHandler: function (params) {
+            params.data['form_key'] = $.mage.cookies.get('form_key');
 
             $.ajax({
                 method: 'POST',
@@ -46,10 +47,12 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
         },
 
         /**
-         * After AJAX request returned with data - 
+         * After AJAX request returned with data -
          * @param {object} response - ajax response
          */
         _onDoneHandler(response) {
+            customerData.invalidate(['wishlist']);
+            customerData.reload(['wishlist'], true);
 
             // const newQty = response.wishlist.counter;
             const newQty = parseInt($('.cs-header-user-nav__qty-counter--wishlist .qty').text()) + 1;
@@ -64,14 +67,14 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
             $clonedBadge = $wishlistBadge.clone();
 
             const $icon = this.element.find('.cs-links-block-addto__icon');
-    
+
             if (
                 !$clonedBadge.length ||
                 !$icon.length
             ) {
                 return;
             }
-    
+
             const startingPosition = $icon[0].getBoundingClientRect();
             const $clonedQtyHolder = $clonedBadge.find('.cs-header-user-nav__qty-counter-span');
             $clonedQtyHolder.html(newQty);
@@ -82,7 +85,7 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
                 top: `${Math.round(parseInt(startingPosition.top, 10))}px`,
                 left: `${Math.round(parseInt(startingPosition.left, 10))}px`,
             });
-    
+
             setTimeout(function() {
                 $clonedBadge
                 .addClass('cs-header-user-nav__qty-counter--wishlist-animating')
@@ -93,13 +96,13 @@ define(['jquery', 'jquery-ui-modules/widget'], function ($) {
             }, 300);
 
             $clonedBadge.one('transitionend', function() {
-                $clonedBadge.remove(); 
+                $clonedBadge.remove();
             });
 
         },
 
         /**
-         * After AJAX request FAILED - 
+         * After AJAX request FAILED -
          * @param {string} error - XHR error message
          */
         _onFailHandler(error) {
