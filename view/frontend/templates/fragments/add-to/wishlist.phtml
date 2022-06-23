@@ -1,5 +1,6 @@
 <?php 
     $product = $block->getProduct();
+    $productID = $product->getId();
     $label = $this->getLabel();
     $wishlistItem = $block->getTile()->getWishlistItem();
     $wishlistHelper = $block->getWishlistHelper();
@@ -10,8 +11,9 @@
     class="towishlist cs-links-block-addto__link" 
     title="<?= $label ?>" 
     aria-label="<?= $label ?>" 
-    data-params='<?= $wishlistHelper->getAddParams($product) ?>' 
-    data-action="add-to-wishlist" 
+    data-params='<?= $wishlistHelper->getAddParams($product) ?>'
+    data-product-id="<?= $productID; ?>"
+    data-action="add-to-wishlist"
     role="button"
     data-mage-init='{"MageSuite_ProductTile/js/ajax-add-to-wishlist": {}}'
 >
