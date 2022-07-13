@@ -14,6 +14,7 @@ define(
 
             this.element.on('click touchend', function(e) {
                 e.preventDefault();
+                _self.element.addClass('selected');
                 _self._submitHandler(params);
             });
 
