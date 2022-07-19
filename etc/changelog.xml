@@ -46,6 +46,15 @@
                     </description>
                 </entry>
             </tag>
+            <tag version="2.1.4" date="2022-07-19">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>Move ajax add=to-wishlist functionality to magesuite-wishlist module</overview>
+                    <description>
+                        Move functionality connected to ajax add-to-cart to separate magesuite-wishlist module
+                    </description>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>
