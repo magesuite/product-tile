@@ -46,7 +46,7 @@
                     </description>
                 </entry>
             </tag>
-            <tag version="2.1.4" date="2022-07-19">
+            <tag version="2.1.5" date="2022-07-19">
                 <entry>
                     <type>FEATURE</type>
                     <overview>Move ajax add=to-wishlist functionality to magesuite-wishlist module</overview>
