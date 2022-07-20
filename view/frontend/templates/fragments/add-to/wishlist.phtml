@@ -11,11 +11,10 @@
     class="towishlist cs-links-block-addto__link" 
     title="<?= $label ?>" 
     aria-label="<?= $label ?>" 
-    data-params='<?= $wishlistHelper->getAddParams($product) ?>'
+    data-post='<?= $wishlistHelper->getAddParams($product) ?>'
     data-product-id="<?= $productID; ?>"
     data-action="add-to-wishlist"
     role="button"
-    data-mage-init='{"MageSuite_ProductTile/js/ajax-add-to-wishlist": {}}'
 >
     <?= $this->getChildHtml() ?>
     <span class="cs-links-block-addto__link-label"><?= $label ?></span>
