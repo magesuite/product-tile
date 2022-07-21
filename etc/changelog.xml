@@ -55,6 +55,15 @@
                     </description>
                 </entry>
             </tag>
+            <tag version="2.1.6" date="2022-07-21">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>Add universal add to wishlist icon class</overview>
+                    <description>
+                        Add towishlist-icon class to cs-links-block-addto__icon--wishlist element in order to allow animation
+                    </description>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>

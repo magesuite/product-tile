@@ -216,7 +216,7 @@
                                         <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon">
                                             <arguments>
                                                 <argument name="icon_url" xsi:type="string">images/icons/heart.svg</argument>
-                                                <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist</argument>
+                                                <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist towishlist-icon</argument>
                                                 <argument name="inlined" xsi:type="boolean">true</argument>
                                                 <argument name="lazy_loaded" xsi:type="boolean">true</argument>
                                                 <argument name="alt_text" xsi:type="string" translate="true">wishlist</argument>
