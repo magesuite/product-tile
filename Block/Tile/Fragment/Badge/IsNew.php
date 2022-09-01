@@ -23,10 +23,11 @@ class IsNew implements \MageSuite\ProductTile\Block\Tile\Fragment\BadgeInterface
 
         $newsFromDate = $product->getNewsFromDate();
         $newsToDate = $product->getNewsToDate();
+
         $date = date('Y-m-d H:i:s', $this->localeDate->scopeTimeStamp());
 
-        $fromTimestamp = strtotime($newsFromDate);
-        $toTimestamp = strtotime($newsToDate);
+        $fromTimestamp = $newsFromDate === null ? null : strtotime($newsFromDate);
+        $toTimestamp = $newsToDate === null ? null : strtotime($newsToDate);
         $dateTimestamp = strtotime($date);
 
         if(!$fromTimestamp && !$toTimestamp){
