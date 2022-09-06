@@ -64,6 +64,15 @@
                     </description>
                 </entry>
             </tag>
+            <tag version="2.1.7" date="2022-09-05">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>Add alt tag to product image taken from the image description field in andmin panel</overview>
+                    <description>
+                        Add alt tag that displays the contents of Alt Tag field first, and if that field is empty, it displays the product name.
+                    </description>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>
