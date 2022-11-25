@@ -5,6 +5,7 @@
                 <arguments>
                     <argument xsi:type="object" name="cache_key_generator">MageSuite\ProductTile\Service\CacheKeyGenerator</argument>
                     <argument xsi:type="object" name="cache_key_prefix_generator">MageSuite\ProductTile\Service\CacheKeyPrefixGenerator</argument>
+                    <argument xsi:type="object" name="view_model">MageSuite\ProductTile\Model\Tile\Fragment\Stock</argument>
                     <argument xsi:type="string" name="cache_lifetime">86400</argument>
                     <argument xsi:type="string" name="html_tag">div</argument>
                     <argument xsi:type="string" name="css_class">cs-product-tile</argument>
