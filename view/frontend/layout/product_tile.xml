@@ -1,6 +1,5 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="">
     <body>
-        <referenceBlock name="content">
             <block class="MageSuite\ProductTile\Block\Tile" name="product.tile">
                 <arguments>
                     <argument xsi:type="object" name="cache_key_generator">MageSuite\ProductTile\Service\CacheKeyGenerator</argument>
@@ -348,6 +347,5 @@
                     </block>
                 </block>
             </block>
-        </referenceBlock>
     </body>
 </page>

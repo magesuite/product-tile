@@ -8,7 +8,7 @@
                     <description>
                         Simplify html of product tile.
                         Base layout of tile on CSS grid.
-                        Move style fopr list view to optional, separate entry.
+                        Move style fopr list view to optional, separate entry. 
                         Remove all modifiers and block names with "grie" or "List" inside
                         Add 2 optional, ready to use, hover effects.
                     </description>
