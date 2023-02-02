@@ -4,67 +4,47 @@ namespace MageSuite\ProductTile\Model\Tile\Fragment;
 
 class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    /**
-     * @var \Magento\Review\Model\Review
-     */
-    protected $review;
+    protected \Magento\Review\Model\Review $review;
 
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
+
+    protected \MageSuite\Frontend\Helper\Product $productHelper;
+
+    protected array $reviewSummary = [];
 
     public function __construct(
         \Magento\Review\Model\Review $review,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
-    )
-    {
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \MageSuite\Frontend\Helper\Product $productHelper
+    ) {
         $this->review = $review;
         $this->storeManager = $storeManager;
+        $this->productHelper = $productHelper;
     }
 
-    /**
-     * @param \Magento\Catalog\Model\Product $product
-     * @return float
-     */
     public function getActiveStars(\Magento\Catalog\Model\Product $product)
     {
-        $ratingSummary = $this->getRatingSummary($product);
-        // Since 2.3.3 rating summary is being returned directly, not as an object.
-        if (is_object($ratingSummary)) {
-            $ratingSummary = $ratingSummary->getRatingSummary() ?? 0;
-        }
-        
-        $activeStars = round($ratingSummary / 10) / 2;
+        $reviewSummary = $this->getReviewSummary($product);
 
-        return $activeStars;
+        return $reviewSummary['data']['activeStars'];
     }
 
-    /**
-     * @param \Magento\Catalog\Model\Product $product
-     * @return int
-     */
     public function getReviewsCount(\Magento\Catalog\Model\Product $product)
     {
-        $ratingSummary = $this->getRatingSummary($product);
-        // Since 2.3.3 rating summary is being returned directly, not as an object.
-        if (is_object($ratingSummary)) {
-            return $ratingSummary->getReviewsCount();
-        }
+        $reviewSummary = $this->getReviewSummary($product);
+        $votes = $reviewSummary['data']['votes'];
 
-        return $product->getReviewsCount();
+        return array_sum($votes);
     }
 
-    protected function getRatingSummary(\Magento\Catalog\Model\Product $product)
+    protected function getReviewSummary($product): array
     {
-        $storeId = $this->storeManager->getStore()->getId();
-
-        $ratingSummary = $product->getRatingSummary();
-
-        if (!$ratingSummary) {
-            $this->review->getEntitySummary($product, $storeId);
+        $productId = $product->getId();
+        
+        if (!isset($this->reviewSummary[$productId])) {
+            $this->reviewSummary[$productId] = $this->productHelper->getReviewSummary($product, true);
         }
 
-        return $product->getRatingSummary();
+        return $this->reviewSummary[$productId];
     }
 }
