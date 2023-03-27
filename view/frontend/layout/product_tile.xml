@@ -171,6 +171,9 @@
                                     <argument xsi:type="string" name="out_of_stock_css_modifier">cs-product-tile__stock--out</argument>
                                     <argument xsi:type="string" name="in_stock_label" translate="true">In stock</argument>
                                     <argument xsi:type="string" name="out_of_stock_label" translate="true">Out of stock</argument>
+                                    <argument name="supported_areas" xsi:type="array">
+                                        <item name="0" xsi:type="string">wishlist</item>
+                                    </argument>
                                 </arguments>
                             </block>
 
@@ -198,6 +201,9 @@
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">ul</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__addto cs-links-block-addto</argument>
+                                    <argument name="unsupported_areas" xsi:type="array">
+                                        <item name="0" xsi:type="string">teaser</item>
+                                    </argument>
                                 </arguments>
 
                                 <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.addtowishlist">
