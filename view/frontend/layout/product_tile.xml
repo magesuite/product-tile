@@ -91,7 +91,7 @@
                                     </arguments>
                                 </block>
 
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.teaer.figure.image" template="MageSuite_ProductTile::fragments/image.phtml">
+                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.teaser.figure.image" template="MageSuite_ProductTile::fragments/image.phtml">
                                     <arguments>
                                         <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
                                         <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
