@@ -194,6 +194,7 @@
 
                             <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtocart" template="MageSuite_ProductTile::fragments/add-to/cart.phtml">
                                 <arguments>
+                                    <argument xsi:type="boolean" name="show_for_unavailable_products">false</argument>
                                     <argument xsi:type="boolean" name="show_only_for_simple_products">false</argument>
                                     <argument xsi:type="string" name="form_class">cs-addtocart cs-product-tile__addtocart</argument>
                                     <argument xsi:type="string" name="atc_add_label" translate="true">Add to Cart</argument>
