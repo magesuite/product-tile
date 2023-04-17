@@ -1,1 +1,10 @@
-<?= $block->getProduct()->getShortDescription() ?>
+<?php if ($block->getTile()->getViewMode() == 'teaser'): ?>
+    <?php
+        $specialDescription = $block->getTile()->getSpecialDescription();
+    ?>
+    <?php if ($specialDescription): ?>
+        <?= $specialDescription ?>
+    <?php endif; ?>
+<?php else: ?>
+    <?= $block->getProduct()->getShortDescription() ?>
+<?php endif; ?>
