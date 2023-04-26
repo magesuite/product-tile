@@ -87,6 +87,13 @@
                     <ticket_id>TOYS-664, RK-47</ticket_id>
                 </entry>
             </tag>
+            <tag version="2.2.3" date="2023-04-20">
+                <entry>
+                    <type>FEAT</type>
+                    <overview>Move changes related to product teaser tile type into magesuite-content-constructor-frontend repository</overview>
+                    <ticket_id>RK-47</ticket_id>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>
