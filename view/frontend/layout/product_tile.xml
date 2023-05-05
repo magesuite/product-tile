@@ -90,18 +90,6 @@
                                         </argument>
                                     </arguments>
                                 </block>
-
-                                <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.teaser.figure.image" template="MageSuite_ProductTile::fragments/image.phtml">
-                                    <arguments>
-                                        <argument xsi:type="object" name="cache_key_model">MageSuite\ProductTile\Cache\Image</argument>
-                                        <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
-                                        <argument xsi:type="string" name="img_class">cs-product-tile__img</argument>
-                                        <argument xsi:type="boolean" name="apply_width_height_attr">true</argument>
-                                        <argument name="supported_areas" xsi:type="array">
-                                            <item name="0" xsi:type="string">teaser</item>
-                                        </argument>
-                                    </arguments>
-                                </block>
                             </block>
                         </block>
                     </block>
