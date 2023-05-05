@@ -1,10 +1,9 @@
 <?php
     $product = $block->getProduct();
     $imageHelper = $this->helper('Magento\Catalog\Helper\Image');
-    $isProductTeaser =  $block->getSupportedAreas() ? (in_array('teaser', $block->getSupportedAreas())) : false;
-    $productImage = !$isProductTeaser ? $block->getImage($product, 'category_page_grid') : $block->getImage($product, 'product_teaser');
+    $productImage = $block->getImage($product, 'category_page_grid');
     $productImageUrl = $block->escapeUrl($productImage->getImageUrl());
-    $productImage2x = !$isProductTeaser ? $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2') : $block->getImage($product, 'product_teaser_2x');
+    $productImage2x = $block->getImage($product, $block->getImage2xId() ?? 'category_page_grid_x2');
     $productImage2xUrl = $block->escapeUrl($productImage2x->getImageUrl());
     $productImageWidth = $productImage->getWidth();
     $productImageHeight = $productImage->getHeight();
