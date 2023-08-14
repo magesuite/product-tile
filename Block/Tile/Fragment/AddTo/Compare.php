@@ -12,4 +12,3 @@ class Compare extends \MageSuite\ProductTile\Block\Tile\Fragment {
         return $this->_compareProduct;
     }
 }
-

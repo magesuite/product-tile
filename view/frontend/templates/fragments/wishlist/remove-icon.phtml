@@ -7,10 +7,10 @@ $product = $block->getTile()->getProductEntity();
 $linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
 ?>
 <?php if ($wishlistItem): ?>
-    <a 
-        href="#" 
-        data-role="remove" 
-        data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>' 
+    <a
+        href="#"
+        data-role="remove"
+        data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>'
         title="<?= $block->getLinkLabel() ?>"<?= $linkCssClass ?>
         aria-label="<?= $block->getLinkLabel() ?>"
     >

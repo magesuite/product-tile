@@ -7,11 +7,11 @@
 ?>
 
 <?php if($reviewsCount > 0 || $labelIfNoReviews): ?>
-    <?php 
+    <?php
         $htmlTag = $block->getHtmlTag() ?? 'div';
-        
-        $cssClass = $block->getCssClass(); 
-        $cssClass = $cssClass ? 'class="'.$cssClass.'"' : ''; 
+
+        $cssClass = $block->getCssClass();
+        $cssClass = $cssClass ? 'class="'.$cssClass.'"' : '';
     ?>
     <<?= $htmlTag ?> <?= $cssClass ?>>
         <?= $this->getLayout()
