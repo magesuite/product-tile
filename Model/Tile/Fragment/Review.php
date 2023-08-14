@@ -40,7 +40,7 @@ class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
     protected function getReviewSummary($product): array
     {
         $productId = $product->getId();
-        
+
         if (!isset($this->reviewSummary[$productId])) {
             $this->reviewSummary[$productId] = $this->productHelper->getReviewSummary($product, true);
         }
