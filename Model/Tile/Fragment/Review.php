@@ -34,7 +34,7 @@ class Review implements \Magento\Framework\View\Element\Block\ArgumentInterface
         if (is_object($ratingSummary)) {
             $ratingSummary = $ratingSummary->getRatingSummary() ?? 0;
         }
-        
+
         $activeStars = round($ratingSummary / 10) / 2;
 
         return $activeStars;

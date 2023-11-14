@@ -1,10 +1,10 @@
-<?php 
+<?php
     /** @var $block \MageSuite\ProductTile\Block\Tile */
     $htmlTag = $block->getSectionData('html_tag');
     $cssClass = $block->getSectionData('css_class') ? $block->getSectionData('css_class') : 'cs-product-tile';
     $viewMode = $block->getViewMode();
     $additionalCssClasses = $block->getSectionData('additional_css_classes') ? ' ' .$block->getSectionData('additional_css_classes') : '';
-    $viewModeCssClass = ' ' .$cssClass .'--' .$viewMode;   
+    $viewModeCssClass = ' ' .$cssClass .'--' .$viewMode;
     $entireTileClickable = $block->getSectionData('entire_tile_clickable');
     $entireTileClickableClass = $entireTileClickable ? ' ' .$cssClass .'--clickable' : '';
 ?>
