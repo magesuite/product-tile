@@ -34,7 +34,7 @@
                                 <argument name="link_label" xsi:type="string" translate="true">Remove item</argument>
                                 <argument name="link_css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon</argument>
                                 <argument name="supported_areas" xsi:type="array">
-                                    <item name="0" xsi:type="string">wishlist</item>
+                                    <item name="wishlist" xsi:type="string">wishlist</item>
                                 </argument>
                             </arguments>
                             <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.wishlist.remove.icon.image">
@@ -68,7 +68,7 @@
                                     <argument xsi:type="string" name="thumbnail_css_class">cs-tile-gallery__thumbnail</argument>
                                     <argument xsi:type="boolean" name="display_if_single">false</argument>
                                     <argument name="unsupported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">mini-wishlist</item>
+                                        <item name="mini-wishlist" xsi:type="string">mini-wishlist</item>
                                     </argument>
                                 </arguments>
                             </block>
@@ -86,7 +86,7 @@
                                         <argument xsi:type="string" name="img_class">cs-product-tile__img</argument>
                                         <argument xsi:type="boolean" name="apply_width_height_attr">true</argument>
                                         <argument name="unsupported_areas" xsi:type="array">
-                                            <item name="0" xsi:type="string">teaser</item>
+                                            <item name="teaser" xsi:type="string">teaser</item>
                                         </argument>
                                     </arguments>
                                 </block>
@@ -111,7 +111,7 @@
                                     <argument xsi:type="string" name="html_tag">div</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__swatches</argument>
                                     <argument name="unsupported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">wishlist</item>
+                                        <item name="wishlist" xsi:type="string">wishlist</item>
                                     </argument>
                                 </arguments>
 
@@ -186,7 +186,7 @@
                                     <argument xsi:type="boolean" name="show_qty_switcher">false</argument>
                                     <argument xsi:type="string" name="qty_class">cs-product-tile__qty</argument>
                                     <argument name="unsupported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">wishlist</item>
+                                        <item name="wishlist" xsi:type="string">wishlist</item>
                                     </argument>
                                 </arguments>
 
@@ -208,7 +208,7 @@
                                         <argument xsi:type="string" name="html_tag">li</argument>
                                         <argument xsi:type="string" name="css_class">cs-links-block-addto__item cs-links-block-addto__item--wishlist</argument>
                                         <argument name="unsupported_areas" xsi:type="array">
-                                            <item name="0" xsi:type="string">wishlist</item>
+                                            <item name="wishlist" xsi:type="string">wishlist</item>
                                         </argument>
                                     </arguments>
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtolinks.addtowishlist" template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
@@ -287,7 +287,7 @@
                                     <argument xsi:type="boolean" name="show_wishlist_qty_switcher">false</argument>
                                     <argument xsi:type="string" name="wishlist_qty_class">cs-product-tile__qty</argument>
                                     <argument name="supported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">wishlist</item>
+                                        <item name="wishlist" xsi:type="string">wishlist</item>
                                     </argument>
                                 </arguments>
 
@@ -301,7 +301,7 @@
                             <block class="MageSuite\ProductTile\Block\Tile\Container" name="product.tile.container.wishlist.actions">
                                 <arguments>
                                     <argument name="supported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">wishlist</item>
+                                        <item name="wishlist" xsi:type="string">wishlist</item>
                                     </argument>
                                     <argument xsi:type="string" name="html_tag">div</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-actions</argument>
@@ -329,7 +329,7 @@
                                     <argument xsi:type="string" name="html_tag">div</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__wishlist-comment</argument>
                                     <argument name="supported_areas" xsi:type="array">
-                                        <item name="0" xsi:type="string">wishlist</item>
+                                        <item name="wishlist" xsi:type="string">wishlist</item>
                                     </argument>
                                 </arguments>
 
