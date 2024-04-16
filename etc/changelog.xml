@@ -89,7 +89,7 @@
             </tag>
             <tag version="2.2.3" date="2023-04-20">
                 <entry>
-                    <type>FEAT</type>
+                    <type>FEATURE</type>
                     <overview>Move changes related to product teaser tile type into magesuite-content-constructor-frontend repository</overview>
                     <ticket_id>RK-47</ticket_id>
                 </entry>
@@ -101,9 +101,9 @@
                     <ticket_id>RK-47</ticket_id>
                 </entry>
             </tag>
-            <tag version="2.2.5" date="2024-04-16">
+            <tag version="2.3.0" date="2024-04-16">
                 <entry>
-                    <type>FEAT</type>
+                    <type>FEATURE</type>
                     <overview>Add possibility to eager load images on tile when on category page</overview>
                     <ticket_id>KRA-1151</ticket_id>
                 </entry>
