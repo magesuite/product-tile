@@ -18,6 +18,10 @@
     $cssClass = $block->getCssClass();
     $imgClass = $block->getImgClass();
     $applyWidthHeightAttr = $block->getApplyWidthHeightAttr();
+    $categoryLazyLoadImageFromNthTile = (int)$block->getCategoryLazyLoadImageFromNthTile() ?? 0;
+
+    $iterator = $block->getTile()->getIterator();
+    $section = $block->getTile()->getSection();
 ?>
 <picture class="<?= $cssClass ?>">
     <source
@@ -32,6 +36,10 @@
             height="<?= $productImageHeight ?>"
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
-        loading="lazy"
+        <?php if ($section == 'category') : ?>
+            <?php if ($iterator >= $categoryLazyLoadImageFromNthTile) : ?>loading="lazy"<? else : ?>loading="eager"<?php endif; ?>
+        <?php else : ?>
+            loading="lazy"
+        <?php endif; ?>
     >
 </picture>
