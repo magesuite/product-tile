@@ -85,6 +85,7 @@
                                         <argument xsi:type="string" name="css_class">cs-product-tile__image</argument>
                                         <argument xsi:type="string" name="img_class">cs-product-tile__img</argument>
                                         <argument xsi:type="boolean" name="apply_width_height_attr">true</argument>
+                                        <argument xsi:type="number" name="category_lazy_load_image_from_nth_tile">0</argument>
                                         <argument name="unsupported_areas" xsi:type="array">
                                             <item name="teaser" xsi:type="string">teaser</item>
                                         </argument>

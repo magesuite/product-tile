@@ -101,6 +101,13 @@
                     <ticket_id>RK-47</ticket_id>
                 </entry>
             </tag>
+            <tag version="2.2.5" date="2024-04-16">
+                <entry>
+                    <type>FEAT</type>
+                    <overview>Add possibility to eager load images on tile when on category page</overview>
+                    <ticket_id>KRA-1151</ticket_id>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>

@@ -11,7 +11,6 @@
     $entireTileClickableClass = $entireTileClickable ? ' ' .$cssClass .'--clickable' : '';
     $stockCssClasses = !$viewModel->isSaleable($block->getProductEntity()) ? ' ' .$cssClass .'--out-of-stock' : '';
 ?>
-
 <<?= $htmlTag ?> class="<?= $cssClass .$viewModeCssClass .$entireTileClickableClass .$stockCssClasses . $additionalCssClasses; ?>">
     <?php foreach($this->getChilds() as $child): ?>
         <?= $child->setTile($block)->toHtml(); ?>
