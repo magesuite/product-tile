@@ -37,7 +37,7 @@
         <?php endif; ?>
         alt="<?= $productImageAlt ?>"
         <?php if ($section == 'category') : ?>
-            <?php if ($iterator >= $categoryLazyLoadImageFromNthTile) : ?>loading="lazy"<? else : ?>loading="eager"<?php endif; ?>
+            <?php if ($iterator >= $categoryLazyLoadImageFromNthTile) : ?>loading="lazy"<?php else : ?>loading="eager"<?php endif; ?>
         <?php else : ?>
             loading="lazy"
         <?php endif; ?>
