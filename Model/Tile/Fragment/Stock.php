@@ -4,20 +4,9 @@ namespace MageSuite\ProductTile\Model\Tile\Fragment;
 
 class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    /**
-     * @var \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite
-     */
-    protected $getStockNameForCurrentWebsite;
-
-    /**
-     * @var \Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku
-     */
-    protected $getSalableQuantityDataBySku;
-
-    /**
-     * @var ?string
-     */
-    protected $currentStockName = null;
+    protected \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite $getStockNameForCurrentWebsite;
+    protected \Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku $getSalableQuantityDataBySku;
+    protected ?string $currentStockName = null;
 
     public function __construct(
         \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite $getStockNameForCurrentWebsite,
@@ -35,6 +24,10 @@ class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
         if (!$product->isSaleable()) {
             return false;
+        }
+
+        if ($product->hasData('quantity')) {
+            return (float)$product->getData('quantity') > 0;
         }
 
         $productQty = $this->getQtyForCurrentStock($product->getSku());
