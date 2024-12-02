@@ -1,12 +1,16 @@
 <?php
-/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
-/** @var \Magento\Wishlist\Model\Item $item */
+/**
+ * @var \MageSuite\ProductTile\Block\Tile\Fragment $block
+ * @var \Magento\Wishlist\Model\Item $wishlistItem
+ * @var \Magento\Framework\Escaper $escaper
+ */
 $wishlistItem = $block->getTile()->getWishlistItem();
 $wishlistHelper = $block->getWishlistHelper();
 $product = $block->getTile()->getProductEntity();
-$linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
+$linkCssClass = $block->getLinkCssClass() ? 'class="' . $block->getLinkCssClass() . '"' : '';
 ?>
-
 <?php if ($product->isVisibleInSiteVisibility() and $wishlistItem): ?>
-    <a <?= $linkCssClass ?> href="<?= /* @escapeNotVerified */ $wishlistHelper->getConfigureUrl($wishlistItem) ?>"><?= $block->getChildHtml('') ?><?= $block->getLinkLabel() ?></a>
+    <a title="<?= $escaper->escapeHtmlAttr($block->getLinkLabel()) ?>"
+       href="<?= $escaper->escapeUrl($wishlistHelper->getConfigureUrl($wishlistItem)) ?>"
+       <?= /* @noEscape  */ $linkCssClass ?>><?= /* @noEscape */ $block->getChildHtml('') ?><?= $escaper->escapeHtml($block->getLinkLabel()) ?></a>
 <?php endif ?>
