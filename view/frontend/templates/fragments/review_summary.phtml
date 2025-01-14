@@ -1,27 +1,30 @@
 <?php
-    /** @var MageSuite\ProductTile\Model\Tile\Fragment\Review $viewModel */
-    $viewModel = $block->getViewModel();
-    $product = $block->getProduct();
-    $reviewsCount = $viewModel->getReviewsCount($product);
-    $labelIfNoReviews = $block->getLabelIfNoReviews() ?? '';
+/**
+ * @var \MageSuite\ProductTile\Block\Tile\Fragment $block
+ * @var \MageSuite\ProductTile\Model\Tile\Fragment\Review $viewModel
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$viewModel = $block->getViewModel();
+$product = $block->getProduct();
+$reviewsCount = $viewModel->getReviewsCount($product);
+$labelIfNoReviews = $block->getLabelIfNoReviews() ?? '';
 ?>
-
-<?php if($reviewsCount > 0 || $labelIfNoReviews): ?>
+<?php if ($reviewsCount > 0 || $labelIfNoReviews) : ?>
     <?php
         $htmlTag = $block->getHtmlTag() ?? 'div';
-
         $cssClass = $block->getCssClass();
-        $cssClass = $cssClass ? 'class="'.$cssClass.'"' : '';
+        $cssClass = $cssClass ? 'class="' . $cssClass . '"' : '';
     ?>
-    <<?= $htmlTag ?> <?= $cssClass ?>>
-        <?= $this->getLayout()
+    <<?= /* @noEscape */ $htmlTag ?> <?= /* @noEscape */ $cssClass ?>>
+        <?= /* @noEscape */ $block->getLayout()
                  ->createBlock(\Magento\Framework\View\Element\Template::class)
                  ->setMaxStars(5)
                  ->setActiveStars($viewModel->getActiveStars($product))
                  ->setReviewsCount($reviewsCount)
                  ->setLabelIfNoReviews($labelIfNoReviews)
                  ->setTemplate('Magento_Review::rating-stars.phtml')
+                 ->setAdditionalClasses('cs-star-rating--product-tile')
                  ->toHtml();
         ?>
-    </<?= $htmlTag ?>>
+    </<?= /* @noEscape */ $htmlTag ?>>
 <?php endif; ?>
