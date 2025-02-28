@@ -10,5 +10,8 @@
         $child->setTile($block->getTile());
         $output .= $layout->renderElement($child->getNameInLayout(), false);
     }
+
+    // Prevent container from being rendered if it's empty
+    if (!trim($output)) { return; }
 ?>
 <<?= $htmlTag ?> <?= $cssClass ?>><?=$output?></<?= $htmlTag ?>>
