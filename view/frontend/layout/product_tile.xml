@@ -255,6 +255,7 @@
                                 <arguments>
                                     <argument xsi:type="string" name="html_tag">ul</argument>
                                     <argument xsi:type="string" name="css_class">cs-product-tile__badges</argument>
+                                    <argument xsi:type="boolean" name="render_empty">false</argument> 
                                 </arguments>
                                 <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.badge.discount" template="MageSuite_ProductTile::fragments/badge.phtml">
                                     <arguments>
