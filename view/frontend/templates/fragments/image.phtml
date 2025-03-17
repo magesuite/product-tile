@@ -17,6 +17,8 @@
     /* XML config */
     $cssClass = $block->getCssClass();
     $imgClass = $block->getImgClass();
+    $ariaHidden = $block->getAriaHidden() ?? false;
+
     $applyWidthHeightAttr = $block->getApplyWidthHeightAttr();
     $categoryLazyLoadImageFromNthTile = (int)$block->getCategoryLazyLoadImageFromNthTile() ?? 0;
 
@@ -31,11 +33,12 @@
         src="<?= $productImageUrl ?>"
         class="<?= $imgClass ?>"
         srcset="<?= $productImageUrl . ' 1x, ' . $productImage2xUrl . ' 2x' ?>"
+        <?= $ariaHidden ? 'aria-hidden="true"' : '' ?>
         <?php if ($applyWidthHeightAttr): ?>
             width="<?= $productImageWidth ?>"
             height="<?= $productImageHeight ?>"
         <?php endif; ?>
-        alt="<?= $productImageAlt ?>"
+        alt="<?= $ariaHidden ? '' : $productImageAlt ?>"
         <?php if ($section == 'category') : ?>
             <?php if ($iterator >= $categoryLazyLoadImageFromNthTile) : ?>loading="lazy"<?php else : ?>loading="eager"<?php endif; ?>
         <?php else : ?>
