@@ -25,6 +25,10 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
             $cacheKey = array_merge([$tile->getSection()], $cacheKey);
         }
 
+        if ($tile->hasData('special_description')) {
+            $cacheKey[] = $tile->getData('special_description');
+        }
+
         $cacheKey = array_merge(
             [
                 self::CACHE_KEY_PREFIX,
