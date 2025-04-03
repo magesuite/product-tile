@@ -126,4 +126,18 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
         return $cacheKey;
     }
+
+    public function getAdditionalCssClasses(): string
+    {
+        $product = $this->getProductEntity();
+
+        $additionalClass = $this->getSectionData('additional_css_classes');
+        $productTypeClass = sprintf(' cs-product-tile--%s', $product->getTypeId());
+
+        if (!empty($additionalClass)) {
+            return sprintf(' %s%s', $additionalClass, $productTypeClass);
+        }
+
+        return $productTypeClass;
+    }
 }
