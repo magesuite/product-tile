@@ -2,7 +2,7 @@
 
 namespace MageSuite\ProductTile\Test\Integration\Cache;
 
-abstract class AbstractCacheTest extends \PHPUnit\Framework\TestCase
+abstract class AbstractCacheTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\TestFramework\ObjectManager

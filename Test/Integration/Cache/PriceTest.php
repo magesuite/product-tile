@@ -2,7 +2,7 @@
 
 namespace MageSuite\ProductTile\Test\Integration\Cache;
 
-class PriceTest extends AbstractCacheTest
+class PriceTest extends AbstractCacheTestCase
 {
     /**
      * @var \MageSuite\ProductTile\Cache\Price
