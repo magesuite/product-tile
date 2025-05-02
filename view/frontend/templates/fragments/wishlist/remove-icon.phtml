@@ -1,18 +1,22 @@
 <?php
 /** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
 /** @var \Magento\Wishlist\Model\Item $item */
+/** @var \Magento\Framework\Escaper $escaper */
 $wishlistItem = $block->getTile()->getWishlistItem();
-$wishlistHelper = $block->getWishlistHelper();
-$product = $block->getTile()->getProductEntity();
-$linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
 ?>
 <?php if ($wishlistItem): ?>
+    <?php
+        $wishlistHelper = $block->getWishlistHelper();
+        $product = $block->getTile()->getProductEntity();
+        $linkCssClass = $block->getLinkCssClass() ? 'class="'.$block->getLinkCssClass().'"' : '';
+        $productName = $product->getName();
+    ?>
     <a
         href="#"
         data-role="remove"
         data-post-remove='<?= /* @escapeNotVerified */ $wishlistHelper->getRemoveParams($wishlistItem); ?>'
         title="<?= $block->getLinkLabel() ?>"<?= $linkCssClass ?>
-        aria-label="<?= $block->getLinkLabel() ?>"
+        aria-label="<?= $escaper->escapeHtmlAttr(__('Remove %1 from wishlist', $productName)); ?>"
     >
         <?= $block->getChildHtml('') ?>
     </a>

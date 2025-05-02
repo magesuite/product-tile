@@ -1,14 +1,20 @@
 <?php
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<?php
     $product = $block->getProduct();
     $productID = $product->getId();
     $label = $this->getLabel();
     $wishlistItem = $block->getTile()->getWishlistItem();
     $wishlistHelper = $block->getWishlistHelper();
+    $productName = $product->getName();
 ?>
 
 <a
     href="#"
     class="towishlist cs-links-block-addto__link"
+    title="<?= $label ?>"
+    aria-label="<?= $escaper->escapeHtmlAttr(__('Add %1 to wishlist', $productName)); ?>"
     data-post='<?= $wishlistHelper->getAddParams($product) ?>'
     data-product-id="<?= $productID; ?>"
     data-action="add-to-wishlist"

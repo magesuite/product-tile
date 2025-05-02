@@ -43,7 +43,6 @@
                                     <argument name="css_class" xsi:type="string">cs-product-tile__wishlist-remove-icon-image</argument>
                                     <argument name="inlined" xsi:type="boolean">true</argument>
                                     <argument name="lazy_loaded" xsi:type="boolean">false</argument>
-                                    <argument name="alt_text" xsi:type="string" translate="true">remove</argument>
                                 </arguments>
                             </block>
                         </block>
@@ -216,7 +215,6 @@
                                     <block class="MageSuite\ProductTile\Block\Tile\Fragment" name="product.tile.addtolinks.addtowishlist" template="MageSuite_ProductTile::fragments/add-to/wishlist.phtml">
                                         <arguments>
                                             <argument xsi:type="string" name="label" translate="true">Add to Wishlist</argument>
-
                                         </arguments>
                                         <block class="MageSuite\ThemeHelpers\Block\Icon" name="product.tile.addtolinks.addtowishlist.icon">
                                             <arguments>
@@ -224,7 +222,6 @@
                                                 <argument name="css_class" xsi:type="string">cs-links-block-addto__icon cs-links-block-addto__icon--wishlist towishlist-icon</argument>
                                                 <argument name="inlined" xsi:type="boolean">true</argument>
                                                 <argument name="lazy_loaded" xsi:type="boolean">true</argument>
-                                                <argument name="alt_text" xsi:type="string" translate="true">wishlist</argument>
                                             </arguments>
                                         </block>
                                     </block>
