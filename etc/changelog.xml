@@ -115,6 +115,13 @@
                     <ticket_id>KRA-1151</ticket_id>
                 </entry>
             </tag>
+            <tag version="2.4.3" date="2025-07-04">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>A11Y - adjust tile comment</overview>
+                    <ticket_id>LOWA-714</ticket_id>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>
