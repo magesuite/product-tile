@@ -1,22 +1,27 @@
 <?php
-/** @var \MageSuite\ProductTile\Block\Tile\Fragment $block */
+/**
+ * @var \MageSuite\ProductTile\Block\Tile\Fragment $block
+ * @var \Magento\Framework\Escaper $escaper
+*/
 
 /** @var \Magento\Wishlist\Model\Item $item */
 $item = $block->getTile()->getWishlistItem();
-$itemId = $block->escapeHtmlAttr($item->getWishlistItemId());
+$itemId = $item->getWishlistItemId();
 $wishlistHelper = $block->getWishlistHelper();
+$productName = $block->getTile()->getProductEntity()->getName();
 ?>
 
 <div class="field comment-box">
-    <label class="label" for="product-item-comment-<?= $itemId ?>">
-        <span><?= $block->escapeHtml(__('Comment')) ?></span>
+    <label class="label" for="product-item-comment-<?= $escaper->escapeHtmlAttr($itemId); ?>">
+        <span><?= $escaper->escapeHtml($productName) . ' - ' . $escaper->escapeHtml(__('Comment')) ?></span>
     </label>
     <div class="control">
         <textarea
-            id="product-item-comment-<?= $itemId ?>"
+            id="product-item-comment-<?= $escaper->escapeHtmlAttr($itemId); ?>"
             placeholder="<?= /* @noEscape */ $wishlistHelper->defaultCommentString() ?>"
-            name="description[<?= $itemId ?>]" title="<?= $block->escapeHtmlAttr(__('Comment')) ?>"
+            autocomplete="off"
+            name="description[<?= $itemId ?>]"
             class="product-item-comment input-text"
-        ><?= ($block->escapeHtml($item->getDescription())) ?></textarea>
+        ><?= ($escaper->escapeHtml($item->getDescription())) ?></textarea>
     </div>
 </div>
