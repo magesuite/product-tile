@@ -18,7 +18,7 @@ $labelIfNoReviews = $block->getLabelIfNoReviews() ?? '';
     <<?= /* @noEscape */ $htmlTag ?> <?= /* @noEscape */ $cssClass ?>>
         <?= /* @noEscape */ $block->getLayout()
                  ->createBlock(\Magento\Framework\View\Element\Template::class)
-                 ->setMaxStars(5)
+                 ->setMaxStars($block->getMaxStars() ?? 5)
                  ->setActiveStars($viewModel->getActiveStars($product))
                  ->setReviewsCount($reviewsCount)
                  ->setLabelIfNoReviews($labelIfNoReviews)
