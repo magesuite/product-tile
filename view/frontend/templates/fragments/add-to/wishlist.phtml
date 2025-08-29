@@ -17,6 +17,7 @@
     aria-label="<?= $escaper->escapeHtmlAttr(__('Add %1 to wishlist', $productName)); ?>"
     data-post='<?= $wishlistHelper->getAddParams($product) ?>'
     data-product-id="<?= $productID; ?>"
+    data-product-name="<?= $escaper->escapeHtmlAttr($productName); ?>"
     data-action="add-to-wishlist"
     role="button"
 >
