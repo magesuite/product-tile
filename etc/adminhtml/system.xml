@@ -22,6 +22,11 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>When enabled product tile will be generated separately for every customer group. Disable only when shop does not differentiate product pricing between customer groups in any way. Disabling it improves shop performance.</comment>
                 </field>
+                <field id="limit_image_variations_in_cache_key" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Limit image variations to only configurable products in cache key</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When limit is enabled, the product tile will be generated with image hash based filtering options but only for configurable products. Disable if shop has implemented any image switching for all product types. Enabling will prevent creating too many cache keys for products.</comment>
+                </field>
             </group>
         </section>
     </system>
