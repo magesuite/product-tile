@@ -1,23 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Cache;
 
 class Image implements CacheKeyModel, \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    protected \Magento\Eav\Model\Config $eavConfig;
-    protected \Magento\Framework\App\Request\Http $request;
-    protected \Magento\Swatches\Helper\Data $swatchHelperData;
     protected ?array $resultCache = null;
 
     public function __construct(
-        \Magento\Framework\App\Request\Http $request,
-        \Magento\Eav\Model\Config $eavConfig,
-        \Magento\Swatches\Helper\Data $swatchHelperData
-    )
-    {
-        $this->request = $request;
-        $this->eavConfig = $eavConfig;
-        $this->swatchHelperData = $swatchHelperData;
+        protected \Magento\Framework\App\Request\Http $request,
+        protected \Magento\Eav\Model\Config $eavConfig,
+        protected \Magento\Swatches\Helper\Data $swatchHelperData,
+        protected \MageSuite\ProductTile\Helper\Configuration $configuration
+    ) {
     }
 
     /**
@@ -26,9 +22,16 @@ class Image implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
      * @param \MageSuite\ProductTile\Block\Tile\Fragment $fragment
      * @return string[]
      */
-    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment)
+    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment): array
     {
         $product = $fragment->getProduct();
+
+        if (
+            $this->configuration->isCacheKeyEnabledForVariantImage() &&
+            $product->getTypeId() !== \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE
+        ) {
+            return [];
+        }
 
         if ($this->resultCache === null) {
             $this->resultCache = $this->getFiltersValuesThatCanChangeImage($product);
@@ -56,6 +59,7 @@ class Image implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
             }
 
             if (is_array($value)) {
+                sort($value, SORT_STRING);
                 $value = implode(',', $value);
             }
 
@@ -65,7 +69,7 @@ class Image implements CacheKeyModel, \Magento\Framework\View\Element\Block\Argu
         return $filterArray;
     }
 
-    private function canReplaceImageWithSwatch($attribute)
+    protected function canReplaceImageWithSwatch(\Magento\Catalog\Model\ResourceModel\Eav\Attribute $attribute): bool
     {
         if (!$this->swatchHelperData->isSwatchAttribute($attribute)) {
             return false;
