@@ -1,17 +1,19 @@
 <?php
-    /** @var \MageSuite\ProductTile\Block\Tile\Container $this */
-    $layout = $this->getLayout();
-    $htmlTag = !empty($block->getHtmlTag()) ? $block->getHtmlTag() : 'div';
-    $cssClass = $block->getCssClass() ? 'class="'.$block->getCssClass().'"' : '';
-    $shouldRenderEmpty = !empty($block->getRenderEmpty()) ? $block->getRenderEmpty() : false;
-    $output = '';
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \MageSuite\ProductTile\Block\Tile\Container $block */
+$layout = $block->getLayout();
+$htmlTag = !empty($block->getHtmlTag()) ? $block->getHtmlTag() : 'div';
+$cssClass = $block->getCssClass() ? 'class="'.$escaper->escapeHtmlAttr($block->getCssClass()).'"' : '';
+$shouldRenderEmpty = !empty($block->getRenderEmpty()) ? $block->getRenderEmpty() : false;
+$isInert = $block->getIsInert() ? 'inert' : '';
+$output = '';
 
-    foreach($this->getChilds() as $child) {
-        $child->setTile($block->getTile());
-        $output .= $layout->renderElement($child->getNameInLayout(), false);
-    }
+foreach ($block->getChilds() as $child) {
+    $child->setTile($block->getTile());
+    $output .= $layout->renderElement($child->getNameInLayout(), false);
+}
 
-    // Render the container if 'render_empty' container attribute is set to 'true' or if there is any output
-    if (!$shouldRenderEmpty && !trim($output)) { return; }
+// Render the container if 'render_empty' container attribute is set to 'true' or if there is any output
+if (!$shouldRenderEmpty && !trim($output)) { return; }
 ?>
-<<?= $htmlTag ?> <?= $cssClass ?>><?=$output?></<?= $htmlTag ?>>
+<<?= /* @noEscape */ $htmlTag ?> <?= $cssClass ?> <?= $isInert ?>><?= /* @noEscape */ $output ?></<?= /* @noEscape */ $htmlTag ?>>
