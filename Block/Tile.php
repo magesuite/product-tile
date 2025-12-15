@@ -148,11 +148,11 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
 
     protected function getCacheLifetime(): ?int
     {
-        if (!$this->configuration->isCacheEnabled()) {
+        $cacheLifeTime = $this->configuration->getCacheLifetime();
+        if ($cacheLifeTime === 0) {
             return null;
         }
 
-        $cacheLifeTime = $this->configuration->getCacheLifetime();
         if ($cacheLifeTime) {
             $this->setData('cache_lifetime', $cacheLifeTime);
         }
