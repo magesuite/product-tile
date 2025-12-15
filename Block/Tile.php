@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Block;
 
 class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Magento\Framework\DataObject\IdentityInterface
 {
-    protected $_template = 'MageSuite_ProductTile::tile.phtml';
+    protected $_template = 'MageSuite_ProductTile::tile.phtml'; //phpcs:ignore
 
-    protected static $globalData = [];
+    protected static array $globalData = [];
 
-    public function __construct(\Magento\Catalog\Block\Product\Context $context, array $data = [])
-    {
+    public function __construct(
+        \Magento\Catalog\Block\Product\Context $context,
+        protected \MageSuite\ProductTile\Helper\Configuration $configuration,
+        array $data = []
+    ){
         self::$globalData = array_merge(self::$globalData, $data);
 
         parent::__construct($context, $data);
@@ -47,7 +52,7 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         return parent::_toHtml();
     }
 
-    public function getSectionData($key)
+    public function getSectionData(string $key): null|string|bool
     {
         $area = $this->getSection();
 
@@ -139,5 +144,19 @@ class Tile extends \Magento\Catalog\Block\Product\AbstractProduct implements \Ma
         }
 
         return $productTypeClass;
+    }
+
+    protected function getCacheLifetime(): ?int
+    {
+        if (!$this->configuration->isCacheEnabled()) {
+            return null;
+        }
+
+        $cacheLifeTime = $this->configuration->getCacheLifetime();
+        if ($cacheLifeTime) {
+            $this->setData('cache_lifetime', $cacheLifeTime);
+        }
+
+        return parent::getCacheLifetime();
     }
 }

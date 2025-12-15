@@ -6,6 +6,8 @@
                 <enabled>0</enabled>
             </thumbnail_gallery>
             <cache>
+                <enabled>1</enabled>
+                <cache_lifetime>86400</cache_lifetime>
                 <include_customer_group_in_cache_key>1</include_customer_group_in_cache_key>
                 <limit_image_variations_in_cache_key>1</limit_image_variations_in_cache_key>
             </cache>

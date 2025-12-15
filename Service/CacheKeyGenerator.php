@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Service;
 
 class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    const CACHE_KEY_PREFIX = 'product_tile';
+    public const CACHE_KEY_PREFIX = 'product_tile';
 
-    protected $flatChilds = null;
-    protected $childsWithCacheKeyGenerators = null;
+    protected ?array $flatChilds = null;
+    protected ?array $childsWithCacheKeyGenerators = null;
 
-    protected $areaCustomizationStatus = [];
+    protected array $areaCustomizationStatus = [];
 
-    public function generate(\MageSuite\ProductTile\Block\Tile $tile)
+    public function generate(\MageSuite\ProductTile\Block\Tile $tile): array
     {
         $product = $tile->getProductEntity();
 
@@ -21,7 +23,7 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
 
         $cacheKey = $this->getChildsCacheKeys($tile->getChilds(), $tile);
 
-        if(!empty($tile->getSection()) and $this->wasAreaCustomized($tile->getChilds(), $tile)) {
+        if (!empty($tile->getSection()) and $this->wasAreaCustomized($tile->getChilds(), $tile)) {
             $cacheKey = array_merge([$tile->getSection()], $cacheKey);
         }
 
@@ -42,11 +44,11 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
 
     /**
      * Get CacheKeys from all defined fragments
-     * @param $blocks
-     * @param $tile
+     * @param \Magento\Framework\View\Element\BlockInterface[] $blocks
+     * @param \Magento\Framework\View\Element\BlockInterface $tile
      * @return array
      */
-    public function getChildsCacheKeys($blocks, $tile)
+    public function getChildsCacheKeys(array $blocks, \Magento\Framework\View\Element\BlockInterface $tile): array
     {
         $childs = $this->getChildsWithCacheKeyGenerators($blocks, $tile);
 
@@ -60,21 +62,22 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
             if ($child instanceof \MageSuite\ProductTile\Block\Tile\Fragment) {
                 $child->setTile($tile);
 
-                $cacheKeys = array_merge($cacheKeys, $child->getCacheKeyInfo());
+                $cacheKeys[] = $child->getCacheKeyInfo();
             }
         }
 
-        return $cacheKeys;
+        return array_merge([], ...$cacheKeys);
     }
 
-    protected function wasAreaCustomized($blocks, $tile) {
+    protected function wasAreaCustomized(array $blocks, \Magento\Framework\View\Element\BlockInterface $tile): bool
+    {
         $area = $tile->getSection();
 
-        if(empty($area)) {
+        if (empty($area)) {
             return false;
         }
 
-        if(isset($this->areaCustomizationStatus[$area])) {
+        if (isset($this->areaCustomizationStatus[$area])) {
             return $this->areaCustomizationStatus[$area];
         }
 
@@ -87,7 +90,8 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
         return $result;
     }
 
-    protected function getChildsAreasConfiguration($blocks, $tile) {
+    protected function getChildsAreasConfiguration(array $blocks, \Magento\Framework\View\Element\BlockInterface $tile): array
+    {
         $childs = $this->getFlatChilds($blocks, $tile);
         $sections = [];
 
@@ -96,34 +100,38 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
         }
 
         foreach ($childs as $child) {
-            if(!empty($child->getSupportedAreas()) and is_array($child->getSupportedAreas())) {
-                $sections = array_merge($sections, $child->getSupportedAreas());
+            if (!empty($child->getSupportedAreas()) and is_array($child->getSupportedAreas())) {
+                $sections[] = $child->getSupportedAreas();
             }
 
-            if(!empty($child->getUnsupportedAreas()) and is_array($child->getUnsupportedAreas())) {
-                $sections = array_merge($sections, $child->getUnsupportedAreas());
+            if (!empty($child->getUnsupportedAreas()) and is_array($child->getUnsupportedAreas())) {
+                $sections[] = $child->getUnsupportedAreas();
             }
         }
 
-        return $sections;
+        return array_merge([], ...$sections);
     }
 
-    protected function getFlatChilds($blocks, $tile) {
-        if($this->flatChilds == null) {
+    protected function getFlatChilds(array $blocks,  \Magento\Framework\View\Element\BlockInterface $tile): array
+    {
+
+        if ($this->flatChilds == null) {
             $this->flatChilds = $this->getChilds($blocks, $tile);
         }
 
         return $this->flatChilds;
     }
 
-    protected function getChildsWithCacheKeyGenerators($blocks, $tile) {
-        if($this->childsWithCacheKeyGenerators == null) {
+    protected function getChildsWithCacheKeyGenerators(array $blocks, \Magento\Framework\View\Element\BlockInterface $tile): array
+    {
+        if ($this->childsWithCacheKeyGenerators === null) {
+
             $this->childsWithCacheKeyGenerators = [];
 
             $childs = $this->getFlatChilds($blocks, $tile);
 
-            foreach($childs as $child) {
-                if(!$child->getCacheKeyModel()) {
+            foreach ($childs as $child) {
+                if (!$child->getCacheKeyModel()) {
                     continue;
                 }
 
@@ -134,7 +142,7 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
         return $this->childsWithCacheKeyGenerators;
     }
 
-    public function getChilds($blocks, $tile)
+    public function getChilds(?array $blocks, \Magento\Framework\View\Element\BlockInterface $tile): array
     {
         $childs = [];
 
@@ -147,10 +155,10 @@ class CacheKeyGenerator implements \Magento\Framework\View\Element\Block\Argumen
                 $child->setTile($tile);
             }
 
-            $childs = array_merge($childs, [$child]);
-            $childs = array_merge($childs, $this->getChilds($child->getChilds(), $tile));
+            $childs[] = [$child];
+            $childs[] = $this->getChilds($child->getChilds(), $tile);
         }
 
-        return $childs;
+        return array_merge([], ...$childs);
     }
 }
