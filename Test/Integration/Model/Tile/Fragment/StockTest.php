@@ -1,18 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Test\Integration\Model\Tile\Fragment;
 
 class StockTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\Catalog\Model\ProductRepository
-     */
-    protected $productRepository;
+    protected \Magento\Catalog\Model\ProductRepository $productRepository;
 
-    /**
-     * @var \MageSuite\ProductTile\Model\Tile\Fragment\Stock
-     */
-    protected $stockFragment;
+    protected \MageSuite\ProductTile\Model\Tile\Fragment\Stock $stockFragment;
 
     public function setUp(): void
     {
@@ -26,50 +22,13 @@ class StockTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProduct
+     * @magentoDataFixture MageSuite_ProductTile::Test/Integration/_files/product.php
      */
-    public function testItReturnsCorrectFlagForDefaultStock()
+    public function testItReturnsCorrectFlagForDefaultStock(): void
     {
         $productSku = 'product';
         $product = $this->productRepository->get($productSku);
 
         $this->assertFalse($this->stockFragment->isSaleable($product));
     }
-
-    /**
-     * @magentoAppArea frontend
-     * @magentoDbIsolation enabled
-     * @magentoAppIsolation enabled
-     * @magentoDataFixture loadProduct
-     * @magentoDataFixture loadAdditionalStockAndSource
-     */
-//    public function testItReturnsCorrectStockStatus()
-//    {
-//        $productSku = 'product';
-//        $product = $this->productRepository->get($productSku);
-//
-//        $this->assertTrue($this->stockFragment->isSaleable($product));
-//    }
-
-    public static function loadAdditionalStockAndSource()
-    {
-        require __DIR__ . '/../../../_files/additional_stock_and_source.php';
-    }
-
-    public static function loadAdditionalStockAndSourceRollback()
-    {
-        require __DIR__ . '/../../../_files/additional_stock_and_source_rollback.php';
-    }
-
-    public static function loadProduct()
-    {
-        require __DIR__ . '/../../../_files/product.php';
-    }
-
-    public static function loadProductRollback()
-    {
-        require __DIR__ . '/../../../_files/product_rollback.php';
-    }
-
-
 }
