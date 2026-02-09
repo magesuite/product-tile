@@ -1,23 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Test\Integration\Plugin\Catalog\Helper\Product\Compare;
 
 class RemoveUencFromAddToCompareParametersTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\Framework\App\ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @var \Magento\Catalog\Model\ProductRepository
-     */
-    protected $productRepository;
-
-    /**
-     * @var \Magento\Catalog\Helper\Product\Compare
-     */
-    protected $compareHelper;
+    protected ?\Magento\Framework\App\ObjectManager $objectManager;
+    protected ?\Magento\Catalog\Model\ProductRepository $productRepository;
+    protected ?\Magento\Catalog\Helper\Product\Compare $compareHelper;
 
     public function setUp(): void
     {

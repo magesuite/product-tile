@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Test\Integration\Cache;
 
 class PriceTest extends AbstractCacheTestCase
 {
-    /**
-     * @var \MageSuite\ProductTile\Cache\Price
-     */
-    protected $priceCacheKeyGenerator;
+    protected ?\MageSuite\ProductTile\Cache\Price $priceCacheKeyGenerator;
 
     public function setUp(): void
     {

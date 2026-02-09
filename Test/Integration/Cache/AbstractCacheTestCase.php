@@ -1,18 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Test\Integration\Cache;
 
 abstract class AbstractCacheTestCase extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @var \Magento\Catalog\Model\ProductRepository
-     */
-    protected $productRepository;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
+    protected ?\Magento\Catalog\Model\ProductRepository $productRepository;
 
     public function setUp(): void
     {

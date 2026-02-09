@@ -6,9 +6,9 @@ namespace MageSuite\ProductTile\Test\Integration\Model\Tile\Fragment;
 
 class StockTest extends \PHPUnit\Framework\TestCase
 {
-    protected \Magento\Catalog\Model\ProductRepository $productRepository;
+    protected ?\Magento\Catalog\Model\ProductRepository $productRepository;
 
-    protected \MageSuite\ProductTile\Model\Tile\Fragment\Stock $stockFragment;
+    protected ?\MageSuite\ProductTile\Model\Tile\Fragment\Stock $stockFragment;
 
     public function setUp(): void
     {
