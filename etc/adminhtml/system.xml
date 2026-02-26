@@ -17,12 +17,17 @@
             </group>
             <group id="cache" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Cache</label>
-                <field id="include_customer_group_in_cache_key" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="cache_lifetime" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cache lifetime</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>If the value is set to 0, then the cache is disabled.</comment>
+                </field>
+                <field id="include_customer_group_in_cache_key" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Include customer group in cache key</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>When enabled product tile will be generated separately for every customer group. Disable only when shop does not differentiate product pricing between customer groups in any way. Disabling it improves shop performance.</comment>
                 </field>
-                <field id="limit_image_variations_in_cache_key" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="limit_image_variations_in_cache_key" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Limit image variations to only configurable products in cache key</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>When limit is enabled, the product tile will be generated with image hash based filtering options but only for configurable products. Disable if shop has implemented any image switching for all product types. Enabling will prevent creating too many cache keys for products.</comment>
