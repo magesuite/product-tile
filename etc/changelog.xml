@@ -140,6 +140,17 @@
                     <ticket_id>KRG-3152</ticket_id>
                 </entry>
             </tag>
+            <tag version="2.4.9" date="2026-06-28">
+                <entry>
+                    <type>FIX</type>
+                    <overview>Bust wishlist tile fragment cache when item qty, options or description change</overview>
+                    <description>
+                        WishlistItem cache key now includes the item quantity, a hash of the buy request
+                        (configured options) and the description, so the cached tile fragments (e.g. the
+                        configure/edit link) no longer show a stale quantity after the wishlist item is updated.
+                    </description>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>

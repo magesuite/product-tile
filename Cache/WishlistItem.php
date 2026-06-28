@@ -17,9 +17,23 @@ class WishlistItem implements CacheKeyModel, \Magento\Framework\View\Element\Blo
             return [];
         }
 
-        $wishlistId = $wishlistItem->getWishlistId();
-        $wishlistItemId = $wishlistItem->getId();
+        return [
+            $wishlistItem->getWishlistId(),
+            $wishlistItem->getId(),
+            (int)$wishlistItem->getQty(),
+            $this->getBuyRequestHash($wishlistItem),
+            (string)$wishlistItem->getDescription()
+        ];
+    }
 
-        return [$wishlistId, $wishlistItemId];
+    protected function getBuyRequestHash(\Magento\Wishlist\Model\Item $wishlistItem): string
+    {
+        $option = $wishlistItem->getOptionByCode('info_buyRequest');
+
+        if (!$option || !$option->getValue()) {
+            return '';
+        }
+
+        return hash('md5', (string)$option->getValue());
     }
 }
