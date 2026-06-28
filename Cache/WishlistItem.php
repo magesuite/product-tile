@@ -8,7 +8,7 @@ class WishlistItem implements CacheKeyModel, \Magento\Framework\View\Element\Blo
      * @param \MageSuite\ProductTile\Block\Tile\Fragment $fragment
      * @return string[]
      */
-    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment)
+    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment) //phpcs:ignore SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
     {
         /** @var \Magento\Wishlist\Model\Item $wishlistItem */
         $wishlistItem = $fragment->getTile()->getWishlistItem();
