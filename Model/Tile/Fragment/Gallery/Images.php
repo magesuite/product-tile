@@ -52,7 +52,6 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
             $mediaImage = [
                 'tileImageSrc' => $tileImage2xUrl,
                 'tileImageSrcSet' => sprintf('%s, %s 2x', $tileImageUrl, $tileImage2xUrl),
-                'webpTileImageSrcSet' => sprintf('%s.webp, %s.webp 2x', $tileImageUrl, $tileImage2xUrl),
                 'productImageSrc' => $productImage2xUrl,
                 'productImageSrcSet' => sprintf('%s, %s 2x', $productImageUrl, $productImage2xUrl),
                 'width' => $tileImageWidth,
