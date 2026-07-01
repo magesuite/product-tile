@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ProductTile\Model\Tile\Fragment;
 
 class Stock implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    protected \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite $getStockNameForCurrentWebsite;
-    protected \Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku $getSalableQuantityDataBySku;
     protected ?string $currentStockName = null;
 
     public function __construct(
-        \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite $getStockNameForCurrentWebsite,
-        \Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku $getSalableQuantityDataBySku
-    ) {
-        $this->getStockNameForCurrentWebsite = $getStockNameForCurrentWebsite;
-        $this->getSalableQuantityDataBySku = $getSalableQuantityDataBySku;
-    }
+        protected \MageSuite\ProductTile\Model\Command\GetStockNameForCurrentWebsite $getStockNameForCurrentWebsite,
+        protected \Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku $getSalableQuantityDataBySku,
+        protected \Magento\CatalogInventory\Model\Configuration $catalogInventoryConfiguration
+    ) {}
 
     public function isSaleable($product)
     {
         if ($product->getTypeId() != \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE) {
+            if (!$this->catalogInventoryConfiguration->isShowOutOfStock()) {
+                return true;
+            }
+
             return $product->isSaleable();
         }
 
