@@ -32,9 +32,9 @@ class ImageTest extends \PHPUnit\Framework\TestCase
     /**
      * @magentoDataFixture Magento/Swatches/_files/configurable_product_visual_swatch_attribute.php
      * @magentoDataFixture Magento/Catalog/_files/product_image.php
-     * @dataProvider filteringConditionsDataProvider
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('filteringConditionsDataProvider')]
     public function testFilterValuesAreAddedToCacheKeyWhenFilteredByAttributeThatCanChangeImage(bool $filterByVisualSwatch, bool $resultShouldBeEmpty): void
     {
         $this->updateAttributePreviewImageFlag('visual_swatch_attribute');
