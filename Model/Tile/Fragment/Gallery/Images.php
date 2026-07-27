@@ -22,6 +22,7 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
         $productImage2x = $productImage2x ?? 'category_page_grid_x2';
         $mediaGallery = $product->getMediaGalleryEntries();
         $galleryImages = [];
+        $imagesCount = 0;
 
         if (!$mediaGallery) {
             return [];
@@ -58,20 +59,19 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
                 'height' => $tileImageHeight,
             ];
 
-            if (in_array('image', $mediaGalleryImage->getTypes()) !== false){
+            if (in_array('image', $mediaGalleryImage->getTypes()) !== false) {
                 array_unshift($galleryImages, $mediaImage);
+            } elseif (!empty($mediaGalleryImage['disabled']) || !empty($mediaGalleryImage['removed'])) {
                 continue;
+            } else {
+                $galleryImages[] = $mediaImage;
             }
 
-            if (!empty($mediaGalleryImage['disabled']) || !empty($mediaGalleryImage['removed'])) {
-                continue;
+            $imagesCount++;
+
+            if ($limit && is_numeric($limit) && $imagesCount >= $limit) {
+                break;
             }
-
-            $galleryImages[] = $mediaImage;
-        }
-
-        if($limit and is_numeric($limit)){
-            $galleryImages = array_slice($galleryImages, 0, $limit);
         }
 
         return $galleryImages;
