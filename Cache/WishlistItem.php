@@ -20,7 +20,7 @@ class WishlistItem implements CacheKeyModel, \Magento\Framework\View\Element\Blo
         return [
             $wishlistItem->getWishlistId(),
             $wishlistItem->getId(),
-            (int)$wishlistItem->getQty(),
+            sprintf('%.4F', (float)$wishlistItem->getQty()),
             $this->getBuyRequestHash($wishlistItem),
             (string)$wishlistItem->getDescription()
         ];
