@@ -15,7 +15,6 @@ $productImage2x = $block->getProductImageId2x();
 
 $images = $viewModel->getMediaGalleryImages($product, $tileImage, $tileImage2x, $limit, $productImage, $productImage2x);
 $displayRule = $block->getDisplayIfSingle() ? count($images) : count($images) > 1;
-$imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
 $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 ?>
 
@@ -34,17 +33,8 @@ $loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
     ?>
     <<?= $containerTag ?> <?= $containerClass ?>>
     <?php foreach($images as $imagesSet): ?>
-        <?php
-            $isWebpSupported = $imageTypeHelper->supportsWebp($imagesSet['tileImageSrc']);
-        ?>
         <<?= $wrapperTag ?> <?= $wrapperClass ?>>
             <picture <?= $thumbnailCssClass ?>>
-                <?php if ($isWebpSupported): ?>
-                    <source
-                        type="image/webp"
-                        srcset="<?= $imagesSet['webpTileImageSrcSet'] ?>"
-                    >
-                <?php endif; ?>
                 <source
                     srcset="<?= $imagesSet['tileImageSrcSet'] ?>"
                 >

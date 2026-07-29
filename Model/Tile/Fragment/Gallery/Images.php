@@ -21,60 +21,97 @@ class Images implements \Magento\Framework\View\Element\Block\ArgumentInterface
         $productImage = $productImage ?? 'category_page_grid';
         $productImage2x = $productImage2x ?? 'category_page_grid_x2';
         $mediaGallery = $product->getMediaGalleryEntries();
-        $galleryImages = [];
 
         if (!$mediaGallery) {
             return [];
         }
 
-        foreach($mediaGallery as $mediaGalleryImage) {
-            $tileImageInstance = $this->imageHelper->init($product, $tileImage)
-                ->setImageFile($mediaGalleryImage->getFile());
+        $hasLimit = $limit && is_numeric($limit);
+        $styles = [$tileImage, $tileImage2x, $productImage, $productImage2x];
 
-            $tileImageUrl = $tileImageInstance->getUrl();
+        [$baseImage, $galleryImages] = $this->collectGalleryImages($product, $mediaGallery, $hasLimit, $limit, $styles);
 
-            $tileImageWidth = $tileImageInstance->getWidth();
-
-            $tileImageHeight = $tileImageInstance->getHeight();
-
-            $tileImage2xUrl = $this->imageHelper->init($product, $tileImage2x)
-                ->setImageFile($mediaGalleryImage->getFile())
-                ->getUrl();
-
-            $productImageUrl = $this->imageHelper->init($product, $productImage)
-                ->setImageFile($mediaGalleryImage->getFile())
-                ->getUrl();
-
-            $productImage2xUrl = $this->imageHelper->init($product, $productImage2x)
-                ->setImageFile($mediaGalleryImage->getFile())
-                ->getUrl();
-
-            $mediaImage = [
-                'tileImageSrc' => $tileImage2xUrl,
-                'tileImageSrcSet' => sprintf('%s, %s 2x', $tileImageUrl, $tileImage2xUrl),
-                'webpTileImageSrcSet' => sprintf('%s.webp, %s.webp 2x', $tileImageUrl, $tileImage2xUrl),
-                'productImageSrc' => $productImage2xUrl,
-                'productImageSrcSet' => sprintf('%s, %s 2x', $productImageUrl, $productImage2xUrl),
-                'width' => $tileImageWidth,
-                'height' => $tileImageHeight,
-            ];
-
-            if (in_array('image', $mediaGalleryImage->getTypes()) !== false){
-                array_unshift($galleryImages, $mediaImage);
-                continue;
-            }
-
-            if (!empty($mediaGalleryImage['disabled']) || !empty($mediaGalleryImage['removed'])) {
-                continue;
-            }
-
-            $galleryImages[] = $mediaImage;
+        if ($baseImage !== null) {
+            array_unshift($galleryImages, $baseImage);
         }
 
-        if($limit and is_numeric($limit)){
-            $galleryImages = array_slice($galleryImages, 0, $limit);
+        return $this->applyLimit($galleryImages, $hasLimit, $limit);
+    }
+
+    protected function collectGalleryImages($product, $mediaGallery, bool $hasLimit, $limit, array $styles): array
+    {
+        $baseImage = null;
+        $galleryImages = [];
+        $imagesCount = 0;
+
+        foreach ($mediaGallery as $mediaGalleryImage) {
+            if ($this->isBaseImage($mediaGalleryImage)) {
+                $baseImage = $this->buildMediaImage($product, $mediaGalleryImage, $styles);
+            } elseif ($this->isHidden($mediaGalleryImage)) {
+                continue;
+            } elseif (!$hasLimit || $imagesCount < $limit) {
+                $galleryImages[] = $this->buildMediaImage($product, $mediaGalleryImage, $styles);
+                $imagesCount++;
+            }
+
+            if ($this->shouldStopCollecting($hasLimit, $baseImage, $imagesCount, $limit)) {
+                break;
+            }
+        }
+
+        return [$baseImage, $galleryImages];
+    }
+
+    protected function shouldStopCollecting(bool $hasLimit, ?array $baseImage, int $imagesCount, $limit): bool
+    {
+        return $hasLimit && $baseImage !== null && $imagesCount >= $limit;
+    }
+
+    protected function applyLimit(array $galleryImages, bool $hasLimit, $limit): array
+    {
+        if ($hasLimit && count($galleryImages) > $limit) {
+            array_pop($galleryImages);
         }
 
         return $galleryImages;
+    }
+
+    protected function isBaseImage($mediaGalleryImage): bool
+    {
+        return in_array('image', $mediaGalleryImage->getTypes()) !== false;
+    }
+
+    protected function isHidden($mediaGalleryImage): bool
+    {
+        return !empty($mediaGalleryImage['disabled']) || !empty($mediaGalleryImage['removed']);
+    }
+
+    protected function buildMediaImage($product, $mediaGalleryImage, array $styles): array
+    {
+        [$tileImage, $tileImage2x, $productImage, $productImage2x] = $styles;
+
+        $tileImageInstance = $this->imageHelper->init($product, $tileImage)
+            ->setImageFile($mediaGalleryImage->getFile());
+
+        $tileImage2xUrl = $this->imageHelper->init($product, $tileImage2x)
+            ->setImageFile($mediaGalleryImage->getFile())
+            ->getUrl();
+
+        $productImageUrl = $this->imageHelper->init($product, $productImage)
+            ->setImageFile($mediaGalleryImage->getFile())
+            ->getUrl();
+
+        $productImage2xUrl = $this->imageHelper->init($product, $productImage2x)
+            ->setImageFile($mediaGalleryImage->getFile())
+            ->getUrl();
+
+        return [
+            'tileImageSrc' => $tileImage2xUrl,
+            'tileImageSrcSet' => sprintf('%s, %s 2x', $tileImageInstance->getUrl(), $tileImage2xUrl),
+            'productImageSrc' => $productImage2xUrl,
+            'productImageSrcSet' => sprintf('%s, %s 2x', $productImageUrl, $productImage2xUrl),
+            'width' => $tileImageInstance->getWidth(),
+            'height' => $tileImageInstance->getHeight(),
+        ];
     }
 }
