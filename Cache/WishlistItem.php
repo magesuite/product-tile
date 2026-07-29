@@ -8,18 +8,32 @@ class WishlistItem implements CacheKeyModel, \Magento\Framework\View\Element\Blo
      * @param \MageSuite\ProductTile\Block\Tile\Fragment $fragment
      * @return string[]
      */
-    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment)
+    public function getCacheKeyInfo(\MageSuite\ProductTile\Block\Tile\Fragment $fragment) //phpcs:ignore SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
     {
         /** @var \Magento\Wishlist\Model\Item $wishlistItem */
         $wishlistItem = $fragment->getTile()->getWishlistItem();
 
-        if(!$wishlistItem) {
+        if (!$wishlistItem) {
             return [];
         }
 
-        $wishlistId = $wishlistItem->getWishlistId();
-        $wishlistItemId = $wishlistItem->getId();
+        return [
+            $wishlistItem->getWishlistId(),
+            $wishlistItem->getId(),
+            sprintf('%.4F', (float)$wishlistItem->getQty()),
+            $this->getBuyRequestHash($wishlistItem),
+            (string)$wishlistItem->getDescription()
+        ];
+    }
 
-        return [$wishlistId, $wishlistItemId];
+    protected function getBuyRequestHash(\Magento\Wishlist\Model\Item $wishlistItem): string
+    {
+        $option = $wishlistItem->getOptionByCode('info_buyRequest');
+
+        if (!$option || !$option->getValue()) {
+            return '';
+        }
+
+        return hash('md5', (string)$option->getValue());
     }
 }
