@@ -15,7 +15,7 @@ $productImage2x = $block->getProductImageId2x();
 
 $images = $viewModel->getMediaGalleryImages($product, $tileImage, $tileImage2x, $limit, $productImage, $productImage2x);
 $displayRule = $block->getDisplayIfSingle() ? count($images) : count($images) > 1;
-$loaderImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+$loaderImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 ?>
 
 <?php if($images && $displayRule): ?>
